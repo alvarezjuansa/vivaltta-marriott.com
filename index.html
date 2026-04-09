@@ -256,7 +256,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;hei
 .bg-y{background:rgba(176,100,0,.1);color:#A05000;}
 .bg-r{background:rgba(200,48,48,.1);color:#B03030;}
 .bg-d{background:rgba(31,31,33,.1);color:var(--ink);}
-.cmp-chart-wrap{background:var(--white);border:1px solid rgba(138,138,138,.2);padding:28px;}
+.cmp-chart-wrap{background:var(--white);border:1px solid rgba(138,138,138,.2);padding:28px;height:396px;}
 .cc{height:340px;}
 
 /* ══════════════════════════════════════════════════════
@@ -463,6 +463,29 @@ nav.sc .fx-badge.live-on{color:rgba(30,80,50,.85);}
   color:rgba(138,138,138,.6);letter-spacing:.05em;line-height:1.7;
   margin-top:14px;padding-top:10px;
   border-top:1px solid rgba(138,138,138,.15);}
+
+/* ══════════════════════════════════════════════════════
+   PORTFOLIO CALCULATOR (Rental Pool)
+══════════════════════════════════════════════════════ */
+.suite-grid{display:flex;justify-content:center;flex-wrap:wrap;gap:1.5rem;width:100%;margin:0 auto 20px;}
+.suite-card{background:var(--bg);border:1px solid rgba(138,138,138,.25);padding:16px 18px;transition:.25s;width:calc(50% - 0.75rem);max-width:220px;box-sizing:border-box;}
+.suite-card:hover{border-color:rgba(230,68,55,.4);background:rgba(230,68,55,.02);}
+.suite-card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;}
+.suite-tag{font-family:var(--sans);font-size:.54rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--red);}
+.suite-avail{font-family:var(--sans);font-size:.52rem;color:var(--muted);letter-spacing:.06em;}
+.suite-area{font-family:var(--serif);font-size:1.4rem;font-weight:300;font-style:italic;color:var(--ink);line-height:1;margin-bottom:2px;}
+.suite-price{font-family:var(--sans);font-size:.6rem;color:var(--muted);margin-bottom:10px;}
+.suite-counter{display:flex;align-items:center;gap:10px;}
+.suite-btn{width:28px;height:28px;border:1px solid rgba(138,138,138,.35);background:var(--white);color:var(--ink);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:4px;transition:.15s;line-height:1;padding:0;font-family:var(--sans);}
+.suite-btn:hover{border-color:var(--red);color:var(--red);}
+.suite-qty{font-family:var(--serif);font-size:1.3rem;font-weight:300;font-style:italic;min-width:28px;text-align:center;color:var(--ink);}
+.participation-bar-wrap{margin:16px 0 8px;}
+.participation-label{display:flex;justify-content:space-between;font-family:var(--sans);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.participation-label strong{color:var(--red);font-size:.72rem;}
+.participation-bar{height:4px;background:rgba(138,138,138,.2);border-radius:2px;overflow:hidden;}
+.participation-fill{height:100%;background:var(--red);border-radius:2px;transition:width .4s ease;}
+.rental-pool-note{font-family:var(--serif);font-style:italic;font-size:.8rem;color:var(--muted);line-height:1.65;padding:14px 16px;border-left:2px solid rgba(230,68,55,.35);background:rgba(230,68,55,.03);margin-top:12px;}
+@media(max-width:580px){.suite-card{width:100%;max-width:100%;}}
 </style>
 </head>
 <body>
@@ -513,14 +536,14 @@ nav.sc .fx-badge.live-on{color:rgba(30,80,50,.85);}
 <div class="towers-intro">
   <div class="towers-intro-inner">
     <div class="tower-card fade">
-      <span class="tower-tag tower-tag-1" data-i18n="tower1_tag">Torre 1 · Salud & Oficinas</span>
-      <h3 data-i18n="tower1_title">Quirófanos, consultorios y espacios médicos especializados</h3>
-      <p data-i18n="tower1_body">La primera torre de Vivaltta alberga quirófanos certificados, áreas médicas especializadas y consultorios desde 29.45 m², capturando la creciente demanda del clúster médico de la Milla de Diamante. Este activo no está disponible para inversión fiduciaria.</p>
+      <span class="tower-tag tower-tag-1" data-i18n="tower1_tag">Torre 1 · Salud · Próxima a agotarse</span>
+      <h3 data-i18n="tower1_title">Quirófanos y consultorios médicos especializados</h3>
+      <p data-i18n="tower1_body">Torre de salud y servicios especializados — próxima a agotarse en su totalidad, al igual que Vittrio y Cristtali en el mismo plan parcial. Forma el ecosistema que garantiza ocupación permanente al hotel.</p>
     </div>
     <div class="tower-card fade" style="transition-delay:.15s;">
       <span class="tower-tag tower-tag-2" data-i18n="tower2_tag">Torre 2 · Hotel Marriott · Activo de Inversión</span>
       <h3 data-i18n="tower2_title">154 habitaciones operadas bajo la marca Marriott por OXO Hotels</h3>
-      <p data-i18n="tower2_body">La Torre 2 es el activo disponible para inversión. Usted adquiere Derechos Fiduciarios sobre este hotel y recibe mensualmente su participación proporcional en las utilidades operativas (GOP). El único hotel de marca internacional en la Milla de Diamante de Envigado.</p>
+      <p data-i18n="tower2_body">El activo de inversión: el único hotel de marca internacional en la Milla de Diamante. Operado por OXO Hotels bajo el estándar Marriott, captura la demanda del clúster médico, corporativo y — crucialmente — de la Arena Primavera (75+ eventos al año, a solo 8 minutos). Su patrimonio genera Utilidad Operativa sin importar si su suite individual está ocupada.</p>
       <a href="#modelo" class="tower-card-cta" data-i18n="btn_model">Conocer el Modelo de Inversión</a>
     </div>
   </div>
@@ -544,10 +567,10 @@ nav.sc .fx-badge.live-on{color:rgba(30,80,50,.85);}
     <div class="dev-header fade">
       <div>
         <span class="eyebrow" data-i18n="trust_label">Respaldos Institucionales</span>
-        <div class="dev-headline" style="margin-top:14px" data-i18n="dev_headline">Más de 53 años<br>transformando el <em>skyline</em><br>de Colombia</div>
+        <div class="dev-headline" style="margin-top:14px" data-i18n="dev_headline">Más de 50 años<br>transformando el <em>skyline</em><br>de Colombia</div>
       </div>
       <div>
-        <p class="dev-intro" data-i18n="dev_intro">Londoño Gómez no es solo un constructor — es el arquitecto de comunidades enteras. Con más de cinco décadas liderando proyectos de uso mixto y un compromiso inquebrantable con la excelencia arquitectónica, su nombre es la garantía más sólida que puede respaldar la inversión de un extranjero en Colombia. Los demás nombres en esta página son los mejores en sus respectivos campos: juntos forman el equipo más robusto del mercado inmobiliario hotelero del país.</p>
+        <p class="dev-intro" data-i18n="dev_intro">Londoño Gómez no es solo un Desarrollador de Proyectos — es el arquitecto de comunidades enteras. Con más de cinco décadas liderando proyectos de uso mixto y un compromiso inquebrantable con la excelencia arquitectónica, su nombre es la garantía más sólida que puede respaldar la inversión de un extranjero en Colombia. Los demás nombres en esta página son los mejores en sus respectivos campos: juntos forman el equipo más robusto del mercado inmobiliario hotelero del país.</p>
       </div>
     </div>
     <div class="dev-partners">
@@ -555,7 +578,7 @@ nav.sc .fx-badge.live-on{color:rgba(30,80,50,.85);}
         <div class="dev-partner-num">01</div>
         <div>
           <div class="dev-partner-name">Londoño Gómez</div>
-          <div class="dev-partner-desc" data-i18n="lg_desc">Más de 53 años transformando el skyline de Colombia. Pioneros en proyectos de uso mixto de gran escala, con un historial de proyectos entregados a tiempo y con la más alta calidad. Ciudad Peldar es su obra maestra: el megaproyecto #1 más vendido del país. Para el inversionista extranjero, su nombre es la máxima garantía de solidez, transparencia y retorno.</div>
+          <div class="dev-partner-desc" data-i18n="lg_desc">Desarrollador líder con más de 50 años de trayectoria transformando el panorama inmobiliario de Colombia. Visionarios detrás de Ciudad Peldar —el megaproyecto más exitoso del país—, Londoño Gómez garantiza solidez, valorización y una gestión estratégica orientada a la rentabilidad del inversionista.</div>
           <div class="dev-partner-stat">53+ años</div>
         </div>
       </div>
@@ -563,7 +586,7 @@ nav.sc .fx-badge.live-on{color:rgba(30,80,50,.85);}
         <div class="dev-partner-num">02</div>
         <div>
           <div class="dev-partner-name">Arq. y Concreto</div>
-          <div class="dev-partner-desc" data-i18n="tp5_d">33 años de experiencia. Responsable de Viva Envigado y co-desarrolladora de Vivaltta.</div>
+          <div class="dev-partner-desc" data-i18n="tp5_d">Constructora referente en innovación y excelencia técnica. Con una hoja de ruta impecable en proyectos de gran escala y alta complejidad, aseguran los más altos estándares de calidad constructiva y cumplimiento, materializando hitos urbanos que perduran en el tiempo.</div>
           <div class="dev-partner-stat">33 años</div>
         </div>
       </div>
@@ -608,7 +631,7 @@ nav.sc .fx-badge.live-on{color:rgba(30,80,50,.85);}
       <span class="eyebrow">Milla de Diamante · Ciudad Peldar · Envigado</span>
       <h2 style="font-family:var(--serif);font-size:clamp(2rem,3.5vw,3rem);font-weight:300;line-height:1.05;margin:14px 0 20px;" data-i18n="peldar_title">Ciudad a menos de<br><em>15 minutos</em> de todo</h2>
       <div style="width:36px;height:1px;background:var(--red);margin:20px 0;"></div>
-      <p class="lead" style="max-width:100%;" data-i18n="peldarDesc">Ciudad Peldar ocupa 101.445 m² del histórico lote Peldar — el mejor lote del Valle de Aburrá. Es el megaproyecto #1 más vendido de Colombia: más de 1.000 familias ya eligieron Vittrio y Cristtali en el mismo plan parcial. Vivaltta Marriott es su coronación comercial: frente al Metro, al lado de Viva Envigado, sobre Av. Las Vegas y con acceso directo a Av. Simón Bolívar y Av. Regional.</p>
+      <p class="lead" style="max-width:100%;" data-i18n="peldarDesc">Ciudad Peldar ocupa 101.445 m² del histórico lote Peldar — el mejor lote del Valle de Aburrá. Es el megaproyecto #1 más vendido de Colombia: más de 1.000 familias ya eligieron Vittrio y Cristtali en el mismo plan parcial. Vivaltta Marriott es su coronación comercial: frente al Metro, al lado de Viva Envigado. Conecta directamente con tres vías principales: Av. Las Vegas, Av. Regional y Av. Simón Bolívar.</p>
       <div class="peldar-stats">
         <div class="peldar-stat">
           <strong>CC Viva</strong>
@@ -651,14 +674,14 @@ nav.sc .fx-badge.live-on{color:rgba(30,80,50,.85);}
     <div class="model-inner">
       <div class="fade">
         <span class="eyebrow model-label" data-i18n="hiw_label">Modelo de Inversión</span>
-        <h2 class="model-headline" data-i18n="hiw_title">¿Cómo funcionan los <em>Derechos Fiduciarios?</em></h2>
-        <p class="model-body" data-i18n="hiw_desc">Estructura transparente regulada por la SFC y ejecutada por Alianza Fiduciaria, que protege su capital y garantiza la distribución proporcional de utilidades.</p>
+        <h2 class="model-headline" data-i18n="hiw_title">¿Cómo funciona el <em>Modelo Rental Pool?</em></h2>
+        <p class="model-body" data-i18n="hiw_desc">Como inversionista, adquiere un Derecho Fiduciario vinculado a una Suite específica. El hotel opera como un pool unificado: su patrimonio genera Utilidad Operativa proporcional a su participación, eliminando el riesgo de vacancia individual.</p>
         <a href="#lead-form" class="btn" data-i18n="btn_acquire">Adquiere Tu Derecho</a>
       </div>
       <div class="model-right fade" style="transition-delay:.2s">
         <div class="model-step">
           <span class="model-step-n">01</span>
-          <div class="model-step-body"><h4 data-i18n="hiw1_t">Adquiere tu Derecho Fiduciario</h4><p data-i18n="hiw1_d">Compras una fracción proporcional del hotel mediante fiducia mercantil ante notaría. Tu inversión queda inscrita en escritura pública.</p></div>
+          <div class="model-step-body"><h4 data-i18n="hiw1_t">Adquiere tu Derecho Fiduciario</h4><p data-i18n="hiw1_d">Al formalizar la operación, se emite un título fiduciario respaldado por Alianza Fiduciaria. Su inversión queda jurídicamente protegida y separada del patrimonio del Desarrollador de Proyectos.</p></div>
         </div>
         <div class="model-step">
           <span class="model-step-n">02</span>
@@ -666,7 +689,7 @@ nav.sc .fx-badge.live-on{color:rgba(30,80,50,.85);}
         </div>
         <div class="model-step">
           <span class="model-step-n">03</span>
-          <div class="model-step-body"><h4 data-i18n="hiw3_t">Recibes tus Utilidades</h4><p data-i18n="hiw3_d">Con Marriott y OXO Hotels operando, recibes tu participación en el GOP mensualmente, directamente en tu cuenta.</p></div>
+          <div class="model-step-body"><h4 data-i18n="hiw3_t">Recibes tus Utilidades</h4><p data-i18n="hiw3_d">Con Marriott y OXO Hotels operando, recibe su participación proporcional de la Utilidad Operativa mensualmente, directo a su cuenta.</p></div>
         </div>
       </div>
     </div>
@@ -696,7 +719,7 @@ nav.sc .fx-badge.live-on{color:rgba(30,80,50,.85);}
             <span class="wf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="1.2" width="20" height="20"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
             <span class="wf-label" data-i18n="wf_l3">Resultado</span>
             <span class="wf-name"  data-i18n="wf_n3">Utilidad Neta</span>
-            <span class="wf-sub"   data-i18n="wf_s3">GOP operativo</span>
+            <span class="wf-sub"   data-i18n="wf_s3">Utilidad Operativa</span>
           </div>
         </div>
         <div class="wf-step">
@@ -733,29 +756,98 @@ nav.sc .fx-badge.live-on{color:rgba(30,80,50,.85);}
     </div>
     <div class="fin-note fade">
       <div class="dot-red" style="flex-shrink:0;margin-top:4px;"></div>
-      <p>Este análisis se centra en utilidades operativas proyectadas. <strong>No incluye la valorización del derecho y el activo</strong>, lo cual representa un beneficio patrimonial adicional extraordinario para el inversionista.</p>
+      <p data-i18n="fin_note_calc">Este análisis se centra en utilidades operativas proyectadas. No incluye la valorización del derecho y el activo, lo cual representa un beneficio patrimonial adicional extraordinario para el inversionista.</p>
     </div>
     <div class="calc-grid">
+      <!-- LEFT: Portfolio Selector -->
       <div class="calc-panel fade">
-        <div class="calc-ib">
-          <div class="calc-label-row">
-            <span class="calc-label" data-i18n="l_rights">Derechos Fiduciarios</span>
-            <span class="vt" id="vR">1</span>
-          </div>
-          <input type="range" id="inR" min="1" max="50" value="1">
-          <div class="range-labels"><span>1</span><span>50</span></div>
+        <div style="margin-bottom:20px;">
+          <span class="calc-label" style="display:block;margin-bottom:4px;" data-i18n="calc_suite_title">Composición de Portafolio</span>
+          <p style="font-size:.7rem;color:var(--muted);line-height:1.6;" data-i18n="calc_suite_sub">Selecciona las suites que deseas adquirir</p>
         </div>
-        <div class="calc-ib">
+
+        <div class="suite-grid">
+          <!-- Tipo A -->
+          <div class="suite-card">
+            <div class="suite-card-header">
+              <span class="suite-tag" data-i18n="suite_a_tag">Tipo A</span>
+              <span class="suite-avail"><span data-i18n="avail_label">Disp.</span>: <span id="avail_a">40</span></span>
+            </div>
+            <div class="suite-area">31 m²</div>
+            <div class="suite-price">$ 381.300.000 COP</div>
+            <div class="suite-counter">
+              <button class="suite-btn" onclick="changeSuite('a',-1)">−</button>
+              <span class="suite-qty" id="qty_a">0</span>
+              <button class="suite-btn" onclick="changeSuite('a',+1)">+</button>
+            </div>
+          </div>
+          <!-- Tipo B -->
+          <div class="suite-card">
+            <div class="suite-card-header">
+              <span class="suite-tag" data-i18n="suite_b_tag">Tipo B</span>
+              <span class="suite-avail"><span data-i18n="avail_label">Disp.</span>: <span id="avail_b">38</span></span>
+            </div>
+            <div class="suite-area">42 m²</div>
+            <div class="suite-price">$ 516.600.000 COP</div>
+            <div class="suite-counter">
+              <button class="suite-btn" onclick="changeSuite('b',-1)">−</button>
+              <span class="suite-qty" id="qty_b">0</span>
+              <button class="suite-btn" onclick="changeSuite('b',+1)">+</button>
+            </div>
+          </div>
+          <!-- Tipo C -->
+          <div class="suite-card">
+            <div class="suite-card-header">
+              <span class="suite-tag" data-i18n="suite_c_tag">Tipo C</span>
+              <span class="suite-avail"><span data-i18n="avail_label">Disp.</span>: <span id="avail_c">38</span></span>
+            </div>
+            <div class="suite-area">50 m²</div>
+            <div class="suite-price">$ 615.000.000 COP</div>
+            <div class="suite-counter">
+              <button class="suite-btn" onclick="changeSuite('c',-1)">−</button>
+              <span class="suite-qty" id="qty_c">0</span>
+              <button class="suite-btn" onclick="changeSuite('c',+1)">+</button>
+            </div>
+          </div>
+          <!-- Tipo D -->
+          <div class="suite-card">
+            <div class="suite-card-header">
+              <span class="suite-tag" data-i18n="suite_d_tag">Tipo D</span>
+              <span class="suite-avail"><span data-i18n="avail_label">Disp.</span>: <span id="avail_d">38</span></span>
+            </div>
+            <div class="suite-area">57 m²</div>
+            <div class="suite-price">$ 701.100.000 COP</div>
+            <div class="suite-counter">
+              <button class="suite-btn" onclick="changeSuite('d',-1)">−</button>
+              <span class="suite-qty" id="qty_d">0</span>
+              <button class="suite-btn" onclick="changeSuite('d',+1)">+</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Participation bar -->
+        <div class="participation-bar-wrap">
+          <div class="participation-label">
+            <span data-i18n="part_label">Participación en el Hotel</span>
+            <strong id="partPct">0.00%</strong>
+          </div>
+          <div class="participation-bar"><div class="participation-fill" id="partBar" style="width:0%"></div></div>
+        </div>
+
+        <!-- Occupancy slider -->
+        <div class="calc-ib" style="margin-top:16px;">
           <div class="calc-label-row">
             <span class="calc-label" data-i18n="l_occ">Ocupación Anual</span>
             <span class="vt" id="vO">68.5%</span>
           </div>
-          <input type="range" id="inO" min="0" max="100" value="68.5" step="0.5">
+          <input type="range" id="inO" min="0" max="100" value="68.5" step="0.5" oninput="uc()">
           <div class="range-labels"><span>0%</span><span data-i18n="dane_avg">Prom. DANE: 68.5%</span><span>100%</span></div>
         </div>
+
+        <!-- Total investment display -->
         <div class="inv-display">
           <div class="inv-label" data-i18n="total_inv">Inversión Total</div>
-          <div class="itv" id="tInv">$ 50.000.000</div>
+          <div class="itv" id="tInv">—</div>
         </div>
         <div class="fx-strip" id="fxStrip">
           <span class="fx-strip-item">USD <strong id="fxUSD">—</strong> COP</span>
@@ -763,19 +855,26 @@ nav.sc .fx-badge.live-on{color:rgba(30,80,50,.85);}
           <span class="fx-strip-item">EUR <strong id="fxEUR">—</strong> COP</span>
           <span class="fx-strip-time" id="fxTime"></span>
         </div>
-        <p class="calc-legal-note" style="margin-top:16px;"><strong data-i18n="note_title">Metodología:</strong> <span data-i18n="note_body">1% mensual a 63% occ · 2% a 100% occ. Interpolación lineal. DANE 68.5%.</span></p>
+
+        <div class="rental-pool-note" data-i18n="rental_pool_note">
+          Tu rentabilidad está respaldada por la operación total del hotel, mitigando el riesgo de vacancia individual.
+        </div>
+
+        <p class="calc-legal-note" style="margin-top:12px;"><strong data-i18n="note_title">Metodología:</strong> <span data-i18n="note_body">1% mensual a 63% occ · 2% a 100% occ. Interpolación lineal. DANE 68.5%.</span></p>
         <p class="calc-disclaimer" data-i18n="calc_legal">Los valores son estimados. El proyecto no garantiza rendimientos específicos.</p>
       </div>
+
+      <!-- RIGHT: Results Panel -->
       <div class="results-panel fade" style="transition-delay:.2s">
         <div class="metrics-row">
-          <div class="metric-box"><div class="mv ps" id="rM">1.09%</div><span class="ml" data-i18n="m_monthly">Rend. Mensual</span></div>
-          <div class="metric-box highlight"><div class="mv" id="rA" style="color:#fff;">13.04%</div><span class="ml" data-i18n="m_annual">ROI Anual</span></div>
-          <div class="metric-box"><div class="mv" id="rP">7.7</div><span class="ml" data-i18n="m_payback">Payback (años)</span></div>
+          <div class="metric-box"><div class="mv ps" id="rM">—</div><span class="ml" data-i18n="m_monthly">Rend. Mensual</span></div>
+          <div class="metric-box highlight"><div class="mv" id="rA" style="color:#fff;">—</div><span class="ml" data-i18n="m_annual">ROI Anual</span></div>
+          <div class="metric-box"><div class="mv" id="rP">—</div><span class="ml" data-i18n="m_payback">Payback (años)</span></div>
         </div>
         <div class="income-row">
-          <div class="income-item"><span data-i18n="inc_monthly">Ingreso Mensual</span><strong id="rIM">$545.000</strong></div>
-          <div class="income-item"><span data-i18n="inc_annual">Ingreso Anual</span><strong id="rIY">$6.540.000</strong></div>
-          <div class="income-item"><span data-i18n="inc_5y">Proyección 5 Años</span><strong id="rI5">$32.700.000</strong></div>
+          <div class="income-item"><span data-i18n="inc_monthly">Ingreso Mensual</span><strong id="rIM">—</strong></div>
+          <div class="income-item"><span data-i18n="inc_annual">Ingreso Anual</span><strong id="rIY">—</strong></div>
+          <div class="income-item"><span data-i18n="inc_5y">Proyección 5 Años</span><strong id="rI5">—</strong></div>
         </div>
         <div class="chart-wrap"><canvas id="yC"></canvas></div>
         <p class="source-note" data-i18n="src_calc">Fuente: Proyecciones basadas en estándares STR Global y Alianza Fiduciaria.</p>
@@ -798,7 +897,7 @@ nav.sc .fx-badge.live-on{color:rgba(30,80,50,.85);}
         <div class="val-stat-row"><div class="val-stat-text"><h4 data-i18n="vs3_t">Valorización Colombia promedio</h4><p data-i18n="vs3_d">Finca raíz urbana nacional</p></div><span class="val-stat-num">+12%</span></div>
         <div class="val-stat-row"><div class="val-stat-text"><h4 data-i18n="vs4_t">Crecimiento turistas internacionales</h4><p data-i18n="vs4_d">Medellín 2019 vs 2024</p></div><span class="val-stat-num up">+38%</span></div>
       </div>
-      <div class="chart-container fade" style="transition-delay:.2s;"><canvas id="vC"></canvas></div>
+      <div class="chart-container" id="vC-wrap"><canvas id="vC"></canvas></div>
     </div>
     <p class="source-note" data-i18n="src_val">Fuente: Camacol Antioquia, DANE y SIT Medellín.</p>
   </div>
@@ -829,12 +928,12 @@ nav.sc .fx-badge.live-on{color:rgba(30,80,50,.85);}
           </tbody>
         </table>
       </div>
-      <div class="cmp-chart-wrap fade" style="transition-delay:.2s;"><div class="cc"><canvas id="cC"></canvas></div></div>
+      <div class="cmp-chart-wrap" id="cC-wrap"><div class="cc"><canvas id="cC"></canvas></div></div>
     </div>
     <!-- Nota valorización en bloque financiero -->
     <div class="fin-note fade" style="margin-top:32px;">
       <div class="dot-red" style="flex-shrink:0;margin-top:4px;"></div>
-      <p>Este análisis se centra en utilidades operativas. <strong>No incluye la valorización del derecho y el activo</strong>, lo cual representa un beneficio patrimonial adicional extraordinario para el inversionista — históricamente del +22% en el sector.</p>
+      <p data-i18n="fin_note_cmp">Este análisis se centra en utilidades operativas. No incluye la valorización del derecho y el activo, lo cual representa un beneficio patrimonial adicional extraordinario para el inversionista — históricamente del +22% en el sector.</p>
     </div>
   </div>
 </section>
@@ -866,8 +965,8 @@ nav.sc .fx-badge.live-on{color:rgba(30,80,50,.85);}
             <div class="med-stat-cell"><strong>#1</strong><span data-i18n="ms3">Destino médico LATAM</span></div>
             <div class="med-stat-cell"><strong>+26%</strong><span data-i18n="ms4">Crecimiento turismo Antioquia H1 2024</span></div>
           </div>
-          <div class="med-tower-card"><h4 data-i18n="torre_t">Torre 1 · Salud y Servicios</h4><p data-i18n="torre_d">Quirófanos · Áreas médicas · Consultorios desde 29.45m² · Lobby · Parqueadero privado.</p></div>
-          <div class="med-tower-card"><h4 data-i18n="torre2_t">Torre 2 · Hotel Marriott</h4><p data-i18n="torre2_d">154 habitaciones Marriott por OXO Hotels. Único hotel internacional en la Milla de Diamante. Huéspedes médicos, corporativos y de eventos.</p></div>
+          <div class="med-tower-card"><h4 data-i18n="torre_t">Torre 1 · Salud y Servicios</h4><p data-i18n="torre_d">Quirófanos · Áreas médicas especializadas · Consultorios y servicios · Próxima a agotarse.</p></div>
+          <div class="med-tower-card"><h4 data-i18n="torre2_t">Torre 2 · Hotel Marriott</h4><p data-i18n="torre2_d">154 suites Marriott por OXO Hotels. Único hotel de marca internacional en la Milla de Diamante. Captura la demanda del clúster médico, corporativo y de los 75+ eventos anuales de Arena Primavera (8 min).</p></div>
         </div>
       </div>
     </div>
@@ -942,7 +1041,7 @@ nav.sc .fx-badge.live-on{color:rgba(30,80,50,.85);}
       <div class="faq-list fade" style="transition-delay:.15s">
         <div class="faq-item">
           <div class="faq-q" onclick="toggleFaq(this)"><h4 data-i18n="faq1_q">¿Qué es exactamente un Derecho Fiduciario?</h4><span class="faq-icon">+</span></div>
-          <div class="faq-a"><p data-i18n="faq1_a">Un Derecho Fiduciario es una participación proporcional en el patrimonio autónomo que constituye el Hotel Marriott Vivaltta. Se formaliza mediante escritura pública ante notaría y está completamente separado del patrimonio de Londoño Gómez, lo que significa que su inversión está protegida legalmente sin importar la situación financiera del constructor.</p></div>
+          <div class="faq-a"><p data-i18n="faq1_a">Un Derecho Fiduciario es una participación proporcional en el patrimonio autónomo que constituye el Hotel Marriott Vivaltta. Al adquirirlo, se emite un título respaldado por Alianza Fiduciaria, completamente separado del patrimonio de Londoño Gómez. Este título es un activo líquido: se puede vender, ceder o transferir con la misma libertad que cualquier activo inmobiliario.</p></div>
         </div>
         <div class="faq-item">
           <div class="faq-q" onclick="toggleFaq(this)"><h4 data-i18n="faq2_q">¿Cuánto vale un Derecho Fiduciario?</h4><span class="faq-icon">+</span></div>
@@ -950,15 +1049,15 @@ nav.sc .fx-badge.live-on{color:rgba(30,80,50,.85);}
         </div>
         <div class="faq-item">
           <div class="faq-q" onclick="toggleFaq(this)"><h4 data-i18n="faq3_q">¿Cuándo empiezo a recibir utilidades?</h4><span class="faq-icon">+</span></div>
-          <div class="faq-a"><p data-i18n="faq3_a">El proyecto se lanza en mayo de 2026 e inicia operaciones hoteleras a finales de 2029. Durante la etapa de construcción (2026–2029), su inversión captura la valorización del derecho y el activo subyacente, lo cual representa un beneficio patrimonial adicional extraordinario. Las utilidades operativas (GOP) comienzan con la apertura del hotel y se distribuyen mensualmente de forma proporcional al número de derechos que usted posea.</p></div>
+          <div class="faq-a"><p data-i18n="faq3_a">El proyecto se lanza en mayo de 2026 e inicia operaciones hoteleras a finales de 2029. Como inversionista, ya está ganando desde el día uno: durante los 3 años de construcción, su patrimonio se valoriza con el activo subyacente, un beneficio adicional extraordinario al margen de las utilidades operativas. Al abrir el hotel, la Utilidad Operativa se distribuye mensualmente de forma proporcional a su participación.</p></div>
         </div>
         <div class="faq-item">
           <div class="faq-q" onclick="toggleFaq(this)"><h4 data-i18n="faq4_q">¿Puedo invertir desde el exterior?</h4><span class="faq-icon">+</span></div>
-          <div class="faq-a"><p data-i18n="faq4_a">Sí. El proceso está completamente habilitado para inversores internacionales. Alianza Fiduciaria cuenta con cuentas broker para la conversión de divisas, y el proceso de vinculación es 100% digital. No necesita viajar a Colombia en ningún momento.</p></div>
+          <div class="faq-a"><p data-i18n="faq4_a">Sí. El proceso es 100% digital — asegure su participación desde cualquier país. Contamos con empresas aliadas especialistas en monetización de divisas sin intermediarios innecesarios y a la mejor tasa del mercado. Alianza Fiduciaria gestiona la conversión de forma ágil y regulada. No se requiere ningún desplazamiento.</p></div>
         </div>
         <div class="faq-item">
           <div class="faq-q" onclick="toggleFaq(this)"><h4 data-i18n="faq5_q">¿Cómo está protegido mi capital?</h4><span class="faq-icon">+</span></div>
-          <div class="faq-a"><p data-i18n="faq5_a">Su capital ingresa a un patrimonio autónomo administrado por Alianza Fiduciaria, entidad vigilada por la Superintendencia Financiera de Colombia. Los fondos están legalmente separados del patrimonio del constructor y solo se liberan según el cronograma de obra auditado. Es la máxima protección legal disponible en Colombia.</p></div>
+          <div class="faq-a"><p data-i18n="faq5_a">Su capital ingresa a un patrimonio autónomo administrado por Alianza Fiduciaria, entidad vigilada por la Superintendencia Financiera de Colombia. Los fondos están legalmente separados del patrimonio del Desarrollador de Proyectos y solo se liberan según el cronograma de obra auditado. Es la máxima protección legal disponible en Colombia.</p></div>
         </div>
         <div class="faq-item">
           <div class="faq-q" onclick="toggleFaq(this)"><h4 data-i18n="faq6_q">¿Qué pasa si la ocupación del hotel es baja?</h4><span class="faq-icon">+</span></div>
@@ -966,7 +1065,7 @@ nav.sc .fx-badge.live-on{color:rgba(30,80,50,.85);}
         </div>
         <div class="faq-item">
           <div class="faq-q" onclick="toggleFaq(this)"><h4 data-i18n="faq7_q">¿Puedo vender mi Derecho Fiduciario?</h4><span class="faq-icon">+</span></div>
-          <div class="faq-a"><p data-i18n="faq7_a">Sí. Los Derechos Fiduciarios son transferibles. La venta se realiza mediante escritura pública ante notaría con el mismo procedimiento de compra. La liquidez es catalogada como media, similar a la de otros activos inmobiliarios.</p></div>
+          <div class="faq-a"><p data-i18n="faq7_a">Sí. Como activo líquido, su Derecho Fiduciario se puede vender, ceder o transferir con la misma libertad que cualquier activo inmobiliario. El proceso es ágil y la liquidez es comparable a la de otros instrumentos de inversión inmobiliaria.</p></div>
         </div>
       </div>
     </div>
@@ -982,8 +1081,8 @@ nav.sc .fx-badge.live-on{color:rgba(30,80,50,.85);}
       <div class="lead-left fade">
         <div class="arc"></div>
         <span class="eyebrow" style="color:rgba(230,68,55,.7);" data-i18n="lead_label">Cupos Limitados</span>
-        <h2 class="lead-headline" data-i18n="lead_title">Reserve su derecho fiduciario <em>hoy</em></h2>
-        <p class="lead-body" data-i18n="lead_desc">Un asesor especialista le contactará en menos de 24 horas con el prospecto completo y condiciones de vinculación.</p>
+        <h2 class="lead-headline" data-i18n="lead_title">Asegure su participación <em>hoy</em></h2>
+        <p class="lead-body" data-i18n="lead_desc">Un asesor especialista le contactará en menos de 24 horas con el prospecto completo. Su patrimonio no puede esperar.</p>
         <div class="lead-info">
           <div class="lead-info-item"><span class="dot-red"></span><span data-i18n="li1">Proceso 100% digital, sin desplazamientos</span></div>
           <div class="lead-info-item"><span class="dot-red"></span><span data-i18n="li2">Custodia legal por Alianza Fiduciaria · SFC</span></div>
@@ -1045,233 +1144,1280 @@ nav.sc .fx-badge.live-on{color:rgba(30,80,50,.85);}
 <!-- ════ SCRIPTS ══════════════════════════════════════════ -->
 <script>
 const TRANSLATIONS = {
-  "es": {"nav_cta":"Invertir Ahora", "heroBadge":"Lanzamiento Mayo 2026 · Ciudad Peldar, Envigado", "heroSub":"Vivaltta es el corazón empresarial de Ciudad Peldar: dos torres en sinergia perfecta. La Torre 1 alberga quirófanos y oficinas especializadas; la Torre 2 es el Hotel Marriott — el activo disponible para inversión mediante Derechos Fiduciarios.", "btn_calc":"Ver Rentabilidad", "btn_how":"¿Cómo funciona?", "btn_model":"Conocer el Modelo de Inversión", "btn_acquire":"Adquiere Tu Derecho", "launch_label":"Lanzamiento Oficial", "launch_date":"Mayo 2026 · Ciudad Peldar, Envigado, Colombia", "tower1_tag":"Torre 1 · Salud & Oficinas", "tower1_title":"Quirófanos, consultorios y espacios médicos especializados", "tower1_body":"La primera torre de Vivaltta alberga quirófanos certificados, áreas médicas especializadas y consultorios desde 29.45 m². Este activo no está disponible para inversión fiduciaria.", "tower2_tag":"Torre 2 · Hotel Marriott · Activo de Inversión", "tower2_title":"154 habitaciones operadas bajo la marca Marriott por OXO Hotels", "tower2_body":"La Torre 2 es el activo disponible para inversión. Usted adquiere Derechos Fiduciarios sobre este hotel y recibe mensualmente su participación proporcional en las utilidades operativas (GOP).", "dev_headline":"Más de 53 años transformando el skyline de Colombia", "dev_intro":"Londoño Gómez no es solo un constructor — es el arquitecto de comunidades enteras. Con más de cinco décadas liderando proyectos de uso mixto, su nombre es la garantía más sólida para el inversionista extranjero en Colombia.", "lg_desc":"Más de 53 años transformando el skyline de Colombia. Pioneros en proyectos de uso mixto de gran escala. Ciudad Peldar es su obra maestra: el megaproyecto #1 más vendido del país.", "peldarDesc":"Ciudad Peldar ocupa 101.445 m² del histórico lote Peldar — el mejor lote del Valle de Aburrá. Es el megaproyecto #1 más vendido de Colombia.", "peldar_title":"Ciudad a menos de 15 minutos de todo", "pf1":"Pasando la calle", "pf2":"Al lado del proyecto", "pf3":"Valorización sector 5 años", "pf4":"Proyecto + vendido Colombia", "faq_eyebrow":"Preguntas Frecuentes", "faq_title":"Todo lo que necesita saber", "faq_desc":"Resolvemos las dudas más frecuentes de nuestros inversionistas en Colombia y el mundo.", "faq_cta":"Hablar con un Asesor", "faq1_q":"¿Qué es exactamente un Derecho Fiduciario?", "faq1_a":"Un Derecho Fiduciario es una participación proporcional en el patrimonio autónomo que constituye el Hotel Marriott Vivaltta. Se formaliza mediante escritura pública ante notaría y está completamente separado del patrimonio de Londoño Gómez.", "faq2_q":"¿Cuánto vale un Derecho Fiduciario?", "faq2_a":"El precio de un Derecho Fiduciario es de COP $50.000.000. Puede adquirir desde 1 derecho hasta el número que desee.", "faq3_q":"¿Cuándo empiezo a recibir utilidades?", "faq3_a":"El proyecto se lanza en mayo de 2026 e inicia operaciones hoteleras a finales de 2029. Las utilidades operativas (GOP) se distribuyen mensualmente de forma proporcional.", "faq4_q":"¿Puedo invertir desde el exterior?", "faq4_a":"Sí. El proceso está completamente habilitado para inversores internacionales. Alianza Fiduciaria cuenta con cuentas broker para la conversión de divisas y el proceso es 100% digital.", "faq5_q":"¿Cómo está protegido mi capital?", "faq5_a":"Su capital ingresa a un patrimonio autónomo administrado por Alianza Fiduciaria, vigilada por la SFC. Los fondos están legalmente separados del patrimonio del constructor.", "faq6_q":"¿Qué pasa si la ocupación del hotel es baja?", "faq6_a":"El modelo proyecta rentabilidades desde el 12% anual a una ocupación del 63%. El promedio histórico DANE es del 68.5%. Los valores proyectados son estimados.", "faq7_q":"¿Puedo vender mi Derecho Fiduciario?", "faq7_a":"Sí. Los Derechos Fiduciarios son transferibles mediante escritura pública ante notaría.", "kpi1":"Ocupación Hotelera · DANE", "kpi2":"Rentabilidad Anual Base", "kpi3":"Habitaciones Premium", "kpi4":"Eventos/Año Arena Primavera", "hiw_label":"Modelo de Inversión", "hiw_title":"¿Cómo funcionan los Derechos Fiduciarios?", "hiw_desc":"Estructura transparente regulada por la SFC y ejecutada por Alianza Fiduciaria.", "hiw1_t":"Adquiere tu Derecho Fiduciario", "hiw1_d":"Compras una fracción proporcional del hotel mediante fiducia mercantil ante notaría. Tu capital está protegido.", "hiw2_t":"Alianza Fiduciaria Custodia tu Capital", "hiw2_d":"Alianza Fiduciaria, vigilada por la SFC, custodia el 100% de los recursos. Una garantía legal, no una promesa.", "hiw3_t":"Recibes tus Utilidades", "hiw3_d":"Con Marriott y OXO Hotels operando, recibes mensualmente tu participación en el GOP directamente en tu cuenta.", "wf_title":"Flujo de transparencia del dinero", "wf_l1":"Origen", "wf_n1":"Huésped", "wf_s1":"Paga su estadía", "wf_l2":"Operación", "wf_s2":"Bajo marca Marriott", "wf_l3":"Resultado", "wf_n3":"Utilidad Neta", "wf_s3":"GOP operativo", "wf_l4":"Custodia · SFC", "wf_s4":"Distribución proporcional", "wf_l5":"Destino Final", "wf_n5":"Inversionista", "wf_s5":"Mensual · Directo", "trust_label":"Respaldos Institucionales", "trust_title":"Cinco pilares de confianza", "tp1_t":"Alianza Fiduciaria · SFC", "tp1_d":"Todos los recursos custodiados por Alianza Fiduciaria, vigilada por la SFC.", "tp2_t":"Marriott International", "tp2_d":"La cadena hotelera #1 del mundo garantiza ocupación y reputación global.", "tp3_t":"OXO Hotels", "tp3_d":"Operador hotelero especialista en Colombia con historial en proyectos de lujo.", "tp4_t":"Londoño Gómez", "tp4_d":"50+ años construyendo en Colombia. Ciudad Peldar, el proyecto más vendido del país.", "tp5_t":"Arq. y Concreto", "tp5_d":"33 años de experiencia constructora.", "med_label":"Turismo Médico y Estético · Colombia", "med_title":"La primera torre: quirófanos y consultorios en el corazón del clúster médico", "med_desc":"Colombia es el destino #1 de turismo médico y estético de América Latina.", "med1_t":"Torre 1: Salud Especializada", "med1_d":"Quirófanos, áreas médicas especializadas y consultorios terminados bajo estándares internacionales.", "med2_t":"#1 en Turismo Médico Latinoamérica", "med2_d":"Colombia recibe más de 36.000 pacientes internacionales al año con precios 40–70% más bajos que EE.UU. o Europa.", "med3_t":"Clúster Médico · Milla de Diamante", "med3_d":"Vivaltta está en el epicentro: a pasos del Metro, Viva Envigado y las principales avenidas.", "med4_t":"Demanda de Hospedaje Médico Garantizada", "med4_d":"Pacientes y acompañantes necesitan alojamiento de calidad. La Torre 2 captura exactamente esa demanda.", "med_stat_title":"Colombia: el destino médico de las Américas", "ms1":"Pacientes internacionales/año", "ms2":"Costo vs EE.UU./Europa", "ms3":"Destino médico LATAM #1", "ms4":"Crecimiento turismo Antioquia H1 2024", "torre_t":"Torre 1 · Salud y Servicios", "torre_d":"Quirófanos · Áreas médicas · Consultorios desde 29.45m² · Lobby · Parqueadero privado.", "torre2_t":"Torre 2 · Hotel Marriott", "torre2_d":"154 habitaciones Marriott por OXO Hotels. Único hotel internacional en la Milla de Diamante.", "calc_label":"Simulador de Inversión", "calc_title":"Calcula tu Rentabilidad", "calc_desc":"Ajusta los parámetros y visualiza tu retorno en tiempo real.", "l_rights":"Derechos Fiduciarios", "l_occ":"Ocupación Anual", "dane_avg":"Prom. DANE: 68.5%", "total_inv":"Inversión Total", "note_title":"Metodología:", "note_body":"1% mensual a 63% occ · 2% a 100% occ. Interpolación lineal.", "calc_legal":"Los valores son estimados. El proyecto no garantiza rendimientos específicos.", "m_monthly":"Rend. Mensual", "m_annual":"ROI Anual", "m_payback":"Payback (años)", "inc_monthly":"Ingreso Mensual", "inc_annual":"Ingreso Anual", "inc_5y":"Proyección 5 Años", "cmp_label":"Análisis de Mercado", "cmp_title":"Vivaltta vs otras alternativas de inversión", "cmp_desc":"La mejor combinación de rentabilidad, respaldo y valorización.", "cmp_dane":"Vivaltta DANE 68.5%", "th_product":"Producto", "th_return":"Rend. Anual", "th_risk":"Riesgo", "th_liq":"Liquidez", "r_vlow":"Muy Bajo", "r_low":"Bajo", "r_med":"Medio", "r_high":"Alto", "l_high":"Alta", "l_med":"Media", "l_low":"Baja", "val_label":"Análisis Inmobiliario", "val_title":"Valorización del Sector Envigado", "vs1_t":"Valorización acumulada (5 años)", "vs1_d":"Sector Ciudad Peldar", "vs2_t":"Valorización Medellín promedio", "vs2_d":"Valle de Aburrá", "vs3_t":"Valorización Colombia promedio", "vs3_d":"Finca raíz urbana nacional", "vs4_t":"Crecimiento turistas internacionales", "vs4_d":"Medellín 2019 vs 2024", "glob_label":"Inversión Global · Sin Fronteras", "glob_title":"Invierta desde cualquier parte del mundo", "glob_desc":"No importa en qué país viva ni en qué moneda tenga su capital.", "gs1_t":"¿No tiene pesos colombianos? No hay problema.", "gs1_d":"Alianza Fiduciaria cuenta con cuentas broker que monetizan cualquier divisa.", "gs2_t":"Monetización a la mejor tasa del mercado.", "gs2_d":"Empresas aliadas especializadas en monetización internacional sin intermediarios.", "gs3_t":"Proceso 100% digital. Sin viajes necesarios.", "gs3_d":"La vinculación, firma de documentos y seguimiento se realizan completamente en línea.", "gs4_t":"Cumplimiento SAGRILAFT integrado.", "gs4_d":"El proceso incluye cumplimiento anti-lavado (SAGRILAFT/PTEE), garantizando transparencia total.", "gh_title":"Su inversión, en su moneda", "gh_desc":"Alianza Fiduciaria garantiza la conversión de cualquier divisa de manera ágil y regulada.", "gh_alianza":"Alianza Fiduciaria — más de 30 años de trayectoria, vigilada por la SFC — garantiza que cada peso invertido en Vivaltta Marriott esté protegido por ley.", "more_curr":"+ más divisas", "gstat1":"Proceso digital", "gstat2":"Viajes necesarios", "gstat3":"Respuesta asesor", "li1":"Proceso 100% digital, sin desplazamientos", "li2":"Custodia legal por Alianza Fiduciaria · SFC", "li3":"Disponible en múltiples monedas internacionales", "li4":"Rentabilidad proyectada desde 12% anual", "lead_label":"Cupos Limitados", "lead_title":"Reserve su derecho fiduciario hoy", "lead_desc":"Un asesor especialista le contactará en menos de 24 horas.", "ph_name":"Nombre completo", "ph_phone":"Teléfono / WhatsApp", "ph_email":"Correo electrónico", "ph_country":"País de residencia", "ph_capital":"Capital disponible para invertir", "ph_lang":"Idioma para ser contactado", "ph_other_lang":"Especifique su idioma", "cap1":"1 Derecho · COP $50M", "cap2":"2–5 Derechos · $100M–$250M", "cap3":"6–10 Derechos · $300M–$500M", "cap4":"Más de 10 Derechos · $500M+", "btn_submit":"Solicitar Información Exclusiva", "opt_other_lang":"Otro idioma", "disclaimer":"Sus datos están protegidos bajo la Ley 1581. Proceso SAGRILAFT/PTEE integrado.", "footer_legal":"© 2026 Londoño Gómez. Vivaltta Marriott Ciudad Peldar, Envigado, Colombia.", "toastMsg":"¡Gracias! Un asesor lo contactará pronto.", "src_val":"Fuente: Camacol Antioquia, DANE y SIT Medellín.", "src_calc":"Fuente: Proyecciones basadas en estándares STR Global y Alianza Fiduciaria."},
-  "en": {"nav_cta":"Invest Now", "heroBadge":"Launching May 2026 · Ciudad Peldar, Envigado", "heroSub":"Vivaltta is the commercial heart of Ciudad Peldar: two towers in perfect synergy. Tower 1 houses operating rooms and specialized offices; Tower 2 is the Marriott Hotel — the asset available for investment through Fiduciary Rights.", "btn_calc":"See Returns", "btn_how":"How does it work?", "btn_model":"Discover the Investment Model", "btn_acquire":"Acquire Your Right", "launch_label":"Official Launch", "launch_date":"May 2026 · Ciudad Peldar, Envigado, Colombia", "tower1_tag":"Tower 1 · Health & Offices", "tower1_title":"Operating rooms, consulting offices, and specialized medical spaces", "tower1_body":"Vivaltta's first tower houses certified operating rooms, specialized medical areas, and finished consulting offices. This asset is not available for fiduciary investment.", "tower2_tag":"Tower 2 · Marriott Hotel · Investment Asset", "tower2_title":"154 rooms operated under the Marriott brand by OXO Hotels", "tower2_body":"Tower 2 is the asset available for investment. You acquire Fiduciary Rights over this hotel and receive monthly your proportional share of operating profits (GOP).", "dev_headline":"Over 53 years transforming Colombia's skyline", "dev_intro":"Londoño Gómez is not just a developer — they are the architect of entire communities. Their name is the strongest guarantee for foreign investors in Colombia.", "lg_desc":"Over 53 years transforming Colombia's skyline. Pioneers in large-scale mixed-use developments. Ciudad Peldar is their masterpiece: the country's #1 best-selling megaproject.", "peldarDesc":"Ciudad Peldar covers 101,445 m² of the historic Peldar factory site — the best lot in the Aburra Valley. Colombia's #1 best-selling megaproject.", "peldar_title":"A city within 15 minutes of everything", "pf1":"Across the street", "pf2":"Next to the project", "pf3":"5-year sector appreciation", "pf4":"#1 Sold project in Colombia", "faq_eyebrow":"Frequently Asked Questions", "faq_title":"Everything you need to know", "faq_desc":"We answer the most common questions from our investors worldwide.", "faq_cta":"Talk to an Advisor", "faq1_q":"What exactly is a Fiduciary Right?", "faq1_a":"A Fiduciary Right is a proportional participation in the autonomous assets that constitute the Vivaltta Marriott Hotel. It is formalized through a public deed and is completely separate from Londoño Gómez's assets.", "faq2_q":"How much does a Fiduciary Right cost?", "faq2_a":"The price of one Fiduciary Right is COP $50,000,000. You may acquire as many as you wish.", "faq3_q":"When do I start receiving returns?", "faq3_a":"The project launches in May 2026 and begins hotel operations in late 2029. Operating profits (GOP) are distributed monthly in proportion to the rights you hold.", "faq4_q":"Can I invest from abroad?", "faq4_a":"Yes. Alianza Fiduciaria has broker accounts for currency conversion and the onboarding process is 100% digital. No travel to Colombia required.", "faq5_q":"How is my capital protected?", "faq5_a":"Your capital enters an autonomous trust managed by Alianza Fiduciaria, supervised by the SFC. Funds are legally separated from the developer's assets.", "faq6_q":"What if hotel occupancy is low?", "faq6_a":"The model projects returns from 12% per year at 63% occupancy. Historical DANE average is 68.5%. Projected values are estimates.", "faq7_q":"Can I sell my Fiduciary Right?", "faq7_a":"Yes. Fiduciary Rights are transferable via public deed before a notary.", "kpi1":"Hotel Occupancy · DANE", "kpi2":"Base Annual Yield", "kpi3":"Premium Rooms", "kpi4":"Events/Year Arena Primavera", "hiw_label":"Investment Model", "hiw_title":"How do Fiduciary Rights work?", "hiw_desc":"A transparent structure regulated by the SFC and executed by Alianza Fiduciaria.", "hiw1_t":"Acquire your Fiduciary Right", "hiw1_d":"You purchase a proportional fraction of the hotel via a notarized mercantile trust. Legally protected.", "hiw2_t":"Alianza Fiduciaria Safeguards your Capital", "hiw2_d":"Alianza Fiduciaria, supervised by the SFC, holds 100% of the funds. A legal guarantee, not a promise.", "hiw3_t":"Receive your Returns", "hiw3_d":"With Marriott and OXO Hotels operating, you receive monthly your proportional GOP share.", "wf_title":"Money transparency flow", "wf_l1":"Origin", "wf_n1":"Guest", "wf_s1":"Pays their stay", "wf_l2":"Operations", "wf_s2":"Under Marriott brand", "wf_l3":"Result", "wf_n3":"Net Profit", "wf_s3":"Operating GOP", "wf_l4":"Custody · SFC", "wf_s4":"Proportional distribution", "wf_l5":"Final Destination", "wf_n5":"Investor", "wf_s5":"Monthly · Direct", "trust_label":"Institutional Backing", "trust_title":"Five pillars of confidence", "tp1_t":"Alianza Fiduciaria · SFC", "tp1_d":"All funds held by Alianza Fiduciaria, supervised by the SFC.", "tp2_t":"Marriott International", "tp2_d":"The world's #1 hotel brand.", "tp3_t":"OXO Hotels", "tp3_d":"Specialist hotel operator in Colombia.", "tp4_t":"Londoño Gómez", "tp4_d":"50+ years building in Colombia.", "tp5_t":"Arq. y Concreto", "tp5_d":"33 years of construction experience.", "med_label":"Medical & Aesthetic Tourism · Colombia", "med_title":"First tower: operating rooms & offices at the heart of the medical cluster", "med_desc":"Colombia is Latin America's #1 medical and aesthetic tourism destination.", "med1_t":"Tower 1: Specialized Health", "med1_d":"Certified operating rooms, medical areas, and finished consulting rooms.", "med2_t":"#1 Medical Tourism in Latin America", "med2_d":"Colombia receives 36,000+ international patients per year at prices 40-70% lower than the US or Europe.", "med3_t":"Medical Cluster · Diamond Mile", "med3_d":"Vivaltta at the epicenter: steps from Viva Envigado, Metro, and main avenues.", "med4_t":"Guaranteed Medical Hospitality Demand", "med4_d":"Tower 2 (Marriott Hotel) captures exactly this medical hospitality demand.", "med_stat_title":"Colombia: the medical destination of the Americas", "ms1":"International patients/year", "ms2":"Cost vs US/Europe", "ms3":"Medical tourism LATAM #1", "ms4":"Antioquia tourism growth H1 2024", "torre_t":"Tower 1 · Health and Services", "torre_d":"Operating rooms · Medical areas · Offices from 29.45m² · Lobby · Private parking.", "torre2_t":"Tower 2 · Marriott Hotel", "torre2_d":"154 rooms by OXO Hotels under Marriott. Unique international brand hotel in Diamond Mile.", "calc_label":"Investment Simulator", "calc_title":"Calculate your Returns", "calc_desc":"DANE hotel occupancy: 68.5%.", "l_rights":"Fiduciary Rights", "l_occ":"Annual Occupancy", "dane_avg":"DANE avg: 68.5%", "total_inv":"Total Investment", "note_title":"Methodology:", "note_body":"1% monthly at 63% occ · 2% at 100% occ. Linear interpolation.", "calc_legal":"Projected values are estimates. No specific returns guaranteed.", "m_monthly":"Monthly Yield", "m_annual":"Annual ROI", "m_payback":"Payback (years)", "inc_monthly":"Monthly Income", "inc_annual":"Annual Income", "inc_5y":"5-Year Projection", "cmp_label":"Market Analysis", "cmp_title":"Vivaltta vs other investment alternatives", "cmp_desc":"Best combination of returns, backing, and appreciation.", "cmp_dane":"Vivaltta DANE 68.5%", "th_product":"Product", "th_return":"Annual Return", "th_risk":"Risk", "th_liq":"Liquidity", "r_vlow":"Very Low", "r_low":"Low", "r_med":"Medium", "r_high":"High", "l_high":"High", "l_med":"Medium", "l_low":"Low", "val_label":"Real Estate Analysis", "val_title":"Envigado Sector Appreciation", "vs1_t":"Cumulative appreciation (5 years)", "vs1_d":"Ciudad Peldar area", "vs2_t":"Medellin average", "vs2_d":"Aburra Valley", "vs3_t":"Colombia average", "vs3_d":"National urban real estate", "vs4_t":"International tourist growth", "vs4_d":"Medellin 2019 vs 2024", "glob_label":"Global Investment · No Borders", "glob_title":"Invest from anywhere in the world", "glob_desc":"No matter which country you live in or which currency your capital is in.", "gs1_t":"No Colombian pesos? No problem.", "gs1_d":"Alianza Fiduciaria converts any currency to Colombian pesos.", "gs2_t":"Monetization at the best market rate.", "gs2_d":"Specialized allied companies for international monetization.", "gs3_t":"100% digital process. No travel required.", "gs3_d":"Onboarding and document signing completely online.", "gs4_t":"Integrated SAGRILAFT compliance.", "gs4_d":"Full anti-money-laundering compliance integrated.", "gh_title":"Your investment, in your currency", "gh_desc":"Alianza Fiduciaria guarantees conversion of any currency in an agile, regulated manner.", "gh_alianza":"Alianza Fiduciaria — 30+ years of track record, supervised by the SFC — guarantees every peso is protected by law.", "more_curr":"+ more currencies", "gstat1":"Digital process", "gstat2":"Trips required", "gstat3":"Advisor response", "li1":"100% digital process, no travel required", "li2":"Legal custody by Alianza Fiduciaria · SFC", "li3":"Available in multiple international currencies", "li4":"Projected yield from 12% per year", "lead_label":"Limited Spots", "lead_title":"Reserve your fiduciary right today", "lead_desc":"A specialist advisor will contact you within 24 hours.", "ph_name":"Full name", "ph_phone":"Phone / WhatsApp", "ph_email":"Email address", "ph_country":"Country of residence", "ph_capital":"Available investment capital", "ph_lang":"Preferred contact language", "ph_other_lang":"Please specify your language", "cap1":"1 Right · COP $50M", "cap2":"2-5 Rights · $100M-$250M", "cap3":"6-10 Rights · $300M-$500M", "cap4":"10+ Rights · $500M+", "btn_submit":"Request Exclusive Information", "opt_other_lang":"Other language", "disclaimer":"Data protected. SAGRILAFT/PTEE compliance integrated.", "footer_legal":"© 2026 Londoño Gomez. Vivaltta Marriott Ciudad Peldar, Envigado, Colombia.", "toastMsg":"Thank you! An advisor will contact you soon.", "src_val":"Source: Camacol Antioquia, DANE and SIT Medellín.", "src_calc":"Source: Projections based on STR Global standards and Alianza Fiduciaria."},
-  "fr": {"nav_cta":"Investir Maintenant", "heroBadge":"Lancement Mai 2026 · Ciudad Peldar, Envigado", "heroSub":"Vivaltta est le cœur commercial de Ciudad Peldar : deux tours en synergie parfaite. La Tour 1 abrite des blocs opératoires et des bureaux ; la Tour 2 est l'Hôtel Marriott — l'actif disponible à l'investissement via des Droits Fiduciaires.", "btn_calc":"Voir les Rendements", "btn_how":"Comment ça marche?", "btn_model":"Découvrir le Modèle d'Investissement", "btn_acquire":"Acquérir Votre Droit", "launch_label":"Lancement Officiel", "launch_date":"Mai 2026 · Ciudad Peldar, Envigado, Colombie", "tower1_tag":"Tour 1 · Santé & Bureaux", "tower1_title":"Blocs opératoires, cabinets et espaces médicaux spécialisés", "tower1_body":"La première tour de Vivaltta abrite des blocs opératoires certifiés et des espaces médicaux spécialisés. Cet actif n'est pas disponible à l'investissement fiduciaire.", "tower2_tag":"Tour 2 · Hôtel Marriott · Actif d'Investissement", "tower2_title":"154 chambres opérées sous la marque Marriott par OXO Hotels", "tower2_body":"La Tour 2 est l'actif disponible à l'investissement. Vous acquérez des Droits Fiduciaires sur cet hôtel et recevez mensuellement votre part proportionnelle du GOP.", "dev_headline":"Plus de 53 ans à transformer le skyline de Colombie", "dev_intro":"Londoño Gómez est bien plus qu'un promoteur — c'est l'architecte de communautés entières. Leur nom est la garantie la plus solide pour un investisseur étranger en Colombie.", "lg_desc":"Plus de 53 ans transformant le skyline de Colombie. Pionniers des projets mixtes. Ciudad Peldar est leur chef-d'œuvre : le mégaprojet #1 le plus vendu du pays.", "peldarDesc":"Ciudad Peldar couvre 101 445 m² du site historique Peldar — le meilleur terrain du Valle de Aburrá. Le mégaprojet #1 le plus vendu de Colombie.", "peldar_title":"Une ville à moins de 15 minutes de tout", "pf1":"De l'autre côté de la rue", "pf2":"À côté du projet", "pf3":"Valorisation secteur 5 ans", "pf4":"Projet le plus vendu en Colombie", "faq_eyebrow":"Questions Fréquentes", "faq_title":"Tout ce que vous devez savoir", "faq_desc":"Nous répondons aux questions les plus fréquentes de nos investisseurs dans le monde.", "faq_cta":"Parler à un Conseiller", "faq1_q":"Qu'est-ce qu'un Droit Fiduciaire?", "faq1_a":"Un Droit Fiduciaire est une participation proportionnelle dans le patrimoine autonome qui constitue l'Hôtel Marriott Vivaltta. Il est formalisé par acte public devant notaire et totalement séparé du patrimoine de Londoño Gómez.", "faq2_q":"Combien coûte un Droit Fiduciaire?", "faq2_a":"Le prix d'un Droit Fiduciaire est de COP 50 000 000. Vous pouvez en acquérir autant que vous le souhaitez.", "faq3_q":"Quand commencé-je à recevoir des rendements?", "faq3_a":"Le projet se lance en mai 2026 et commence ses opérations hôtelières fin 2029. Les rendements (GOP) débutent à l'ouverture de l'hôtel.", "faq4_q":"Puis-je investir depuis l'étranger?", "faq4_a":"Oui. Le processus est entièrement numérique. Alianza Fiduciaria dispose de comptes de courtage pour la conversion de devises.", "faq5_q":"Comment mon capital est-il protégé?", "faq5_a":"Votre capital entre dans un patrimoine autonome géré par Alianza Fiduciaria, supervisée par la Superintendance Financière de Colombie.", "faq6_q":"Que se passe-t-il si l'occupation est faible?", "faq6_a":"Le modèle projette des rendements à partir de 12% par an à 63% d'occupation. La moyenne nationale DANE est de 68,5%.", "faq7_q":"Puis-je vendre mon Droit Fiduciaire?", "faq7_a":"Oui. Les Droits Fiduciaires sont cessibles via acte public devant notaire.", "kpi1":"Occupation Hôtelière · DANE", "kpi2":"Rendement Annuel de Base", "kpi3":"Chambres Premium", "kpi4":"Événements/An Arena Primavera", "hiw_label":"Modèle d'Investissement", "hiw_title":"Comment fonctionnent les Droits Fiduciaires?", "hiw_desc":"Structure transparente réglementée par la SFC et exécutée par Alianza Fiduciaria.", "hiw1_t":"Acquérez votre Droit Fiduciaire", "hiw1_d":"Vous achetez une fraction proportionnelle de l'hôtel via fiducie commerciale devant notaire.", "hiw2_t":"Alianza Fiduciaria Sécurise votre Capital", "hiw2_d":"Alianza Fiduciaria, supervisée par la SFC, détient 100% des fonds. Une garantie légale.", "hiw3_t":"Recevez vos Rendements", "hiw3_d":"Avec Marriott et OXO Hotels en opération, vous recevez mensuellement votre part proportionnelle du GOP.", "wf_title":"Flux de transparence de l'argent", "wf_l1":"Origine", "wf_n1":"Client", "wf_s1":"Paie son séjour", "wf_l2":"Opérations", "wf_s2":"Sous marque Marriott", "wf_l3":"Résultat", "wf_n3":"Bénéfice Net", "wf_s3":"GOP opérationnel", "wf_l4":"Garde · SFC", "wf_s4":"Distribution proportionnelle", "wf_l5":"Destination Finale", "wf_n5":"Investisseur", "wf_s5":"Mensuel · Direct", "trust_label":"Soutiens Institutionnels", "trust_title":"Cinq piliers de confiance", "tp1_t":"Alianza Fiduciaria · SFC", "tp1_d":"Tous les fonds détenus par Alianza Fiduciaria, supervisée par la SFC.", "tp2_t":"Marriott International", "tp2_d":"La chaîne hôtelière #1 mondiale.", "tp3_t":"OXO Hotels", "tp3_d":"Opérateur hôtelier spécialiste en Colombie.", "tp4_t":"Londoño Gómez", "tp4_d":"50+ ans de construction en Colombie.", "tp5_t":"Arq. y Concreto", "tp5_d":"33 ans d'expérience en construction.", "med_label":"Tourisme Médical et Esthétique · Colombie", "med_title":"La première tour : blocs opératoires et cabinets au cœur du cluster médical", "med_desc":"La Colombie est la destination #1 du tourisme médical en Amérique Latine.", "med1_t":"Tour 1 : Santé Spécialisée", "med1_d":"Blocs opératoires certifiés, zones médicales et cabinets selon les normes internationales.", "med2_t":"#1 Tourisme Médical en Amérique Latine", "med2_d":"La Colombie reçoit plus de 36 000 patients internationaux par an à des prix 40–70% inférieurs aux États-Unis.", "med3_t":"Cluster Médical · Milla de Diamante", "med3_d":"Vivaltta est à l'épicentre : à quelques pas du Métro, de Viva Envigado et des principales avenues.", "med4_t":"Demande d'Hébergement Médical Garantie", "med4_d":"La Tour 2 (Hôtel Marriott) capte exactement cette demande d'hébergement médical.", "med_stat_title":"Colombie : la destination médicale des Amériques", "ms1":"Patients internationaux/an", "ms2":"Coût vs États-Unis/Europe", "ms3":"Tourisme médical LATAM #1", "ms4":"Croissance tourisme Antioquia S1 2024", "torre_t":"Tour 1 · Santé et Services", "torre_d":"Blocs opératoires · Zones médicales · Cabinets dès 29.45m² · Hall · Parking privé.", "torre2_t":"Tour 2 · Hôtel Marriott", "torre2_d":"154 chambres par OXO Hotels sous Marriott. Seul hôtel international dans la Milla de Diamante.", "calc_label":"Simulateur d'Investissement", "calc_title":"Calculez votre Rentabilité", "calc_desc":"Occupation DANE: 68,5%.", "l_rights":"Droits Fiduciaires", "l_occ":"Occupation Annuelle", "dane_avg":"Moy. DANE: 68,5%", "total_inv":"Investissement Total", "note_title":"Méthodologie:", "note_body":"1%/mois à 63% · 2%/mois à 100%.", "calc_legal":"Les valeurs projetées sont des estimations à titre indicatif.", "m_monthly":"Rend. Mensuel", "m_annual":"ROI Annuel", "m_payback":"Retour (années)", "inc_monthly":"Revenu Mensuel", "inc_annual":"Revenu Annuel", "inc_5y":"Projection 5 Ans", "cmp_label":"Analyse de Marché", "cmp_title":"Vivaltta vs autres alternatives d'investissement", "cmp_desc":"La meilleure combinaison de rendement, soutien et valorisation.", "cmp_dane":"Vivaltta DANE 68,5%", "th_product":"Produit", "th_return":"Rend. Annuel", "th_risk":"Risque", "th_liq":"Liquidité", "r_vlow":"Très Faible", "r_low":"Faible", "r_med":"Moyen", "r_high":"Élevé", "l_high":"Haute", "l_med":"Moyenne", "l_low":"Faible", "val_label":"Analyse Immobilière", "val_title":"Valorisation du Secteur Envigado", "vs1_t":"Valorisation cumulée (5 ans)", "vs1_d":"Secteur Ciudad Peldar", "vs2_t":"Moyenne Medellín", "vs2_d":"Vallée de l'Aburra", "vs3_t":"Moyenne Colombie", "vs3_d":"Immobilier urbain national", "vs4_t":"Croissance des touristes internationaux", "vs4_d":"Medellín 2019 vs 2024", "glob_label":"Investissement Mondial · Sans Frontières", "glob_title":"Investissez depuis n'importe où dans le monde", "glob_desc":"Peu importe dans quel pays vous vivez ou dans quelle monnaie vous avez votre capital.", "gs1_t":"Pas de pesos colombiens ? Pas de problème.", "gs1_d":"Alianza Fiduciaria convertit n'importe quelle devise en pesos colombiens.", "gs2_t":"Monétisation au meilleur taux du marché.", "gs2_d":"Entreprises alliées spécialisées en monétisation internationale sans intermédiaires.", "gs3_t":"Processus 100% numérique. Sans déplacements.", "gs3_d":"L'intégration, la signature de documents et le suivi se font entièrement en ligne.", "gs4_t":"Conformité SAGRILAFT intégrée.", "gs4_d":"Le processus inclut la conformité anti-blanchiment, garantissant une transparence totale.", "gh_title":"Votre investissement, dans votre monnaie", "gh_desc":"Alianza Fiduciaria garantit la conversion de n'importe quelle devise de manière réglementée.", "gh_alianza":"Alianza Fiduciaria — plus de 30 ans d'expérience, supervisée par la SFC — garantit que chaque peso est protégé par la loi.", "more_curr":"+ autres devises", "gstat1":"Processus numérique", "gstat2":"Voyages nécessaires", "gstat3":"Réponse conseiller", "li1":"Processus 100% numérique, sans déplacements", "li2":"Garde légale par Alianza Fiduciaria · SFC", "li3":"Disponible en plusieurs devises internationales", "li4":"Rendement projeté à partir de 12% par an", "lead_label":"Places Limitées", "lead_title":"Réservez votre droit fiduciaire aujourd'hui", "lead_desc":"Un conseiller vous contactera dans les 24 heures.", "ph_name":"Nom complet", "ph_phone":"Téléphone / WhatsApp", "ph_email":"E-mail", "ph_country":"Pays de résidence", "ph_capital":"Capital disponible", "ph_lang":"Langue de contact", "ph_other_lang":"Précisez votre langue", "cap1":"1 Droit · COP $50M", "cap2":"2–5 Droits · $100M–$250M", "cap3":"6–10 Droits · $300M–$500M", "cap4":"Plus de 10 Droits · $500M+", "btn_submit":"Demander l'Information Exclusive", "opt_other_lang":"Autre langue", "disclaimer":"Données protégées. Conformité SAGRILAFT intégrée.", "footer_legal":"© 2026 Londoño Gomez. Vivaltta Marriott Ciudad Peldar, Envigado, Colombie.", "toastMsg":"Merci! Un conseiller vous contactera bientôt.", "src_val":"Source: Camacol Antioquia, DANE et SIT Medellín.", "src_calc":"Source: Projections basées sur les normes STR Global et Alianza Fiduciaria."},
-  "pt": {"nav_cta":"Investir Agora", "heroBadge":"Lançamento Maio 2026 · Ciudad Peldar, Envigado", "heroSub":"Vivaltta é o coração comercial de Ciudad Peldar: duas torres em sinergia perfeita. A Torre 1 abriga centros cirúrgicos e escritórios; a Torre 2 é o Hotel Marriott — o ativo disponível para investimento via Direitos Fiduciários.", "btn_calc":"Ver Rentabilidade", "btn_how":"Como funciona?", "btn_model":"Conhecer o Modelo de Investimento", "btn_acquire":"Adquira Seu Direito", "launch_label":"Lançamento Oficial", "launch_date":"Maio 2026 · Ciudad Peldar, Envigado, Colômbia", "tower1_tag":"Torre 1 · Saúde & Escritórios", "tower1_title":"Centros cirúrgicos, consultórios e espaços médicos especializados", "tower1_body":"A primeira torre da Vivaltta abriga centros cirúrgicos certificados e áreas médicas especializadas. Este ativo não está disponível para investimento fiduciário.", "tower2_tag":"Torre 2 · Hotel Marriott · Ativo de Investimento", "tower2_title":"154 quartos operados sob a marca Marriott pela OXO Hotels", "tower2_body":"A Torre 2 é o ativo disponível para investimento. Você adquire Direitos Fiduciários sobre este hotel e recebe mensalmente sua participação proporcional no GOP.", "dev_headline":"Mais de 53 anos transformando o skyline da Colômbia", "dev_intro":"Londoño Gómez não é apenas uma construtora — é o arquiteto de comunidades inteiras. Seu nome é a garantia mais sólida para o investidor estrangeiro na Colômbia.", "lg_desc":"Mais de 53 anos transformando o skyline da Colômbia. Pioneiros em projetos de uso misto. Ciudad Peldar é sua obra-prima: o megaprojeto #1 mais vendido do país.", "peldarDesc":"Ciudad Peldar ocupa 101.445 m² do histórico lote Peldar — o melhor terreno do Vale do Aburrá. O megaprojeto #1 mais vendido da Colômbia.", "peldar_title":"Uma cidade a menos de 15 minutos de tudo", "pf1":"Do outro lado da rua", "pf2":"Ao lado do projeto", "pf3":"Valorização do setor em 5 anos", "pf4":"Projeto mais vendido da Colômbia", "faq_eyebrow":"Perguntas Frequentes", "faq_title":"Tudo o que você precisa saber", "faq_desc":"Respondemos as dúvidas mais frequentes dos nossos investidores no mundo.", "faq_cta":"Falar com um Consultor", "faq1_q":"O que é exatamente um Direito Fiduciário?", "faq1_a":"Um Direito Fiduciário é uma participação proporcional no patrimônio autônomo que constitui o Hotel Marriott Vivaltta, completamente separado do patrimônio de Londoño Gómez.", "faq2_q":"Quanto custa um Direito Fiduciário?", "faq2_a":"O preço de um Direito Fiduciário é de COP $50.000.000. Você pode adquirir quantos desejar.", "faq3_q":"Quando começo a receber rendimentos?", "faq3_a":"O projeto é lançado em maio de 2026 e inicia as operações hoteleiras no final de 2029. Os rendimentos (GOP) começam com a abertura do hotel.", "faq4_q":"Posso investir do exterior?", "faq4_a":"Sim. O processo é 100% digital. A Alianza Fiduciaria tem contas broker para conversão de divisas.", "faq5_q":"Como meu capital está protegido?", "faq5_a":"Seu capital entra em um patrimônio autônomo administrado pela Alianza Fiduciaria, supervisionada pela SFC.", "faq6_q":"O que acontece se a ocupação for baixa?", "faq6_a":"O modelo projeta rentabilidades a partir de 12% ao ano a 63% de ocupação. A média nacional DANE é de 68,5%.", "faq7_q":"Posso vender meu Direito Fiduciário?", "faq7_a":"Sim. Os Direitos Fiduciários são transferíveis por escritura pública em cartório.", "kpi1":"Ocupação Hoteleira · DANE", "kpi2":"Rentabilidade Anual Base", "kpi3":"Quartos Premium", "kpi4":"Eventos/Ano Arena Primavera", "hiw_label":"Modelo de Investimento", "hiw_title":"Como funcionam os Direitos Fiduciários?", "hiw_desc":"Estrutura transparente regulada pela SFC e executada pela Alianza Fiduciaria.", "hiw1_t":"Adquira seu Direito Fiduciário", "hiw1_d":"Você compra uma fração proporcional do hotel via fiducia mercantil em cartório.", "hiw2_t":"Alianza Fiduciaria Custódia seu Capital", "hiw2_d":"A Alianza Fiduciaria, supervisionada pela SFC, custodia 100% dos recursos. Uma garantia legal.", "hiw3_t":"Receba seus Rendimentos", "hiw3_d":"Com Marriott e OXO Hotels operando, você recebe mensalmente sua participação proporcional no GOP.", "wf_title":"Fluxo de transparência do dinheiro", "wf_l1":"Origem", "wf_n1":"Hóspede", "wf_s1":"Paga sua estadia", "wf_l2":"Operações", "wf_s2":"Sob marca Marriott", "wf_l3":"Resultado", "wf_n3":"Lucro Líquido", "wf_s3":"GOP operacional", "wf_l4":"Custódia · SFC", "wf_s4":"Distribuição proporcional", "wf_l5":"Destino Final", "wf_n5":"Investidor", "wf_s5":"Mensal · Direto", "trust_label":"Respaldos Institucionais", "trust_title":"Cinco pilares de confiança", "tp1_t":"Alianza Fiduciaria · SFC", "tp1_d":"Todos os recursos custodiados pela Alianza Fiduciaria, supervisionada pela SFC.", "tp2_t":"Marriott International", "tp2_d":"A cadeia hoteleira #1 do mundo.", "tp3_t":"OXO Hotels", "tp3_d":"Operador hoteleiro especialista na Colômbia.", "tp4_t":"Londoño Gómez", "tp4_d":"50+ anos construindo na Colômbia.", "tp5_t":"Arq. y Concreto", "tp5_d":"33 anos de experiência em construção.", "med_label":"Turismo Médico e Estético · Colômbia", "med_title":"A primeira torre: centros cirúrgicos e consultórios no coração do cluster médico", "med_desc":"A Colômbia é o destino #1 de turismo médico e estético da América Latina.", "med1_t":"Torre 1: Saúde Especializada", "med1_d":"Centros cirúrgicos certificados, áreas médicas e consultórios em padrões internacionais.", "med2_t":"#1 em Turismo Médico na América Latina", "med2_d":"A Colômbia recebe mais de 36.000 pacientes internacionais por ano com preços 40–70% mais baixos.", "med3_t":"Cluster Médico · Milla de Diamante", "med3_d":"A Vivaltta está no epicentro: a poucos passos do Metrô, Viva Envigado e das principais avenidas.", "med4_t":"Demanda de Hospedagem Médica Garantida", "med4_d":"A Torre 2 (Hotel Marriott) captura exatamente essa demanda de hospedagem médica.", "med_stat_title":"Colômbia: o destino médico das Américas", "ms1":"Pacientes internacionais/ano", "ms2":"Custo vs EUA/Europa", "ms3":"Turismo médico LATAM #1", "ms4":"Crescimento turismo Antioquia S1 2024", "torre_t":"Torre 1 · Saúde e Serviços", "torre_d":"Centros cirúrgicos · Áreas médicas · Consultórios a partir de 29.45m² · Lobby · Estacionamento privado.", "torre2_t":"Torre 2 · Hotel Marriott", "torre2_d":"154 quartos sob Marriott por OXO Hotels. Único hotel internacional na Milla de Diamante.", "calc_label":"Simulador de Investimento", "calc_title":"Calcule sua Rentabilidade", "calc_desc":"Ocupação DANE: 68,5%.", "l_rights":"Direitos Fiduciários", "l_occ":"Ocupação Anual", "dane_avg":"Méd. DANE: 68,5%", "total_inv":"Investimento Total", "note_title":"Metodologia:", "note_body":"1%/mês a 63% · 2%/mês a 100%.", "calc_legal":"Os valores projetados são estimativas para fins ilustrativos.", "m_monthly":"Rend. Mensal", "m_annual":"ROI Anual", "m_payback":"Retorno (anos)", "inc_monthly":"Renda Mensal", "inc_annual":"Renda Anual", "inc_5y":"Projeção 5 Anos", "cmp_label":"Análise de Mercado", "cmp_title":"Vivaltta vs outras alternativas de investimento", "cmp_desc":"A melhor combinação de rentabilidade, respaldo e valorização.", "cmp_dane":"Vivaltta DANE 68,5%", "th_product":"Produto", "th_return":"Rend. Anual", "th_risk":"Risco", "th_liq":"Liquidez", "r_vlow":"Muito Baixo", "r_low":"Baixo", "r_med":"Médio", "r_high":"Alto", "l_high":"Alta", "l_med":"Média", "l_low":"Baixa", "val_label":"Análise Imobiliária", "val_title":"Valorização do Setor Envigado", "vs1_t":"Valorização acumulada (5 anos)", "vs1_d":"Setor Ciudad Peldar", "vs2_t":"Média de Medellín", "vs2_d":"Vale do Aburra", "vs3_t":"Média da Colômbia", "vs3_d":"Imóveis urbanos nacionais", "vs4_t":"Crescimento de turistas internacionais", "vs4_d":"Medellín 2019 vs 2024", "glob_label":"Investimento Global · Sem Fronteiras", "glob_title":"Invista de qualquer lugar do mundo", "glob_desc":"Não importa em qual país você vive nem em qual moeda tem seu capital.", "gs1_t":"Não tem pesos colombianos? Sem problema.", "gs1_d":"A Alianza Fiduciaria converte qualquer divisa em pesos colombianos.", "gs2_t":"Monetização à melhor taxa do mercado.", "gs2_d":"Empresas aliadas especializadas em monetização internacional.", "gs3_t":"Processo 100% digital. Sem viagens necessárias.", "gs3_d":"A vinculação, assinatura de documentos e acompanhamento são feitos completamente online.", "gs4_t":"Conformidade SAGRILAFT integrada.", "gs4_d":"O processo inclui conformidade anti-lavagem, garantindo total transparência.", "gh_title":"Seu investimento, na sua moeda", "gh_desc":"A Alianza Fiduciaria garante a conversão de qualquer divisa de forma ágil e regulada.", "gh_alianza":"Alianza Fiduciaria — mais de 30 anos de trajetória, supervisionada pela SFC — garante que cada peso investido esteja protegido por lei.", "more_curr":"+ mais moedas", "gstat1":"Processo digital", "gstat2":"Viagens necessárias", "gstat3":"Resposta do consultor", "li1":"Processo 100% digital, sem deslocamentos", "li2":"Custódia legal pela Alianza Fiduciaria · SFC", "li3":"Disponível em múltiplas moedas internacionais", "li4":"Rentabilidade projetada a partir de 12% ao ano", "lead_label":"Vagas Limitadas", "lead_title":"Reserve seu direito fiduciário hoje", "lead_desc":"Um consultor especialista entrará em contato em menos de 24 horas.", "ph_name":"Nome completo", "ph_phone":"Telefone / WhatsApp", "ph_email":"E-mail", "ph_country":"País de residência", "ph_capital":"Capital disponível para investir", "ph_lang":"Idioma para ser contatado", "ph_other_lang":"Especifique seu idioma", "cap1":"1 Direito · COP $50M", "cap2":"2–5 Direitos · $100M–$250M", "cap3":"6–10 Direitos · $300M–$500M", "cap4":"Mais de 10 Direitos · $500M+", "btn_submit":"Solicitar Informação Exclusiva", "opt_other_lang":"Outro idioma", "disclaimer":"Dados protegidos. Conformidade SAGRILAFT integrada.", "footer_legal":"© 2026 Londoño Gomez. Vivaltta Marriott Ciudad Peldar, Envigado, Colômbia.", "toastMsg":"Obrigado! Um consultor entrará em contato em breve.", "src_val":"Fonte: Camacol Antioquia, DANE e SIT Medellín.", "src_calc":"Fonte: Projeções baseadas nos padrões STR Global e Alianza Fiduciaria."},
-  "de": {"nav_cta":"Jetzt Investieren", "heroBadge":"Start Mai 2026 · Ciudad Peldar, Envigado", "heroSub":"Vivaltta ist das kommerzielle Herz von Ciudad Peldar: zwei Türme in perfekter Synergie. Turm 1 beherbergt OPs und spezialisierte Büros; Turm 2 ist das Marriott Hotel — das für Investitionen verfügbare Asset über Treuhandrechte.", "btn_calc":"Rendite Berechnen", "btn_how":"Wie funktioniert es?", "btn_model":"Das Investitionsmodell kennenlernen", "btn_acquire":"Ihr Recht Erwerben", "launch_label":"Offizieller Start", "launch_date":"Mai 2026 · Ciudad Peldar, Envigado, Kolumbien", "tower1_tag":"Turm 1 · Gesundheit & Büros", "tower1_title":"OPs, Arztpraxen und spezialisierte medizinische Bereiche", "tower1_body":"Der erste Turm von Vivaltta beherbergt zertifizierte OPs und spezialisierte medizinische Bereiche. Dieses Asset ist nicht für Treuhandinvestitionen verfügbar.", "tower2_tag":"Turm 2 · Marriott Hotel · Investitions-Asset", "tower2_title":"154 Zimmer unter der Marke Marriott von OXO Hotels", "tower2_body":"Turm 2 ist das für Investitionen verfügbare Asset. Sie erwerben Treuhandrechte an diesem Hotel und erhalten monatlich Ihren proportionalen GOP-Anteil.", "dev_headline":"Über 53 Jahre, die Skyline Kolumbiens zu gestalten", "dev_intro":"Londoño Gómez ist nicht nur ein Bauträger — sie sind Architekten ganzer Gemeinschaften. Ihr Name ist die stärkste Garantie für ausländische Investoren in Kolumbien.", "lg_desc":"Über 53 Jahre Transformation der kolumbianischen Skyline. Pioniere bei Mischnutzungsprojekten. Ciudad Peldar ist ihr Meisterwerk: das meistverkaufte Megaprojekt #1 des Landes.", "peldarDesc":"Ciudad Peldar umfasst 101.445 m² des historischen Peldar-Geländes — das beste Grundstück im Aburra-Tal. Das meistverkaufte Megaprojekt #1 Kolumbiens.", "peldar_title":"Eine Stadt, alles in unter 15 Minuten erreichbar", "pf1":"Auf der anderen Straßenseite", "pf2":"Neben dem Projekt", "pf3":"Sektorwertsteigerung 5 Jahre", "pf4":"Meistverkauftes Projekt Kolumbiens", "faq_eyebrow":"Häufige Fragen", "faq_title":"Alles, was Sie wissen müssen", "faq_desc":"Wir beantworten die häufigsten Fragen unserer Investoren weltweit.", "faq_cta":"Mit einem Berater sprechen", "faq1_q":"Was genau ist ein Treuhandrecht?", "faq1_a":"Ein Treuhandrecht ist eine proportionale Beteiligung am autonomen Vermögen des Vivaltta Marriott Hotels. Es ist vollständig vom Vermögen von Londoño Gómez getrennt.", "faq2_q":"Was kostet ein Treuhandrecht?", "faq2_a":"Der Preis eines Treuhandrechts beträgt COP 50.000.000. Sie können so viele erwerben, wie Sie möchten.", "faq3_q":"Wann beginne ich, Renditen zu erhalten?", "faq3_a":"Das Projekt startet im Mai 2026 und nimmt Ende 2029 den Hotelbetrieb auf. Die operativen Renditen (GOP) beginnen mit der Hoteleröffnung.", "faq4_q":"Kann ich vom Ausland investieren?", "faq4_a":"Ja. Der Prozess ist vollständig digital. Alianza Fiduciaria verfügt über Broker-Konten für die Währungsumrechnung.", "faq5_q":"Wie ist mein Kapital geschützt?", "faq5_a":"Ihr Kapital fließt in ein autonomes Treuhandvermögen, das von Alianza Fiduciaria unter Aufsicht der SFC verwaltet wird.", "faq6_q":"Was passiert bei niedriger Hotelauslastung?", "faq6_a":"Das Modell projiziert Renditen ab 12% pro Jahr bei 63% Auslastung. Der nationale DANE-Durchschnitt beträgt 68,5%.", "faq7_q":"Kann ich mein Treuhandrecht verkaufen?", "faq7_a":"Ja. Treuhandrechte sind übertragbar — per notarieller Urkunde.", "kpi1":"Hotelauslastung · DANE", "kpi2":"Basis-Jahresrendite", "kpi3":"Premium-Zimmer", "kpi4":"Events/Jahr Arena Primavera", "hiw_label":"Investitionsmodell", "hiw_title":"Wie funktionieren Treuhandrechte?", "hiw_desc":"Transparente Struktur, reguliert von der SFC und ausgeführt von Alianza Fiduciaria.", "hiw1_t":"Erwerben Sie Ihr Treuhandrecht", "hiw1_d":"Sie kaufen einen proportionalen Anteil am Hotel per notariellem Treuhandvertrag.", "hiw2_t":"Alianza Fiduciaria verwahrt Ihr Kapital", "hiw2_d":"Alianza Fiduciaria, von der SFC überwacht, verwahrt 100% der Mittel. Eine rechtliche Garantie.", "hiw3_t":"Erhalten Sie Ihre Renditen", "hiw3_d":"Mit Marriott und OXO Hotels im Betrieb erhalten Sie monatlich Ihren proportionalen GOP-Anteil.", "wf_title":"Geldfluss-Transparenz", "wf_l1":"Ursprung", "wf_n1":"Gast", "wf_s1":"Zahlt seinen Aufenthalt", "wf_l2":"Betrieb", "wf_s2":"Unter Marriott-Marke", "wf_l3":"Ergebnis", "wf_n3":"Nettogewinn", "wf_s3":"Operativer GOP", "wf_l4":"Verwahrung · SFC", "wf_s4":"Proportionale Ausschüttung", "wf_l5":"Endziel", "wf_n5":"Investor", "wf_s5":"Monatlich · Direkt", "trust_label":"Institutionelle Unterstützung", "trust_title":"Fünf Vertrauenssäulen", "tp1_t":"Alianza Fiduciaria · SFC", "tp1_d":"Alle Mittel von Alianza Fiduciaria verwahrt, unter SFC-Aufsicht.", "tp2_t":"Marriott International", "tp2_d":"Die weltweit führende Hotelkette #1.", "tp3_t":"OXO Hotels", "tp3_d":"Spezialisierter Hotelbetreiber in Kolumbien.", "tp4_t":"Londoño Gómez", "tp4_d":"50+ Jahre Bauen in Kolumbien.", "tp5_t":"Arq. y Concreto", "tp5_d":"33 Jahre Bauerfahrung.", "med_label":"Medizin- und Ästhetiktourismus · Kolumbien", "med_title":"Der erste Turm: OPs und Praxen im Herzen des Medizinclusters", "med_desc":"Kolumbien ist das #1-Ziel für Medizintourismus in Lateinamerika.", "med1_t":"Turm 1: Spezialisierte Gesundheit", "med1_d":"Zertifizierte OPs, spezialisierte Medizinbereiche und fertiggestellte Praxen.", "med2_t":"#1 Medizintourismus Lateinamerika", "med2_d":"Kolumbien empfängt jährlich über 36.000 internationale Patienten zu 40–70% günstigeren Preisen.", "med3_t":"Medizincluster · Milla de Diamante", "med3_d":"Vivaltta liegt im Epizentrum: Schritte vom Metro, Viva Envigado und den Hauptstraßen.", "med4_t":"Garantierte medizinische Beherbergungsnachfrage", "med4_d":"Turm 2 (Marriott Hotel) deckt genau diese medizinische Beherbergungsnachfrage.", "med_stat_title":"Kolumbien: das medizinische Ziel Amerikas", "ms1":"Internationale Patienten/Jahr", "ms2":"Kosten vs USA/Europa", "ms3":"Medizintourismus LATAM #1", "ms4":"Tourismuszuwachs Antioquia H1 2024", "torre_t":"Turm 1 · Gesundheit und Dienstleistungen", "torre_d":"OPs · Medizinbereiche · Praxen ab 29.45m² · Lobby · Privatparkhaus.", "torre2_t":"Turm 2 · Marriott Hotel", "torre2_d":"154 Zimmer von OXO Hotels unter Marriott. Einziges internationales Hotel in der Milla de Diamante.", "calc_label":"Investitionsrechner", "calc_title":"Berechnen Sie Ihre Rendite", "calc_desc":"DANE-Hotelauslastung: 68,5%.", "l_rights":"Treuhandrechte", "l_occ":"Jahresauslastung", "dane_avg":"DANE-Durchschn.: 68,5%", "total_inv":"Gesamtinvestition", "note_title":"Methodik:", "note_body":"1%/Mon bei 63% · 2%/Mon bei 100%.", "calc_legal":"Prognostizierte Werte sind Schätzungen.", "m_monthly":"Monatl. Rendite", "m_annual":"Jahres-ROI", "m_payback":"Amortisation (Jahre)", "inc_monthly":"Monatl. Einnahmen", "inc_annual":"Jahreseinnahmen", "inc_5y":"5-Jahres-Projektion", "cmp_label":"Marktanalyse", "cmp_title":"Vivaltta vs andere Investitionsalternativen", "cmp_desc":"Die beste Kombination aus Rendite, Sicherheit und Wertsteigerung.", "cmp_dane":"Vivaltta DANE 68,5%", "th_product":"Produkt", "th_return":"Jahresrend.", "th_risk":"Risiko", "th_liq":"Liquidität", "r_vlow":"Sehr Niedrig", "r_low":"Niedrig", "r_med":"Mittel", "r_high":"Hoch", "l_high":"Hoch", "l_med":"Mittel", "l_low":"Niedrig", "val_label":"Immobilienanalyse", "val_title":"Wertsteigerung im Sektor Envigado", "vs1_t":"Kumulierte Wertsteigerung (5 Jahre)", "vs1_d":"Sektor Ciudad Peldar", "vs2_t":"Medellín-Durchschnitt", "vs2_d":"Aburra-Tal", "vs3_t":"Kolumbien-Durchschnitt", "vs3_d":"Nationales städtisches Immobilienvermögen", "vs4_t":"Wachstum internationaler Touristen", "vs4_d":"Medellín 2019 vs 2024", "glob_label":"Globale Investition · Grenzenlos", "glob_title":"Investieren Sie von überall auf der Welt", "glob_desc":"Egal in welchem Land Sie leben oder in welcher Währung Sie Ihr Kapital haben.", "gs1_t":"Keine kolumbianischen Pesos? Kein Problem.", "gs1_d":"Alianza Fiduciaria konvertiert jede Währung in kolumbianische Pesos.", "gs2_t":"Monetarisierung zum besten Marktkurs.", "gs2_d":"Spezialisierte Partnerunternehmen für internationale Monetarisierung.", "gs3_t":"100% digitaler Prozess. Keine Reisen nötig.", "gs3_d":"Registrierung, Dokumentenunterzeichnung und Nachverfolgung vollständig online.", "gs4_t":"Integrierte SAGRILAFT-Konformität.", "gs4_d":"Der Prozess umfasst Anti-Geldwäsche-Konformität und gewährleistet vollständige Transparenz.", "gh_title":"Ihre Investition, in Ihrer Währung", "gh_desc":"Alianza Fiduciaria garantiert die Umrechnung jeder Währung auf agile und regulierte Weise.", "gh_alianza":"Alianza Fiduciaria — über 30 Jahre Erfahrung, unter SFC-Aufsicht — garantiert, dass jeder investierte Peso gesetzlich geschützt ist.", "more_curr":"+ weitere Währungen", "gstat1":"Digitaler Prozess", "gstat2":"Erforderliche Reisen", "gstat3":"Beraterantwort", "li1":"100% digitaler Prozess, keine Reisen erforderlich", "li2":"Rechtliche Verwahrung durch Alianza Fiduciaria · SFC", "li3":"In mehreren internationalen Währungen verfügbar", "li4":"Projizierte Rendite ab 12% pro Jahr", "lead_label":"Begrenzte Plätze", "lead_title":"Treuhandrecht jetzt sichern", "lead_desc":"Ein Fachberater meldet sich innerhalb von 24 Stunden.", "ph_name":"Vollständiger Name", "ph_phone":"Telefon / WhatsApp", "ph_email":"E-Mail", "ph_country":"Wohnsitzland", "ph_capital":"Verfügbares Kapital", "ph_lang":"Kontaktsprache", "ph_other_lang":"Bitte Sprache angeben", "cap1":"1 Recht · COP $50M", "cap2":"2–5 Rechte · $100M–$250M", "cap3":"6–10 Rechte · $300M–$500M", "cap4":"Mehr als 10 Rechte · $500M+", "btn_submit":"Exklusive Info Anfordern", "opt_other_lang":"Andere Sprache", "disclaimer":"Daten geschützt. SAGRILAFT-Konformität integriert.", "footer_legal":"© 2026 Londoño Gomez. Vivaltta Marriott Ciudad Peldar, Envigado, Kolumbien.", "toastMsg":"Danke! Ein Berater meldet sich bald.", "src_val":"Quelle: Camacol Antioquia, DANE und SIT Medellín.", "src_calc":"Quelle: Projektionen nach STR-Global-Standards und Alianza Fiduciaria."}
-}
+  "es": {
+    "nav_cta": "Invertir Ahora",
+    "heroBadge": "Lanzamiento Mayo 2026 · Ciudad Peldar, Envigado",
+    "heroSub": "Vivaltta es el corazón empresarial de Ciudad Peldar: dos torres en sinergia perfecta. La Torre 1 alberga quirófanos y oficinas especializadas; la Torre 2 es el Hotel Marriott — disponible para inversión mediante Derechos Fiduciarios vinculados a una Suite Hotelera bajo el Modelo Rental Pool.",
+    "btn_calc": "Ver Rentabilidad",
+    "btn_how": "¿Cómo funciona?",
+    "btn_model": "Conocer el Modelo",
+    "btn_acquire": "Adquiere Tu Suite",
+    "launch_label": "Lanzamiento Oficial",
+    "launch_date": "Mayo 2026 · Ciudad Peldar, Envigado, Colombia",
+    "tower1_tag": "Torre 1 · Salud · Próxima a agotarse",
+    "tower1_title": "Quirófanos y consultorios médicos especializados",
+    "tower1_body": "Torre de salud y servicios especializados — próxima a agotarse en su totalidad, al igual que Vittrio y Cristtali en el mismo plan parcial. Forma el ecosistema que garantiza ocupación permanente al hotel.",
+    "tower2_tag": "Torre 2 · Hotel Marriott · Activo de Inversión",
+    "tower2_title": "154 suites hoteleras operadas bajo la marca Marriott por OXO Hotels",
+    "tower2_body": "El activo de inversión: el único hotel de marca internacional en la Milla de Diamante. Operado por OXO Hotels bajo el estándar Marriott, captura la demanda del clúster médico, corporativo y — crucialmente — de la Arena Primavera (75+ eventos al año, a solo 8 minutos). Su patrimonio genera Utilidad Operativa sin importar si su suite individual está ocupada.",
+    "dev_headline": "Más de 50 años transformando el skyline de Colombia",
+    "dev_intro": "Juntos, el equipo más sólido del mercado inmobiliario hotelero de Colombia. Cada nombre en esta página es referente máximo en su campo.",
+    "lg_desc": "Desarrollador líder con más de 50 años de trayectoria transformando el panorama inmobiliario de Colombia. Visionarios detrás de Ciudad Peldar —el megaproyecto más exitoso del país—, Londoño Gómez garantiza solidez, valorización y una gestión estratégica orientada a la rentabilidad del inversionista.",
+    "tp5_t": "Arq. y Concreto",
+    "tp5_d": "Constructora referente en innovación y excelencia técnica. Con una hoja de ruta impecable en proyectos de gran escala y alta complejidad, aseguran los más altos estándares de calidad constructiva y cumplimiento, materializando hitos urbanos que perduran en el tiempo.",
+    "peldarDesc": "Ciudad Peldar ocupa 101.445 m² del histórico lote Peldar — el mejor lote del Valle de Aburrá. El megaproyecto #1 más vendido de Colombia. Conecta directamente con tres vías principales: Av. Las Vegas, Av. Regional y Av. Simón Bolívar.",
+    "peldar_title": "Ciudad a menos de 15 minutos de todo",
+    "pf1": "Pasando la calle",
+    "pf2": "Al lado del proyecto",
+    "pf3": "Valorización sector 5 años",
+    "pf4": "Proyecto + vendido Colombia",
+    "faq_eyebrow": "Preguntas Frecuentes",
+    "faq_title": "Todo lo que necesita saber",
+    "faq_desc": "Resolvemos las dudas más frecuentes de nuestros inversionistas en Colombia y el mundo.",
+    "faq_cta": "Hablar con un Asesor",
+    "faq1_q": "¿Qué es un Derecho Fiduciario vinculado a una Suite?",
+    "faq1_a": "Un Derecho Fiduciario es una participación proporcional en el patrimonio autónomo que constituye el Hotel Marriott Vivaltta. Al adquirirlo, se emite un título respaldado por Alianza Fiduciaria, completamente separado del patrimonio de Londoño Gómez. Este título es un activo líquido: se puede vender, ceder o transferir con la misma libertad que cualquier activo inmobiliario.",
+    "faq2_q": "¿Cuánto vale una Suite?",
+    "faq2_a": "El valor por m² es $12.300.000 COP. Suite Tipo A (31 m²): $381.300.000. Suite Tipo B (42 m²): $516.600.000. Suite Tipo C (50 m²): $615.000.000. Suite Tipo D (57 m²): $701.100.000.",
+    "faq3_q": "¿Cuándo empieza a generar retorno mi inversión?",
+    "faq3_a": "Como inversionista, ya está ganando desde el día uno: durante los 3 años de construcción, su patrimonio se valoriza con el activo subyacente, un beneficio adicional extraordinario al margen de las utilidades operativas. Al abrir el hotel, la Utilidad Operativa se distribuye mensualmente de forma proporcional a su participación.",
+    "faq4_q": "¿Puedo invertir desde el exterior?",
+    "faq4_a": "Sí. El proceso es 100% digital — asegure su participación desde cualquier país. Contamos con empresas aliadas especialistas en monetización de divisas sin intermediarios innecesarios y a la mejor tasa del mercado. Alianza Fiduciaria gestiona la conversión de forma ágil y regulada. No se requiere ningún desplazamiento.",
+    "faq5_q": "¿Cómo está protegido mi capital?",
+    "faq5_a": "Su capital ingresa a un patrimonio autónomo administrado por Alianza Fiduciaria, vigilada por la SFC. Los fondos están legalmente separados del patrimonio del Desarrollador de Proyectos.",
+    "faq6_q": "¿Por qué el Rental Pool protege mi patrimonio?",
+    "faq6_a": "Porque su Utilidad Operativa proviene de la ocupación global del hotel — gestionada por Marriott y OXO Hotels —, no de si su suite individual está ocupada. Con la Arena Primavera a 8 minutos (75+ eventos al año) y el clúster médico frente al edificio, el flujo de huéspedes está asegurado. El promedio histórico DANE es del 68.5%.",
+    "faq7_q": "¿Puedo vender o transferir mi Derecho Fiduciario?",
+    "faq7_a": "Sí. Como activo líquido, su Derecho Fiduciario se puede vender, ceder o transferir con la misma libertad que cualquier activo inmobiliario. El proceso es ágil y la liquidez es comparable a la de otros instrumentos de inversión inmobiliaria.",
+    "kpi1": "Ocupación Hotelera · DANE",
+    "kpi2": "Rentabilidad Anual Base",
+    "kpi3": "Suites Hoteleras",
+    "kpi4": "Eventos/Año Arena Primavera",
+    "hiw_label": "Modelo Rental Pool",
+    "hiw_title": "¿Cómo funciona el Modelo Rental Pool?",
+    "hiw_desc": "Como inversionista, adquiere un Derecho Fiduciario vinculado a una Suite específica. El hotel opera como un pool unificado: su patrimonio genera Utilidad Operativa proporcional a su participación, eliminando el riesgo de vacancia individual.",
+    "hiw1_t": "Emita su Título Fiduciario",
+    "hiw1_d": "Al formalizar la operación, se emite un título fiduciario respaldado por Alianza Fiduciaria. Su inversión queda jurídicamente protegida y separada del patrimonio del Desarrollador de Proyectos.",
+    "hiw2_t": "Alianza Fiduciaria Custodia tu Capital",
+    "hiw2_d": "Alianza Fiduciaria, vigilada por la SFC, custodia el 100% de los recursos. Una garantía legal, no una promesa.",
+    "hiw3_t": "Reciba su Utilidad Operativa",
+    "hiw3_d": "Con Marriott y OXO Hotels operando, recibe su participación proporcional de la Utilidad Operativa mensualmente, directo a su cuenta.",
+    "wf_title": "Flujo de transparencia del dinero",
+    "wf_l1": "Origen",
+    "wf_n1": "Huésped",
+    "wf_s1": "Paga su estadía",
+    "wf_l2": "Operación",
+    "wf_s2": "Bajo marca Marriott",
+    "wf_l3": "GOP Total",
+    "wf_n3": "Utilidad del Hotel",
+    "wf_s3": "Utilidad Operativa",
+    "wf_l4": "Custodia · SFC",
+    "wf_s4": "Distribución proporcional",
+    "wf_l5": "Destino Final",
+    "wf_n5": "Inversionista",
+    "wf_s5": "Mensual · Directo",
+    "trust_label": "Respaldos Institucionales",
+    "trust_title": "Cinco pilares de confianza",
+    "tp1_t": "Alianza Fiduciaria · SFC",
+    "tp1_d": "Todos los recursos custodiados por Alianza Fiduciaria, vigilada por la SFC.",
+    "tp2_t": "Marriott International",
+    "tp2_d": "La cadena hotelera #1 del mundo garantiza ocupación y reputación global.",
+    "tp3_t": "OXO Hotels",
+    "tp3_d": "Operador hotelero especialista en Colombia con historial en proyectos de lujo.",
+    "tp4_t": "Londoño Gómez",
+    "tp4_d": "50+ años transformando Colombia. Ciudad Peldar, el megaproyecto más exitoso del país.",
+    "med_label": "Turismo Médico y Estético · Colombia",
+    "med_title": "La primera torre: quirófanos y consultorios en el corazón del clúster médico",
+    "med_desc": "Colombia es el destino #1 de turismo médico y estético de América Latina.",
+    "med1_t": "Torre 1: Salud Especializada",
+    "med1_d": "Quirófanos, áreas médicas especializadas y consultorios terminados bajo estándares internacionales.",
+    "med2_t": "#1 en Turismo Médico Latinoamérica",
+    "med2_d": "Colombia recibe más de 36.000 pacientes internacionales al año con precios 40–70% más bajos que EE.UU. o Europa.",
+    "med3_t": "Clúster Médico · Milla de Diamante",
+    "med3_d": "Vivaltta está en el epicentro: a pasos del Metro, Viva Envigado y las principales avenidas.",
+    "med4_t": "Demanda de Hospedaje Garantizada",
+    "med4_d": "Pacientes, médicos y acompañantes necesitan alojamiento de calidad. La Torre 2 captura exactamente esa demanda.",
+    "med_stat_title": "Colombia: el destino médico de las Américas",
+    "ms1": "Pacientes internacionales/año",
+    "ms2": "Costo vs EE.UU./Europa",
+    "ms3": "Destino médico LATAM #1",
+    "ms4": "Crecimiento turismo Antioquia H1 2024",
+    "torre_t": "Torre 1 · Salud y Servicios",
+    "torre_d": "Quirófanos · Áreas médicas especializadas · Consultorios y servicios · Próxima a agotarse.",
+    "torre2_t": "Torre 2 · Hotel Marriott",
+    "torre2_d": "154 suites Marriott por OXO Hotels. Único hotel de marca internacional en la Milla de Diamante. Captura la demanda del clúster médico, corporativo y de los 75+ eventos anuales de Arena Primavera (8 min).",
+    "calc_label": "Calculadora de Portafolio",
+    "calc_title": "Compón tu Portafolio de Suites",
+    "calc_desc": "Selecciona las suites y visualiza tu participación en tiempo real.",
+    "calc_suite_title": "Composición de Portafolio",
+    "calc_suite_sub": "Selecciona las suites que deseas adquirir",
+    "suite_a_tag": "Tipo A",
+    "suite_b_tag": "Tipo B",
+    "suite_c_tag": "Tipo C",
+    "suite_d_tag": "Tipo D",
+    "avail_label": "Disp.",
+    "part_label": "Participación en el Hotel",
+    "l_occ": "Ocupación Global del Hotel",
+    "dane_avg": "Prom. DANE: 68.5%",
+    "total_inv": "Inversión Total",
+    "note_title": "Metodología:",
+    "note_body": "1% mensual a 63% occ · 2% a 100% occ. Modelo Rental Pool. DANE 68.5%.",
+    "calc_legal": "Proyecciones estimadas. No constituyen promesa de rentabilidad.",
+    "rental_pool_note": "Tu rentabilidad está respaldada por la operación total del hotel, mitigando el riesgo de vacancia individual.",
+    "m_monthly": "Rend. Mensual",
+    "m_annual": "ROI Anual",
+    "m_payback": "Payback (años)",
+    "inc_monthly": "Ingreso Mensual",
+    "inc_annual": "Ingreso Anual",
+    "inc_5y": "Proyección 5 Años",
+    "cmp_label": "Análisis de Mercado",
+    "cmp_title": "Vivaltta vs otras alternativas de inversión",
+    "cmp_desc": "La mejor combinación de rentabilidad, respaldo y valorización.",
+    "cmp_dane": "Vivaltta DANE 68.5%",
+    "th_product": "Producto",
+    "th_return": "Rend. Anual",
+    "th_risk": "Riesgo",
+    "th_liq": "Liquidez",
+    "r_vlow": "Muy Bajo",
+    "r_low": "Bajo",
+    "r_med": "Medio",
+    "r_high": "Alto",
+    "l_high": "Alta",
+    "l_med": "Media",
+    "l_low": "Baja",
+    "val_label": "Análisis Inmobiliario",
+    "val_title": "Valorización del Sector Envigado",
+    "vs1_t": "Valorización acumulada (5 años)",
+    "vs1_d": "Sector Ciudad Peldar",
+    "vs2_t": "Valorización Medellín promedio",
+    "vs2_d": "Valle de Aburrá",
+    "vs3_t": "Valorización Colombia promedio",
+    "vs3_d": "Finca raíz urbana nacional",
+    "vs4_t": "Crecimiento turistas internacionales",
+    "vs4_d": "Medellín 2019 vs 2024",
+    "glob_label": "Inversión Global · Sin Fronteras",
+    "glob_title": "Invierta desde cualquier parte del mundo",
+    "glob_desc": "No importa en qué país viva ni en qué moneda tenga su capital.",
+    "gs1_t": "¿No tiene pesos colombianos? No hay problema.",
+    "gs1_d": "Alianza Fiduciaria cuenta con cuentas broker que monetizan cualquier divisa.",
+    "gs2_t": "Monetización a la mejor tasa del mercado.",
+    "gs2_d": "Contamos con empresas aliadas especialistas en monetización de divisas sin intermediarios innecesarios y a la mejor tasa del mercado.",
+    "gs3_t": "Proceso 100% digital. Sin viajes necesarios.",
+    "gs3_d": "La vinculación, firma de documentos y seguimiento se realizan completamente en línea.",
+    "gs4_t": "Cumplimiento SAGRILAFT integrado.",
+    "gs4_d": "El proceso incluye cumplimiento anti-lavado (SAGRILAFT/PTEE), garantizando transparencia total.",
+    "gh_title": "Su inversión, en su moneda",
+    "gh_desc": "Alianza Fiduciaria garantiza la conversión de cualquier divisa de manera ágil y regulada.",
+    "gh_alianza": "Alianza Fiduciaria — más de 30 años de trayectoria, vigilada por la SFC — garantiza que cada peso invertido en Vivaltta Marriott esté protegido por ley.",
+    "more_curr": "+ más divisas",
+    "gstat1": "Proceso digital",
+    "gstat2": "Viajes necesarios",
+    "gstat3": "Respuesta asesor",
+    "li1": "Proceso 100% digital, sin desplazamientos",
+    "li2": "Custodia legal por Alianza Fiduciaria · SFC",
+    "li3": "Disponible en múltiples monedas internacionales",
+    "li4": "Rentabilidad proyectada desde 12% anual (Rental Pool)",
+    "lead_label": "Cupos Limitados",
+    "lead_title": "Asegure su participación hoy",
+    "lead_desc": "Un asesor especialista le contactará en menos de 24 horas con el prospecto completo. Su patrimonio no puede esperar.",
+    "ph_name": "Nombre completo",
+    "ph_phone": "Teléfono / WhatsApp",
+    "ph_email": "Correo electrónico",
+    "ph_country": "País de residencia",
+    "ph_capital": "Inversión estimada",
+    "ph_lang": "Idioma para ser contactado",
+    "ph_other_lang": "Especifique su idioma",
+    "cap1": "1 Suite · desde $381M COP",
+    "cap2": "2–5 Suites",
+    "cap3": "6–10 Suites",
+    "cap4": "Más de 10 Suites",
+    "btn_submit": "Solicitar Información Exclusiva",
+    "opt_other_lang": "Otro idioma",
+    "disclaimer": "Sus datos están protegidos bajo la Ley 1581. Proceso SAGRILAFT/PTEE integrado.",
+    "footer_legal": "© 2026 Londoño Gómez. Vivaltta Marriott Ciudad Peldar, Envigado, Colombia. Proyecciones estimativas. Fiducia: Alianza Fiduciaria. Vigilado SFC.",
+    "toastMsg": "¡Gracias! Un asesor lo contactará pronto.",
+    "src_val": "Fuente: Camacol Antioquia, DANE y SIT Medellín.",
+    "src_calc": "Fuente: Proyecciones bajo estándares STR Global y modelo Rental Pool de Alianza Fiduciaria.",
+    "arena_note": "Arena Primavera: 75+ eventos/año · 8 minutos del hotel",
+    "fin_note_calc": "Este análisis se centra en utilidades operativas proyectadas. No incluye la valorización del derecho y el activo, lo cual representa un beneficio patrimonial adicional extraordinario para el inversionista.",
+    "fin_note_cmp": "Este análisis se centra en utilidades operativas. No incluye la valorización del derecho y el activo, lo cual representa un beneficio patrimonial adicional extraordinario para el inversionista — históricamente del +22% en el sector."
+  },
+  "en": {
+    "nav_cta": "Invest Now",
+    "heroBadge": "Launching May 2026 · Ciudad Peldar, Envigado",
+    "heroSub": "Vivaltta is the commercial heart of Ciudad Peldar: two towers in perfect synergy. Tower 1 houses operating rooms and specialized offices; Tower 2 is the Marriott Hotel — available for investment through Fiduciary Rights linked to a Hotel Suite under the Rental Pool Model.",
+    "btn_calc": "See Returns",
+    "btn_how": "How does it work?",
+    "btn_model": "Discover the Model",
+    "btn_acquire": "Acquire Your Suite",
+    "launch_label": "Official Launch",
+    "launch_date": "May 2026 · Ciudad Peldar, Envigado, Colombia",
+    "tower1_tag": "Tower 1 · Health · Nearly Sold Out",
+    "tower1_title": "Operating rooms and specialized medical consulting offices",
+    "tower1_body": "Health and specialized services tower — nearly sold out, like Vittrio and Cristtali in the same master plan. Creates the ecosystem that guarantees permanent occupancy for the hotel.",
+    "tower2_tag": "Tower 2 · Marriott Hotel · Investment Asset",
+    "tower2_title": "154 hotel suites operated under the Marriott brand by OXO Hotels",
+    "tower2_body": "The investment asset: the only international brand hotel in the Diamond Mile. Operated by OXO Hotels under the Marriott standard, it captures demand from the medical and corporate cluster and — crucially — from Arena Primavera attendees (75+ events per year, just 8 minutes away). Your capital generates Operating Profit regardless of whether your individual suite is occupied.",
+    "dev_headline": "Over 50 years transforming the Colombian skyline",
+    "dev_intro": "Together, the most solid team in Colombia's hotel real estate market. Each name on this page is a leader in their field.",
+    "lg_desc": "Leading developer with over 50 years of track record transforming Colombia's real estate landscape. Visionaries behind Ciudad Peldar — the country's most successful megaproject — Londoño Gómez guarantees solidity, appreciation and strategic management oriented to investor returns.",
+    "tp5_t": "Arq. y Concreto",
+    "tp5_d": "Reference construction firm in innovation and technical excellence. With an impeccable track record in large-scale, high-complexity projects, they ensure the highest standards of construction quality and compliance, materializing urban milestones that stand the test of time.",
+    "peldarDesc": "Ciudad Peldar covers 101,445 m² of the historic Peldar factory site — the best lot in the Aburra Valley. Colombia's #1 best-selling megaproject. Directly connected to three major thoroughfares: Av. Las Vegas, Av. Regional and Av. Simón Bolívar.",
+    "peldar_title": "A city within 15 minutes of everything",
+    "pf1": "Across the street",
+    "pf2": "Next to the project",
+    "pf3": "5-year sector appreciation",
+    "pf4": "#1 Sold project in Colombia",
+    "faq_eyebrow": "Frequently Asked Questions",
+    "faq_title": "Everything you need to know",
+    "faq_desc": "We answer the most common questions from our investors worldwide.",
+    "faq_cta": "Talk to an Advisor",
+    "faq1_q": "What is a Fiduciary Right linked to a Suite?",
+    "faq1_a": "A Fiduciary Right is a proportional participation in the autonomous trust that constitutes the Vivaltta Marriott Hotel. Upon acquisition, a title backed by Alianza Fiduciaria is issued, completely separate from Londoño Gómez's assets. This title is a liquid asset: it can be sold, assigned or transferred with the same freedom as any real estate asset.",
+    "faq2_q": "How much does a Suite cost?",
+    "faq2_a": "Price per m² is COP $12,300,000. Type A (31 m²): $381,300,000. Type B (42 m²): $516,600,000. Type C (50 m²): $615,000,000. Type D (57 m²): $701,100,000.",
+    "faq3_q": "When does my investment start generating returns?",
+    "faq3_a": "As an investor, you start earning from day one: during the 3-year construction phase, your capital appreciates with the underlying asset — an extraordinary additional benefit beyond operating profits. Once the hotel opens, Operating Profit is distributed monthly in proportion to your participation.",
+    "faq4_q": "Can I invest from abroad?",
+    "faq4_a": "Yes. The process is 100% digital — secure your participation from any country. We work with specialized allied companies for currency monetization with no unnecessary intermediaries and at the best market rate. Alianza Fiduciaria manages the conversion in an agile, regulated manner. No travel required.",
+    "faq5_q": "How is my capital protected?",
+    "faq5_a": "Your capital enters an autonomous trust managed by Alianza Fiduciaria, supervised by the SFC. Funds are legally separated from the Project Developer's assets.",
+    "faq6_q": "Why does the Rental Pool protect my capital?",
+    "faq6_a": "Because your Operating Profit comes from the hotel's global occupancy — managed by Marriott and OXO Hotels —, not from whether your individual suite is occupied. With Arena Primavera 8 minutes away (75+ events per year) and the medical cluster in front of the building, guest flow is secured. The historical DANE average is 68.5%.",
+    "faq7_q": "Can I sell or transfer my Fiduciary Right?",
+    "faq7_a": "Yes. As a liquid asset, your Fiduciary Right can be sold, assigned or transferred with the same freedom as any real estate asset. The process is agile and liquidity is comparable to other real estate investment instruments.",
+    "kpi1": "Hotel Occupancy · DANE",
+    "kpi2": "Base Annual Yield",
+    "kpi3": "Hotel Suites",
+    "kpi4": "Events/Year Arena Primavera",
+    "hiw_label": "Rental Pool Model",
+    "hiw_title": "How does the Rental Pool Model work?",
+    "hiw_desc": "As an investor, you acquire a Fiduciary Right linked to a specific Suite. The hotel operates as a unified pool: your capital generates Operating Profit proportional to your participation, eliminating individual vacancy risk.",
+    "hiw1_t": "Issue Your Fiduciary Title",
+    "hiw1_d": "When formalizing the transaction, a fiduciary title backed by Alianza Fiduciaria is issued. Your investment is legally protected and separate from the Project Developer's assets.",
+    "hiw2_t": "Alianza Fiduciaria Safeguards your Capital",
+    "hiw2_d": "Alianza Fiduciaria, supervised by the SFC, holds 100% of funds. A legal guarantee, not a promise.",
+    "hiw3_t": "Receive Your Operating Profit",
+    "hiw3_d": "With Marriott and OXO Hotels operating, you receive your proportional share of the Operating Profit monthly, directly to your account.",
+    "wf_title": "Money transparency flow",
+    "wf_l1": "Origin",
+    "wf_n1": "Guest",
+    "wf_s1": "Pays their stay",
+    "wf_l2": "Operations",
+    "wf_s2": "Under Marriott brand",
+    "wf_l3": "Total GOP",
+    "wf_n3": "Hotel Profit",
+    "wf_s3": "Operating Profit",
+    "wf_l4": "Custody · SFC",
+    "wf_s4": "Proportional distribution",
+    "wf_l5": "Final Destination",
+    "wf_n5": "Investor",
+    "wf_s5": "Monthly · Direct",
+    "trust_label": "Institutional Backing",
+    "trust_title": "Five pillars of confidence",
+    "tp1_t": "Alianza Fiduciaria · SFC",
+    "tp1_d": "All funds held by Alianza Fiduciaria, supervised by the SFC.",
+    "tp2_t": "Marriott International",
+    "tp2_d": "The world's #1 hotel brand.",
+    "tp3_t": "OXO Hotels",
+    "tp3_d": "Specialist hotel operator in Colombia.",
+    "tp4_t": "Londoño Gómez",
+    "tp4_d": "50+ years transforming Colombia. Ciudad Peldar, the country's most successful megaproject.",
+    "med_label": "Medical & Aesthetic Tourism · Colombia",
+    "med_title": "First tower: operating rooms & offices at the heart of the medical cluster",
+    "med_desc": "Colombia is Latin America's #1 medical and aesthetic tourism destination.",
+    "med1_t": "Tower 1: Specialized Health",
+    "med1_d": "Certified operating rooms, medical areas and finished consulting rooms.",
+    "med2_t": "#1 Medical Tourism in Latin America",
+    "med2_d": "Colombia receives 36,000+ international patients per year at prices 40-70% lower than the US or Europe.",
+    "med3_t": "Medical Cluster · Diamond Mile",
+    "med3_d": "Vivaltta at the epicenter: steps from Viva Envigado, Metro and main avenues.",
+    "med4_t": "Guaranteed Hospitality Demand",
+    "med4_d": "Patients, doctors and companions need quality accommodation. Tower 2 captures exactly that demand.",
+    "med_stat_title": "Colombia: the medical destination of the Americas",
+    "ms1": "International patients/year",
+    "ms2": "Cost vs US/Europe",
+    "ms3": "Medical tourism LATAM #1",
+    "ms4": "Antioquia tourism growth H1 2024",
+    "torre_t": "Tower 1 · Health and Services",
+    "torre_d": "Operating rooms · Specialized medical areas · Consulting offices and services · Nearly sold out.",
+    "torre2_t": "Tower 2 · Marriott Hotel",
+    "torre2_d": "154 Marriott suites by OXO Hotels. Only international brand hotel in Diamond Mile. Captures medical, corporate and Arena Primavera demand (75+ events/year, 8 min).",
+    "calc_label": "Portfolio Calculator",
+    "calc_title": "Build your Suite Portfolio",
+    "calc_desc": "Select suites and visualize your participation in real time.",
+    "calc_suite_title": "Portfolio Composition",
+    "calc_suite_sub": "Select the suites you wish to acquire",
+    "suite_a_tag": "Type A",
+    "suite_b_tag": "Type B",
+    "suite_c_tag": "Type C",
+    "suite_d_tag": "Type D",
+    "avail_label": "Avail.",
+    "part_label": "Hotel Participation",
+    "l_occ": "Global Hotel Occupancy",
+    "dane_avg": "DANE avg: 68.5%",
+    "total_inv": "Total Investment",
+    "note_title": "Methodology:",
+    "note_body": "1% monthly at 63% occ · 2% at 100% occ. Rental Pool Model. DANE 68.5%.",
+    "calc_legal": "Projected values are estimates. No specific returns guaranteed.",
+    "rental_pool_note": "Your return is backed by the hotel's total operation, mitigating individual vacancy risk.",
+    "m_monthly": "Monthly Yield",
+    "m_annual": "Annual ROI",
+    "m_payback": "Payback (years)",
+    "inc_monthly": "Monthly Income",
+    "inc_annual": "Annual Income",
+    "inc_5y": "5-Year Projection",
+    "cmp_label": "Market Analysis",
+    "cmp_title": "Vivaltta vs other investment alternatives",
+    "cmp_desc": "Best combination of returns, backing and appreciation.",
+    "cmp_dane": "Vivaltta DANE 68.5%",
+    "th_product": "Product",
+    "th_return": "Annual Return",
+    "th_risk": "Risk",
+    "th_liq": "Liquidity",
+    "r_vlow": "Very Low",
+    "r_low": "Low",
+    "r_med": "Medium",
+    "r_high": "High",
+    "l_high": "High",
+    "l_med": "Medium",
+    "l_low": "Low",
+    "val_label": "Real Estate Analysis",
+    "val_title": "Envigado Sector Appreciation",
+    "vs1_t": "Cumulative appreciation (5 years)",
+    "vs1_d": "Ciudad Peldar area",
+    "vs2_t": "Medellin average",
+    "vs2_d": "Aburra Valley",
+    "vs3_t": "Colombia average",
+    "vs3_d": "National urban real estate",
+    "vs4_t": "International tourist growth",
+    "vs4_d": "Medellin 2019 vs 2024",
+    "glob_label": "Global Investment · No Borders",
+    "glob_title": "Invest from anywhere in the world",
+    "glob_desc": "No matter which country you live in or which currency your capital is in.",
+    "gs1_t": "No Colombian pesos? No problem.",
+    "gs1_d": "Alianza Fiduciaria converts any currency to Colombian pesos.",
+    "gs2_t": "Monetization at the best market rate.",
+    "gs2_d": "We work with specialized allied companies for currency monetization with no unnecessary intermediaries and at the best market rate.",
+    "gs3_t": "100% digital process. No travel required.",
+    "gs3_d": "Onboarding and document signing completely online.",
+    "gs4_t": "Integrated SAGRILAFT compliance.",
+    "gs4_d": "Full anti-money-laundering compliance integrated.",
+    "gh_title": "Your investment, in your currency",
+    "gh_desc": "Alianza Fiduciaria guarantees agile, regulated currency conversion.",
+    "gh_alianza": "Alianza Fiduciaria — 30+ years of track record, supervised by the SFC — guarantees every peso invested in Vivaltta Marriott is protected by law.",
+    "more_curr": "+ more currencies",
+    "gstat1": "Digital process",
+    "gstat2": "Trips required",
+    "gstat3": "Advisor response",
+    "li1": "100% digital process, no travel required",
+    "li2": "Legal custody by Alianza Fiduciaria · SFC",
+    "li3": "Available in multiple international currencies",
+    "li4": "Projected yield from 12% per year (Rental Pool)",
+    "lead_label": "Limited Spots",
+    "lead_title": "Secure your participation today",
+    "lead_desc": "A specialist advisor will contact you within 24 hours with the complete prospectus. Your capital cannot wait.",
+    "ph_name": "Full name",
+    "ph_phone": "Phone / WhatsApp",
+    "ph_email": "Email address",
+    "ph_country": "Country of residence",
+    "ph_capital": "Estimated investment",
+    "ph_lang": "Preferred contact language",
+    "ph_other_lang": "Please specify your language",
+    "cap1": "1 Suite · from COP $381M",
+    "cap2": "2–5 Suites",
+    "cap3": "6–10 Suites",
+    "cap4": "More than 10 Suites",
+    "btn_submit": "Request Exclusive Information",
+    "opt_other_lang": "Other language",
+    "disclaimer": "Data protected. SAGRILAFT/PTEE compliance integrated.",
+    "footer_legal": "© 2026 Londoño Gomez. Vivaltta Marriott Ciudad Peldar, Envigado, Colombia.",
+    "toastMsg": "Thank you! An advisor will contact you soon.",
+    "src_val": "Source: Camacol Antioquia, DANE and SIT Medellín.",
+    "src_calc": "Source: Projections under STR Global standards and Alianza Fiduciaria Rental Pool model.",
+    "arena_note": "Arena Primavera: 75+ events/year · 8 minutes from the hotel",
+    "fin_note_calc": "This analysis focuses on projected operating profits. It does not include the appreciation of the right and the underlying asset, which represents an extraordinary additional patrimonial benefit for the investor.",
+    "fin_note_cmp": "This analysis focuses on operating profits. It does not include the appreciation of the right and the underlying asset — historically +22% in this sector."
+  },
+  "fr": {
+    "nav_cta": "Investir Maintenant",
+    "heroBadge": "Lancement Mai 2026 · Ciudad Peldar, Envigado",
+    "heroSub": "Vivaltta est le cœur commercial de Ciudad Peldar : deux tours en synergie parfaite. La Tour 1 abrite des blocs opératoires et des bureaux ; la Tour 2 est l'Hôtel Marriott — disponible à l'investissement via des Droits Fiduciaires liés à une Suite Hôtelière sous le Modèle Rental Pool.",
+    "btn_calc": "Voir les Rendements",
+    "btn_how": "Comment ça marche?",
+    "btn_model": "Découvrir le Modèle",
+    "btn_acquire": "Acquérir votre Suite",
+    "launch_label": "Lancement Officiel",
+    "launch_date": "Mai 2026 · Ciudad Peldar, Envigado, Colombie",
+    "tower1_tag": "Tour 1 · Santé · Bientôt épuisée",
+    "tower1_title": "Blocs opératoires et cabinets médicaux spécialisés",
+    "tower1_body": "Tour de santé et services spécialisés — bientôt entièrement épuisée, comme Vittrio et Cristtali dans le même plan directeur. Forme l'écosystème qui garantit une occupation permanente à l'hôtel.",
+    "tower2_tag": "Tour 2 · Hôtel Marriott · Actif d'Investissement",
+    "tower2_title": "154 suites hôtelières opérées sous la marque Marriott par OXO Hotels",
+    "tower2_body": "L'actif d'investissement : le seul hôtel de marque internationale dans la Milla de Diamante. Exploité par OXO Hotels sous la norme Marriott, il capte la demande du cluster médical, d'entreprises et — surtout — de l'Arena Primavera (75+ événements par an, à seulement 8 minutes). Votre patrimoine génère un Bénéfice Opérationnel indépendamment de l'occupation de votre suite.",
+    "dev_headline": "Plus de 50 ans à transformer le skyline de Colombie",
+    "dev_intro": "Ensemble, l'équipe la plus solide du marché immobilier hôtelier de Colombie.",
+    "lg_desc": "Promoteur leader avec plus de 50 ans de trajectoire transformant le paysage immobilier de Colombie. Visionnaires derrière Ciudad Peldar — le mégaprojet le plus réussi du pays — Londoño Gómez garantit solidité, valorisation et gestion stratégique orientée vers la rentabilité de l'investisseur.",
+    "tp5_t": "Arq. y Concreto",
+    "tp5_d": "Constructeur référent en innovation et excellence technique. Avec un palmarès irréprochable dans des projets de grande envergure et haute complexité, ils assurent les plus hauts standards de qualité constructive et de conformité, concrétisant des repères urbains qui perdurent dans le temps.",
+    "peldarDesc": "Ciudad Peldar couvre 101 445 m² de l'historique site Peldar — le meilleur terrain du Valle de Aburrá. Le mégaprojet #1 le plus vendu de Colombie. Connecté directement à trois grandes voies : Av. Las Vegas, Av. Regional et Av. Simón Bolívar.",
+    "peldar_title": "Une ville à moins de 15 minutes de tout",
+    "pf1": "De l'autre côté de la rue",
+    "pf2": "À côté du projet",
+    "pf3": "Valorisation secteur 5 ans",
+    "pf4": "Projet le plus vendu en Colombie",
+    "faq_eyebrow": "Questions Fréquentes",
+    "faq_title": "Tout ce que vous devez savoir",
+    "faq_desc": "Nous répondons aux questions les plus fréquentes de nos investisseurs dans le monde.",
+    "faq_cta": "Parler à un Conseiller",
+    "faq1_q": "Qu'est-ce qu'un Droit Fiduciaire lié à une Suite?",
+    "faq1_a": "Un Droit Fiduciaire est une participation proportionnelle dans le patrimoine autonome constituant l'Hôtel Marriott Vivaltta. À l'acquisition, un titre soutenu par Alianza Fiduciaria est émis, totalement séparé du patrimoine de Londoño Gómez. Ce titre est un actif liquide : il peut être vendu, cédé ou transféré avec la même liberté que tout actif immobilier.",
+    "faq2_q": "Combien coûte une Suite?",
+    "faq2_a": "Le prix au m² est COP $12.300.000. Suite Type A (31 m²) : $381.300.000. Type B (42 m²) : $516.600.000. Type C (50 m²) : $615.000.000. Type D (57 m²) : $701.100.000.",
+    "faq3_q": "Quand mon investissement commence-t-il à générer des rendements?",
+    "faq3_a": "En tant qu'investisseur, vous commencez à gagner dès le premier jour : pendant les 3 ans de construction, votre patrimoine se valorise avec l'actif sous-jacent. À l'ouverture de l'hôtel, le Bénéfice Opérationnel est distribué mensuellement au prorata de votre participation.",
+    "faq4_q": "Puis-je investir depuis l'étranger?",
+    "faq4_a": "Oui. Le processus est 100% numérique. Nous travaillons avec des sociétés alliées spécialisées en monétisation de devises sans intermédiaires inutiles et au meilleur taux du marché. Aucun déplacement requis.",
+    "faq5_q": "Comment mon capital est-il protégé?",
+    "faq5_a": "Votre capital entre dans un patrimoine autonome géré par Alianza Fiduciaria, supervisée par la SFC.",
+    "faq6_q": "Pourquoi le Rental Pool protège-t-il mon patrimoine?",
+    "faq6_a": "Parce que votre Bénéfice Opérationnel provient de l'occupation globale de l'hôtel — gérée par Marriott et OXO Hotels —, et non de votre suite individuelle. Avec l'Arena Primavera à 8 minutes (75+ événements par an), le flux de clients est assuré.",
+    "faq7_q": "Puis-je vendre ou transférer mon Droit Fiduciaire?",
+    "faq7_a": "Oui. En tant qu'actif liquide, votre Droit Fiduciaire peut être vendu, cédé ou transféré avec la même liberté que tout actif immobilier.",
+    "kpi1": "Occupation Hôtelière · DANE",
+    "kpi2": "Rendement Annuel de Base",
+    "kpi3": "Suites Hôtelières",
+    "kpi4": "Événements/An Arena Primavera",
+    "hiw_label": "Modèle Rental Pool",
+    "hiw_title": "Comment fonctionne le Modèle Rental Pool?",
+    "hiw_desc": "En tant qu'investisseur, vous acquérez un Droit Fiduciaire lié à une Suite spécifique. L'hôtel fonctionne comme un pool unifié : votre patrimoine génère un Bénéfice Opérationnel proportionnel à votre participation.",
+    "hiw1_t": "Émettez votre Titre Fiduciaire",
+    "hiw1_d": "À la formalisation, un titre fiduciaire soutenu par Alianza Fiduciaria est émis. Votre investissement est légalement protégé et séparé du patrimoine du Promoteur de Projets.",
+    "hiw2_t": "Alianza Fiduciaria Sécurise votre Capital",
+    "hiw2_d": "Alianza Fiduciaria, supervisée par la SFC, détient 100% des fonds. Une garantie légale.",
+    "hiw3_t": "Recevez votre Bénéfice Opérationnel",
+    "hiw3_d": "Avec Marriott et OXO Hotels en opération, vous recevez votre part proportionnelle du Bénéfice Opérationnel mensuellement.",
+    "wf_title": "Flux de transparence de l'argent",
+    "wf_l1": "Origine",
+    "wf_n1": "Client",
+    "wf_s1": "Paie son séjour",
+    "wf_l2": "Opérations",
+    "wf_s2": "Sous marque Marriott",
+    "wf_l3": "GOP Total",
+    "wf_n3": "Profit de l'Hôtel",
+    "wf_s3": "Bénéfice Opérationnel",
+    "wf_l4": "Garde · SFC",
+    "wf_s4": "Distribution proportionnelle",
+    "wf_l5": "Destination Finale",
+    "wf_n5": "Investisseur",
+    "wf_s5": "Mensuel · Direct",
+    "trust_label": "Soutiens Institutionnels",
+    "trust_title": "Cinq piliers de confiance",
+    "tp1_t": "Alianza Fiduciaria · SFC",
+    "tp1_d": "Tous les fonds détenus par Alianza Fiduciaria, supervisée par la SFC.",
+    "tp2_t": "Marriott International",
+    "tp2_d": "La chaîne hôtelière #1 mondiale.",
+    "tp3_t": "OXO Hotels",
+    "tp3_d": "Opérateur hôtelier spécialiste en Colombie.",
+    "tp4_t": "Londoño Gómez",
+    "tp4_d": "50+ ans transformant la Colombie. Ciudad Peldar, le mégaprojet le plus réussi du pays.",
+    "med_label": "Tourisme Médical et Esthétique · Colombie",
+    "med_title": "La première tour : blocs opératoires et cabinets au cœur du cluster médical",
+    "med_desc": "La Colombie est la destination #1 du tourisme médical en Amérique Latine.",
+    "med1_t": "Tour 1 : Santé Spécialisée",
+    "med1_d": "Blocs opératoires certifiés, zones médicales et cabinets selon les normes internationales.",
+    "med2_t": "#1 Tourisme Médical en Amérique Latine",
+    "med2_d": "La Colombie reçoit plus de 36 000 patients internationaux par an à des prix 40–70% inférieurs.",
+    "med3_t": "Cluster Médical · Milla de Diamante",
+    "med3_d": "Vivaltta est à l'épicentre : à quelques pas du Métro, de Viva Envigado et des principales avenues.",
+    "med4_t": "Demande d'Hébergement Garantie",
+    "med4_d": "Patients, médecins et accompagnateurs ont besoin d'un hébergement de qualité. La Tour 2 capte exactement cette demande.",
+    "med_stat_title": "Colombie : la destination médicale des Amériques",
+    "ms1": "Patients internationaux/an",
+    "ms2": "Coût vs États-Unis/Europe",
+    "ms3": "Tourisme médical LATAM #1",
+    "ms4": "Croissance tourisme Antioquia S1 2024",
+    "torre_t": "Tour 1 · Santé et Services",
+    "torre_d": "Blocs opératoires · Zones médicales spécialisées · Cabinets et services · Bientôt épuisée.",
+    "torre2_t": "Tour 2 · Hôtel Marriott",
+    "torre2_d": "154 suites Marriott par OXO Hotels. Seul hôtel international dans la Milla de Diamante. Capte la demande médicale, d'entreprises et de l'Arena Primavera (75+ év./an, 8 min).",
+    "calc_label": "Calculateur de Portefeuille",
+    "calc_title": "Composez votre Portefeuille de Suites",
+    "calc_desc": "Sélectionnez les suites et visualisez votre participation en temps réel.",
+    "calc_suite_title": "Composition du Portefeuille",
+    "calc_suite_sub": "Sélectionnez les suites que vous souhaitez acquérir",
+    "suite_a_tag": "Type A",
+    "suite_b_tag": "Type B",
+    "suite_c_tag": "Type C",
+    "suite_d_tag": "Type D",
+    "avail_label": "Disp.",
+    "part_label": "Participation dans l'Hôtel",
+    "l_occ": "Occupation Globale de l'Hôtel",
+    "dane_avg": "Moy. DANE: 68,5%",
+    "total_inv": "Investissement Total",
+    "note_title": "Méthodologie:",
+    "note_body": "1%/mois à 63% occ · 2%/mois à 100% occ. Modèle Rental Pool.",
+    "calc_legal": "Projections estimatives. Ne constituent pas une promesse de rentabilité.",
+    "rental_pool_note": "Votre rentabilité est soutenue par l'opération totale de l'hôtel, atténuant le risque de vacance individuelle.",
+    "m_monthly": "Rend. Mensuel",
+    "m_annual": "ROI Annuel",
+    "m_payback": "Retour (années)",
+    "inc_monthly": "Revenu Mensuel",
+    "inc_annual": "Revenu Annuel",
+    "inc_5y": "Projection 5 Ans",
+    "cmp_label": "Analyse de Marché",
+    "cmp_title": "Vivaltta vs autres alternatives d'investissement",
+    "cmp_desc": "La meilleure combinaison de rendement, soutien et valorisation.",
+    "cmp_dane": "Vivaltta DANE 68,5%",
+    "th_product": "Produit",
+    "th_return": "Rend. Annuel",
+    "th_risk": "Risque",
+    "th_liq": "Liquidité",
+    "r_vlow": "Très Faible",
+    "r_low": "Faible",
+    "r_med": "Moyen",
+    "r_high": "Élevé",
+    "l_high": "Haute",
+    "l_med": "Moyenne",
+    "l_low": "Faible",
+    "val_label": "Analyse Immobilière",
+    "val_title": "Valorisation du Secteur Envigado",
+    "vs1_t": "Valorisation cumulée (5 ans)",
+    "vs1_d": "Secteur Ciudad Peldar",
+    "vs2_t": "Moyenne Medellín",
+    "vs2_d": "Vallée de l'Aburra",
+    "vs3_t": "Moyenne Colombie",
+    "vs3_d": "Immobilier urbain national",
+    "vs4_t": "Croissance des touristes internationaux",
+    "vs4_d": "Medellín 2019 vs 2024",
+    "glob_label": "Investissement Mondial · Sans Frontières",
+    "glob_title": "Investissez depuis n'importe où dans le monde",
+    "glob_desc": "Peu importe dans quel pays vous vivez ou dans quelle monnaie vous avez votre capital.",
+    "gs1_t": "Pas de pesos colombiens ? Pas de problème.",
+    "gs1_d": "Alianza Fiduciaria convertit n'importe quelle devise en pesos colombiens.",
+    "gs2_t": "Monétisation au meilleur taux du marché.",
+    "gs2_d": "Nous travaillons avec des sociétés alliées spécialisées en monétisation de devises sans intermédiaires inutiles et au meilleur taux du marché.",
+    "gs3_t": "Processus 100% numérique. Sans déplacements.",
+    "gs3_d": "Intégration et signature de documents entièrement en ligne.",
+    "gs4_t": "Conformité SAGRILAFT intégrée.",
+    "gs4_d": "Conformité anti-blanchiment intégrée, garantissant une transparence totale.",
+    "gh_title": "Votre investissement, dans votre monnaie",
+    "gh_desc": "Alianza Fiduciaria garantit la conversion de n'importe quelle devise de manière réglementée.",
+    "gh_alianza": "Alianza Fiduciaria — plus de 30 ans d'expérience, supervisée par la SFC — garantit que chaque peso investi dans Vivaltta Marriott est protégé par la loi.",
+    "more_curr": "+ autres devises",
+    "gstat1": "Processus numérique",
+    "gstat2": "Voyages nécessaires",
+    "gstat3": "Réponse conseiller",
+    "li1": "Processus 100% numérique, sans déplacements",
+    "li2": "Garde légale par Alianza Fiduciaria · SFC",
+    "li3": "Disponible en plusieurs devises internationales",
+    "li4": "Rendement projeté à partir de 12% par an (Rental Pool)",
+    "lead_label": "Places Limitées",
+    "lead_title": "Sécurisez votre participation aujourd'hui",
+    "lead_desc": "Un conseiller spécialisé vous contactera dans les 24 heures. Votre patrimoine ne peut pas attendre.",
+    "ph_name": "Nom complet",
+    "ph_phone": "Téléphone / WhatsApp",
+    "ph_email": "E-mail",
+    "ph_country": "Pays de résidence",
+    "ph_capital": "Investissement estimé",
+    "ph_lang": "Langue de contact",
+    "ph_other_lang": "Précisez votre langue",
+    "cap1": "1 Suite · à partir de COP $381M",
+    "cap2": "2–5 Suites",
+    "cap3": "6–10 Suites",
+    "cap4": "Plus de 10 Suites",
+    "btn_submit": "Demander l'Information Exclusive",
+    "opt_other_lang": "Autre langue",
+    "disclaimer": "Données protégées. Conformité SAGRILAFT intégrée.",
+    "footer_legal": "© 2026 Londoño Gomez. Vivaltta Marriott Ciudad Peldar, Envigado, Colombie.",
+    "toastMsg": "Merci! Un conseiller vous contactera bientôt.",
+    "src_val": "Source: Camacol Antioquia, DANE et SIT Medellín.",
+    "src_calc": "Source: Projections selon les normes STR Global et le modèle Rental Pool d'Alianza Fiduciaria.",
+    "arena_note": "Arena Primavera : 75+ événements/an · 8 minutes de l'hôtel",
+    "fin_note_calc": "Cette analyse porte sur les bénéfices opérationnels projetés. Elle n'inclut pas la valorisation du droit et de l'actif, ce qui représente un avantage patrimonial additionnel extraordinaire pour l'investisseur.",
+    "fin_note_cmp": "Cette analyse porte sur les bénéfices opérationnels. Elle n'inclut pas la valorisation du droit et de l'actif — historiquement +22% dans ce secteur."
+  },
+  "pt": {
+    "nav_cta": "Investir Agora",
+    "heroBadge": "Lançamento Maio 2026 · Ciudad Peldar, Envigado",
+    "heroSub": "Vivaltta é o coração comercial de Ciudad Peldar: duas torres em sinergia perfeita. A Torre 1 abriga centros cirúrgicos e escritórios; a Torre 2 é o Hotel Marriott — disponível para investimento via Direitos Fiduciários vinculados a uma Suite Hoteleira no Modelo Rental Pool.",
+    "btn_calc": "Ver Rentabilidade",
+    "btn_how": "Como funciona?",
+    "btn_model": "Conhecer o Modelo",
+    "btn_acquire": "Adquira sua Suite",
+    "launch_label": "Lançamento Oficial",
+    "launch_date": "Maio 2026 · Ciudad Peldar, Envigado, Colômbia",
+    "tower1_tag": "Torre 1 · Saúde · Quase esgotada",
+    "tower1_title": "Centros cirúrgicos e consultórios médicos especializados",
+    "tower1_body": "Torre de saúde e serviços especializados — quase totalmente esgotada, como Vittrio e Cristtali no mesmo plano parcial. Forma o ecossistema que garante ocupação permanente ao hotel.",
+    "tower2_tag": "Torre 2 · Hotel Marriott · Ativo de Investimento",
+    "tower2_title": "154 suítes hoteleiras operadas sob a marca Marriott pela OXO Hotels",
+    "tower2_body": "O ativo de investimento: o único hotel de marca internacional na Milla de Diamante. Operado pela OXO Hotels sob o padrão Marriott, captura a demanda do cluster médico, corporativo e — crucialmente — dos visitantes da Arena Primavera (75+ eventos por ano, a apenas 8 minutos). Seu patrimônio gera Lucro Operacional independentemente da ocupação de sua suíte.",
+    "dev_headline": "Mais de 50 anos transformando o skyline da Colômbia",
+    "dev_intro": "Juntos, a equipe mais sólida do mercado imobiliário hoteleiro da Colômbia.",
+    "lg_desc": "Incorporadora líder com mais de 50 anos de trajetória transformando o panorama imobiliário da Colômbia. Visionários por trás de Ciudad Peldar — o megaprojeto mais bem-sucedido do país — Londoño Gómez garante solidez, valorização e gestão estratégica orientada à rentabilidade do investidor.",
+    "tp5_t": "Arq. y Concreto",
+    "tp5_d": "Construtora referência em inovação e excelência técnica. Com um histórico impecável em projetos de grande escala e alta complexidade, garantem os mais altos padrões de qualidade construtiva e conformidade, materializando marcos urbanos que perduram no tempo.",
+    "peldarDesc": "Ciudad Peldar ocupa 101.445 m² do histórico lote Peldar — o melhor terreno do Vale do Aburrá. O megaprojeto #1 mais vendido da Colômbia. Conecta diretamente com três vias principais: Av. Las Vegas, Av. Regional e Av. Simón Bolívar.",
+    "peldar_title": "Uma cidade a menos de 15 minutos de tudo",
+    "pf1": "Do outro lado da rua",
+    "pf2": "Ao lado do projeto",
+    "pf3": "Valorização do setor em 5 anos",
+    "pf4": "Projeto mais vendido da Colômbia",
+    "faq_eyebrow": "Perguntas Frequentes",
+    "faq_title": "Tudo o que você precisa saber",
+    "faq_desc": "Respondemos as dúvidas mais frequentes dos nossos investidores no mundo.",
+    "faq_cta": "Falar com um Consultor",
+    "faq1_q": "O que é um Direito Fiduciário vinculado a uma Suíte?",
+    "faq1_a": "Um Direito Fiduciário é uma participação proporcional no patrimônio autônomo que constitui o Hotel Marriott Vivaltta. Ao adquiri-lo, é emitido um título respaldado pela Alianza Fiduciaria, completamente separado do patrimônio de Londoño Gómez. Este título é um ativo líquido: pode ser vendido, cedido ou transferido com a mesma liberdade de qualquer ativo imobiliário.",
+    "faq2_q": "Quanto custa uma Suíte?",
+    "faq2_a": "O preço por m² é COP $12.300.000. Suíte Tipo A (31 m²): $381.300.000. Tipo B (42 m²): $516.600.000. Tipo C (50 m²): $615.000.000. Tipo D (57 m²): $701.100.000.",
+    "faq3_q": "Quando meu investimento começa a gerar retorno?",
+    "faq3_a": "Como investidor, você começa a ganhar desde o primeiro dia: durante os 3 anos de construção, seu patrimônio se valoriza com o ativo subjacente. Ao abrir o hotel, o Lucro Operacional é distribuído mensalmente de forma proporcional à sua participação.",
+    "faq4_q": "Posso investir do exterior?",
+    "faq4_a": "Sim. O processo é 100% digital. Contamos com empresas aliadas especializadas em monetização de divisas sem intermediários desnecessários e à melhor taxa do mercado. Nenhum deslocamento é necessário.",
+    "faq5_q": "Como meu capital está protegido?",
+    "faq5_a": "Seu capital entra em um patrimônio autônomo administrado pela Alianza Fiduciaria, supervisionada pela SFC.",
+    "faq6_q": "Por que o Rental Pool protege meu patrimônio?",
+    "faq6_a": "Porque seu Lucro Operacional vem da ocupação global do hotel — gerenciada por Marriott e OXO Hotels —, não da sua suíte individual. Com a Arena Primavera a 8 minutos (75+ eventos por ano) e o cluster médico em frente, o fluxo de hóspedes está garantido.",
+    "faq7_q": "Posso vender ou transferir meu Direito Fiduciário?",
+    "faq7_a": "Sim. Como ativo líquido, seu Direito Fiduciário pode ser vendido, cedido ou transferido com a mesma liberdade de qualquer ativo imobiliário.",
+    "kpi1": "Ocupação Hoteleira · DANE",
+    "kpi2": "Rentabilidade Anual Base",
+    "kpi3": "Suítes Hoteleiras",
+    "kpi4": "Eventos/Ano Arena Primavera",
+    "hiw_label": "Modelo Rental Pool",
+    "hiw_title": "Como funciona o Modelo Rental Pool?",
+    "hiw_desc": "Como investidor, você adquire um Direito Fiduciário vinculado a uma Suíte específica. O hotel opera como um pool unificado: seu patrimônio gera Lucro Operacional proporcional à sua participação.",
+    "hiw1_t": "Emita seu Título Fiduciário",
+    "hiw1_d": "Ao formalizar a operação, é emitido um título fiduciário respaldado pela Alianza Fiduciaria. Seu investimento é juridicamente protegido e separado do patrimônio da Incorporadora de Projetos.",
+    "hiw2_t": "Alianza Fiduciaria Custódia seu Capital",
+    "hiw2_d": "A Alianza Fiduciaria, supervisionada pela SFC, custodia 100% dos recursos. Uma garantia legal.",
+    "hiw3_t": "Receba seu Lucro Operacional",
+    "hiw3_d": "Com Marriott e OXO Hotels operando, você recebe sua participação proporcional do Lucro Operacional mensalmente, diretamente em sua conta.",
+    "wf_title": "Fluxo de transparência do dinheiro",
+    "wf_l1": "Origem",
+    "wf_n1": "Hóspede",
+    "wf_s1": "Paga sua estadia",
+    "wf_l2": "Operações",
+    "wf_s2": "Sob marca Marriott",
+    "wf_l3": "GOP Total",
+    "wf_n3": "Lucro do Hotel",
+    "wf_s3": "Lucro Operacional",
+    "wf_l4": "Custódia · SFC",
+    "wf_s4": "Distribuição proporcional",
+    "wf_l5": "Destino Final",
+    "wf_n5": "Investidor",
+    "wf_s5": "Mensal · Direto",
+    "trust_label": "Respaldos Institucionais",
+    "trust_title": "Cinco pilares de confiança",
+    "tp1_t": "Alianza Fiduciaria · SFC",
+    "tp1_d": "Todos os recursos custodiados pela Alianza Fiduciaria, supervisionada pela SFC.",
+    "tp2_t": "Marriott International",
+    "tp2_d": "A cadeia hoteleira #1 do mundo.",
+    "tp3_t": "OXO Hotels",
+    "tp3_d": "Operador hoteleiro especialista na Colômbia.",
+    "tp4_t": "Londoño Gómez",
+    "tp4_d": "50+ anos transformando a Colômbia. Ciudad Peldar, o megaprojeto mais bem-sucedido do país.",
+    "med_label": "Turismo Médico e Estético · Colômbia",
+    "med_title": "A primeira torre: centros cirúrgicos e consultórios no coração do cluster médico",
+    "med_desc": "A Colômbia é o destino #1 de turismo médico e estético da América Latina.",
+    "med1_t": "Torre 1: Saúde Especializada",
+    "med1_d": "Centros cirúrgicos certificados, áreas médicas e consultórios em padrões internacionais.",
+    "med2_t": "#1 em Turismo Médico na América Latina",
+    "med2_d": "A Colômbia recebe mais de 36.000 pacientes internacionais por ano com preços 40–70% mais baixos.",
+    "med3_t": "Cluster Médico · Milla de Diamante",
+    "med3_d": "Vivaltta está no epicentro: a poucos passos do Metrô, Viva Envigado e das principais avenidas.",
+    "med4_t": "Demanda de Hospedagem Garantida",
+    "med4_d": "Pacientes, médicos e acompanhantes precisam de acomodação de qualidade. A Torre 2 captura exatamente essa demanda.",
+    "med_stat_title": "Colômbia: o destino médico das Américas",
+    "ms1": "Pacientes internacionais/ano",
+    "ms2": "Custo vs EUA/Europa",
+    "ms3": "Turismo médico LATAM #1",
+    "ms4": "Crescimento turismo Antioquia S1 2024",
+    "torre_t": "Torre 1 · Saúde e Serviços",
+    "torre_d": "Centros cirúrgicos · Áreas médicas especializadas · Consultórios e serviços · Quase esgotada.",
+    "torre2_t": "Torre 2 · Hotel Marriott",
+    "torre2_d": "154 suítes Marriott por OXO Hotels. Único hotel internacional na Milla de Diamante. Captura demanda médica, corporativa e da Arena Primavera (75+ ev./ano, 8 min).",
+    "calc_label": "Calculadora de Portfólio",
+    "calc_title": "Componha seu Portfólio de Suítes",
+    "calc_desc": "Selecione as suítes e visualize sua participação em tempo real.",
+    "calc_suite_title": "Composição do Portfólio",
+    "calc_suite_sub": "Selecione as suítes que deseja adquirir",
+    "suite_a_tag": "Tipo A",
+    "suite_b_tag": "Tipo B",
+    "suite_c_tag": "Tipo C",
+    "suite_d_tag": "Tipo D",
+    "avail_label": "Disp.",
+    "part_label": "Participação no Hotel",
+    "l_occ": "Ocupação Global do Hotel",
+    "dane_avg": "Méd. DANE: 68,5%",
+    "total_inv": "Investimento Total",
+    "note_title": "Metodologia:",
+    "note_body": "1%/mês a 63% occ · 2%/mês a 100% occ. Modelo Rental Pool.",
+    "calc_legal": "Projeções estimativas. Não constituem promessa de rentabilidade.",
+    "rental_pool_note": "Sua rentabilidade é respaldada pela operação total do hotel, mitigando o risco de vacância individual.",
+    "m_monthly": "Rend. Mensal",
+    "m_annual": "ROI Anual",
+    "m_payback": "Retorno (anos)",
+    "inc_monthly": "Renda Mensal",
+    "inc_annual": "Renda Anual",
+    "inc_5y": "Projeção 5 Anos",
+    "cmp_label": "Análise de Mercado",
+    "cmp_title": "Vivaltta vs outras alternativas de investimento",
+    "cmp_desc": "A melhor combinação de rentabilidade, respaldo e valorização.",
+    "cmp_dane": "Vivaltta DANE 68,5%",
+    "th_product": "Produto",
+    "th_return": "Rend. Anual",
+    "th_risk": "Risco",
+    "th_liq": "Liquidez",
+    "r_vlow": "Muito Baixo",
+    "r_low": "Baixo",
+    "r_med": "Médio",
+    "r_high": "Alto",
+    "l_high": "Alta",
+    "l_med": "Média",
+    "l_low": "Baixa",
+    "val_label": "Análise Imobiliária",
+    "val_title": "Valorização do Setor Envigado",
+    "vs1_t": "Valorização acumulada (5 anos)",
+    "vs1_d": "Setor Ciudad Peldar",
+    "vs2_t": "Média de Medellín",
+    "vs2_d": "Vale do Aburra",
+    "vs3_t": "Média da Colômbia",
+    "vs3_d": "Imóveis urbanos nacionais",
+    "vs4_t": "Crescimento de turistas internacionais",
+    "vs4_d": "Medellín 2019 vs 2024",
+    "glob_label": "Investimento Global · Sem Fronteiras",
+    "glob_title": "Invista de qualquer lugar do mundo",
+    "glob_desc": "Não importa em qual país você vive nem em qual moeda tem seu capital.",
+    "gs1_t": "Não tem pesos colombianos? Sem problema.",
+    "gs1_d": "A Alianza Fiduciaria converte qualquer divisa em pesos colombianos.",
+    "gs2_t": "Monetização à melhor taxa do mercado.",
+    "gs2_d": "Contamos com empresas aliadas especializadas em monetização de divisas sem intermediários desnecessários e à melhor taxa do mercado.",
+    "gs3_t": "Processo 100% digital. Sem viagens necessárias.",
+    "gs3_d": "Vinculação e assinatura de documentos completamente online.",
+    "gs4_t": "Conformidade SAGRILAFT integrada.",
+    "gs4_d": "Conformidade anti-lavagem integrada, garantindo transparência total.",
+    "gh_title": "Seu investimento, na sua moeda",
+    "gh_desc": "A Alianza Fiduciaria garante a conversão de qualquer divisa de forma regulada.",
+    "gh_alianza": "Alianza Fiduciaria — mais de 30 anos de trajetória, supervisionada pela SFC — garante que cada peso investido na Vivaltta Marriott esteja protegido por lei.",
+    "more_curr": "+ mais moedas",
+    "gstat1": "Processo digital",
+    "gstat2": "Viagens necessárias",
+    "gstat3": "Resposta do consultor",
+    "li1": "Processo 100% digital, sem deslocamentos",
+    "li2": "Custódia legal pela Alianza Fiduciaria · SFC",
+    "li3": "Disponível em múltiplas moedas internacionais",
+    "li4": "Rentabilidade projetada a partir de 12% ao ano (Rental Pool)",
+    "lead_label": "Vagas Limitadas",
+    "lead_title": "Garanta sua participação hoje",
+    "lead_desc": "Um consultor especialista entrará em contato em menos de 24 horas com o prospecto completo. Seu patrimônio não pode esperar.",
+    "ph_name": "Nome completo",
+    "ph_phone": "Telefone / WhatsApp",
+    "ph_email": "E-mail",
+    "ph_country": "País de residência",
+    "ph_capital": "Investimento estimado",
+    "ph_lang": "Idioma para ser contatado",
+    "ph_other_lang": "Especifique seu idioma",
+    "cap1": "1 Suíte · a partir de COP $381M",
+    "cap2": "2–5 Suítes",
+    "cap3": "6–10 Suítes",
+    "cap4": "Mais de 10 Suítes",
+    "btn_submit": "Solicitar Informação Exclusiva",
+    "opt_other_lang": "Outro idioma",
+    "disclaimer": "Dados protegidos. Conformidade SAGRILAFT integrada.",
+    "footer_legal": "© 2026 Londoño Gomez. Vivaltta Marriott Ciudad Peldar, Envigado, Colômbia.",
+    "toastMsg": "Obrigado! Um consultor entrará em contato em breve.",
+    "src_val": "Fonte: Camacol Antioquia, DANE e SIT Medellín.",
+    "src_calc": "Fonte: Projeções sob padrões STR Global e modelo Rental Pool da Alianza Fiduciaria.",
+    "arena_note": "Arena Primavera: 75+ eventos/ano · 8 minutos do hotel",
+    "fin_note_calc": "Esta análise centra-se nos lucros operacionais projetados. Não inclui a valorização do direito e do ativo, o que representa um benefício patrimonial adicional extraordinário para o investidor.",
+    "fin_note_cmp": "Esta análise centra-se nos lucros operacionais. Não inclui a valorização do direito e do ativo — historicamente +22% neste setor."
+  },
+  "de": {
+    "nav_cta": "Jetzt Investieren",
+    "heroBadge": "Start Mai 2026 · Ciudad Peldar, Envigado",
+    "heroSub": "Vivaltta ist das kommerzielle Herz von Ciudad Peldar: zwei Türme in perfekter Synergie. Turm 1 beherbergt OPs und spezialisierte Büros; Turm 2 ist das Marriott Hotel — verfügbar für Investitionen über Treuhandrechte, die an eine Hotel-Suite im Rental-Pool-Modell gebunden sind.",
+    "btn_calc": "Rendite Berechnen",
+    "btn_how": "Wie funktioniert es?",
+    "btn_model": "Das Modell kennenlernen",
+    "btn_acquire": "Ihre Suite Erwerben",
+    "launch_label": "Offizieller Start",
+    "launch_date": "Mai 2026 · Ciudad Peldar, Envigado, Kolumbien",
+    "tower1_tag": "Turm 1 · Gesundheit · Fast ausverkauft",
+    "tower1_title": "OPs und spezialisierte medizinische Praxen",
+    "tower1_body": "Gesundheits- und Dienstleistungsturm — fast vollständig ausverkauft, wie Vittrio und Cristtali im selben Bebauungsplan. Bildet das Ökosystem, das eine dauerhafte Auslastung des Hotels sichert.",
+    "tower2_tag": "Turm 2 · Marriott Hotel · Investitions-Asset",
+    "tower2_title": "154 Hotel-Suiten unter der Marke Marriott von OXO Hotels",
+    "tower2_body": "Das Investitions-Asset: das einzige internationale Markenhotel in der Milla de Diamante. Betrieben von OXO Hotels nach Marriott-Standard, fängt es die Nachfrage des Medizin- und Unternehmensclusters und — entscheidend — der Arena Primavera-Besucher auf (75+ Veranstaltungen pro Jahr, nur 8 Minuten entfernt). Ihr Vermögen generiert Betriebsgewinn unabhängig von der Auslastung Ihrer Suite.",
+    "dev_headline": "Über 50 Jahre Transformation des kolumbianischen Skylines",
+    "dev_intro": "Zusammen das stärkste Team im kolumbianischen Hotelimmobilienmarkt.",
+    "lg_desc": "Führender Projektentwickler mit über 50 Jahren Erfahrung in der Transformation des kolumbianischen Immobilienmarkts. Visionäre hinter Ciudad Peldar — dem erfolgreichsten Megaprojekt des Landes — Londoño Gómez garantiert Solidität, Wertsteigerung und strategisches Management für Investorenrenditen.",
+    "tp5_t": "Arq. y Concreto",
+    "tp5_d": "Referenzbauunternehmen in Innovation und technischer Exzellenz. Mit einer makellosen Erfolgsbilanz bei großangelegten, hochkomplexen Projekten sichern sie höchste Standards für Bauqualität und Compliance und realisieren städtische Meilensteine, die die Zeit überdauern.",
+    "peldarDesc": "Ciudad Peldar umfasst 101.445 m² des historischen Peldar-Geländes — das beste Grundstück im Aburra-Tal. Das meistverkaufte Megaprojekt #1 Kolumbiens. Direkt verbunden mit drei Hauptverkehrsachsen: Av. Las Vegas, Av. Regional und Av. Simón Bolívar.",
+    "peldar_title": "Eine Stadt, alles in unter 15 Minuten erreichbar",
+    "pf1": "Auf der anderen Straßenseite",
+    "pf2": "Neben dem Projekt",
+    "pf3": "Sektorwertsteigerung 5 Jahre",
+    "pf4": "Meistverkauftes Projekt Kolumbiens",
+    "faq_eyebrow": "Häufige Fragen",
+    "faq_title": "Alles, was Sie wissen müssen",
+    "faq_desc": "Wir beantworten die häufigsten Fragen unserer Investoren weltweit.",
+    "faq_cta": "Mit einem Berater sprechen",
+    "faq1_q": "Was ist ein mit einer Suite verbundenes Treuhandrecht?",
+    "faq1_a": "Ein Treuhandrecht ist eine proportionale Beteiligung am autonomen Vermögen des Vivaltta Marriott Hotels. Bei der Akquisition wird ein von Alianza Fiduciaria gesicherter Titel ausgestellt, vollständig getrennt vom Vermögen von Londoño Gómez. Dieser Titel ist ein liquides Asset: Es kann mit der gleichen Freiheit wie jedes Immobilienvermögen verkauft, abgetreten oder übertragen werden.",
+    "faq2_q": "Was kostet eine Suite?",
+    "faq2_a": "Preis pro m²: COP $12.300.000. Suite Typ A (31 m²): $381.300.000. Typ B (42 m²): $516.600.000. Typ C (50 m²): $615.000.000. Typ D (57 m²): $701.100.000.",
+    "faq3_q": "Wann beginnt meine Investition Renditen zu erwirtschaften?",
+    "faq3_a": "Als Investor beginnen Sie ab Tag eins zu verdienen: Während der 3-jährigen Bauphase wertet sich Ihr Vermögen mit dem zugrunde liegenden Asset auf. Nach der Hoteleröffnung wird der Betriebsgewinn monatlich proportional zu Ihrer Beteiligung ausgeschüttet.",
+    "faq4_q": "Kann ich vom Ausland investieren?",
+    "faq4_a": "Ja. Der Prozess ist 100% digital. Wir arbeiten mit spezialisierten Partnerunternehmen für die Währungsmonetarisierung ohne unnötige Zwischenhändler und zum besten Marktkurs. Keine Reise erforderlich.",
+    "faq5_q": "Wie ist mein Kapital geschützt?",
+    "faq5_a": "Ihr Kapital fließt in ein autonomes Treuhandvermögen, das von Alianza Fiduciaria unter SFC-Aufsicht verwaltet wird.",
+    "faq6_q": "Warum schützt der Rental Pool mein Kapital?",
+    "faq6_a": "Weil Ihr Betriebsgewinn von der globalen Auslastung des Hotels stammt — verwaltet von Marriott und OXO Hotels —, nicht von Ihrer einzelnen Suite. Mit der Arena Primavera 8 Minuten entfernt (75+ Veranstaltungen/Jahr) ist der Gästefluss gesichert.",
+    "faq7_q": "Kann ich mein Treuhandrecht verkaufen oder übertragen?",
+    "faq7_a": "Ja. Als liquides Asset kann Ihr Treuhandrecht mit der gleichen Freiheit wie jedes Immobilienvermögen verkauft, abgetreten oder übertragen werden.",
+    "kpi1": "Hotelauslastung · DANE",
+    "kpi2": "Basis-Jahresrendite",
+    "kpi3": "Hotel-Suiten",
+    "kpi4": "Events/Jahr Arena Primavera",
+    "hiw_label": "Rental-Pool-Modell",
+    "hiw_title": "Wie funktioniert das Rental-Pool-Modell?",
+    "hiw_desc": "Als Investor erwerben Sie ein Treuhandrecht, das an eine bestimmte Suite gebunden ist. Das Hotel operiert als einheitlicher Pool: Ihr Vermögen generiert proportionalen Betriebsgewinn zu Ihrer Beteiligung.",
+    "hiw1_t": "Treuhandtitel ausstellen",
+    "hiw1_d": "Bei der Formalisierung wird ein von Alianza Fiduciaria gesicherter Treuhandtitel ausgestellt. Ihre Investition ist rechtlich geschützt und vom Vermögen des Projektentwicklers getrennt.",
+    "hiw2_t": "Alianza Fiduciaria verwahrt Ihr Kapital",
+    "hiw2_d": "Alianza Fiduciaria, von der SFC überwacht, verwahrt 100% der Mittel. Eine rechtliche Garantie.",
+    "hiw3_t": "Betriebsgewinn erhalten",
+    "hiw3_d": "Mit Marriott und OXO Hotels im Betrieb erhalten Sie monatlich Ihren proportionalen Anteil am Betriebsgewinn.",
+    "wf_title": "Geldfluss-Transparenz",
+    "wf_l1": "Ursprung",
+    "wf_n1": "Gast",
+    "wf_s1": "Zahlt seinen Aufenthalt",
+    "wf_l2": "Betrieb",
+    "wf_s2": "Unter Marriott-Marke",
+    "wf_l3": "Gesamt-GOP",
+    "wf_n3": "Hotelgewinn",
+    "wf_s3": "Betriebsgewinn",
+    "wf_l4": "Verwahrung · SFC",
+    "wf_s4": "Proportionale Ausschüttung",
+    "wf_l5": "Endziel",
+    "wf_n5": "Investor",
+    "wf_s5": "Monatlich · Direkt",
+    "trust_label": "Institutionelle Unterstützung",
+    "trust_title": "Fünf Vertrauenssäulen",
+    "tp1_t": "Alianza Fiduciaria · SFC",
+    "tp1_d": "Alle Mittel von Alianza Fiduciaria verwahrt, unter SFC-Aufsicht.",
+    "tp2_t": "Marriott International",
+    "tp2_d": "Die weltweit führende Hotelkette #1.",
+    "tp3_t": "OXO Hotels",
+    "tp3_d": "Spezialisierter Hotelbetreiber in Kolumbien.",
+    "tp4_t": "Londoño Gómez",
+    "tp4_d": "50+ Jahre Transformation Kolumbiens. Ciudad Peldar, das erfolgreichste Megaprojekt des Landes.",
+    "med_label": "Medizin- und Ästhetiktourismus · Kolumbien",
+    "med_title": "Der erste Turm: OPs und Praxen im Herzen des Medizinclusters",
+    "med_desc": "Kolumbien ist das #1-Ziel für Medizintourismus in Lateinamerika.",
+    "med1_t": "Turm 1: Spezialisierte Gesundheit",
+    "med1_d": "Zertifizierte OPs, spezialisierte Medizinbereiche und fertiggestellte Praxen.",
+    "med2_t": "#1 Medizintourismus Lateinamerika",
+    "med2_d": "Kolumbien empfängt jährlich über 36.000 internationale Patienten zu 40–70% günstigeren Preisen.",
+    "med3_t": "Medizincluster · Milla de Diamante",
+    "med3_d": "Vivaltta liegt im Epizentrum: Schritte vom Metro, Viva Envigado und den Hauptstraßen.",
+    "med4_t": "Garantierte Unterkunftsnachfrage",
+    "med4_d": "Patienten, Ärzte und Begleiter benötigen Qualitätsunterkünfte. Turm 2 bedient genau diese Nachfrage.",
+    "med_stat_title": "Kolumbien: das medizinische Ziel Amerikas",
+    "ms1": "Internationale Patienten/Jahr",
+    "ms2": "Kosten vs USA/Europa",
+    "ms3": "Medizintourismus LATAM #1",
+    "ms4": "Tourismuszuwachs Antioquia H1 2024",
+    "torre_t": "Turm 1 · Gesundheit und Dienstleistungen",
+    "torre_d": "OPs · Spezialisierte Medizinbereiche · Praxen und Dienstleistungen · Fast ausverkauft.",
+    "torre2_t": "Turm 2 · Marriott Hotel",
+    "torre2_d": "154 Marriott-Suiten von OXO Hotels. Einziges internationales Markenhotel in der Milla de Diamante. Fängt medizinische, Unternehmens- und Arena-Primavera-Nachfrage auf (75+ Veranst./Jahr, 8 Min.).",
+    "calc_label": "Portfolio-Rechner",
+    "calc_title": "Stellen Sie Ihr Suiten-Portfolio zusammen",
+    "calc_desc": "Wählen Sie Suiten und visualisieren Sie Ihre Beteiligung in Echtzeit.",
+    "calc_suite_title": "Portfolio-Zusammensetzung",
+    "calc_suite_sub": "Wählen Sie die Suiten, die Sie erwerben möchten",
+    "suite_a_tag": "Typ A",
+    "suite_b_tag": "Typ B",
+    "suite_c_tag": "Typ C",
+    "suite_d_tag": "Typ D",
+    "avail_label": "Verf.",
+    "part_label": "Hotelbeteiligung",
+    "l_occ": "Globale Hotelauslastung",
+    "dane_avg": "DANE-Durchschn.: 68,5%",
+    "total_inv": "Gesamtinvestition",
+    "note_title": "Methodik:",
+    "note_body": "1%/Mon bei 63% Ausl. · 2%/Mon bei 100% Ausl. Rental-Pool-Modell.",
+    "calc_legal": "Prognostizierte Werte sind Schätzungen. Keine Renditegarantie.",
+    "rental_pool_note": "Ihre Rendite wird durch den Gesamtbetrieb des Hotels abgesichert, was das individuelle Leerstandsrisiko mindert.",
+    "m_monthly": "Monatl. Rendite",
+    "m_annual": "Jahres-ROI",
+    "m_payback": "Amortisation (Jahre)",
+    "inc_monthly": "Monatl. Einnahmen",
+    "inc_annual": "Jahreseinnahmen",
+    "inc_5y": "5-Jahres-Projektion",
+    "cmp_label": "Marktanalyse",
+    "cmp_title": "Vivaltta vs andere Investitionsalternativen",
+    "cmp_desc": "Die beste Kombination aus Rendite, Sicherheit und Wertsteigerung.",
+    "cmp_dane": "Vivaltta DANE 68,5%",
+    "th_product": "Produkt",
+    "th_return": "Jahresrend.",
+    "th_risk": "Risiko",
+    "th_liq": "Liquidität",
+    "r_vlow": "Sehr Niedrig",
+    "r_low": "Niedrig",
+    "r_med": "Mittel",
+    "r_high": "Hoch",
+    "l_high": "Hoch",
+    "l_med": "Mittel",
+    "l_low": "Niedrig",
+    "val_label": "Immobilienanalyse",
+    "val_title": "Wertsteigerung im Sektor Envigado",
+    "vs1_t": "Kumulierte Wertsteigerung (5 Jahre)",
+    "vs1_d": "Sektor Ciudad Peldar",
+    "vs2_t": "Medellín-Durchschnitt",
+    "vs2_d": "Aburra-Tal",
+    "vs3_t": "Kolumbien-Durchschnitt",
+    "vs3_d": "Nationales Immobilienvermögen",
+    "vs4_t": "Wachstum internationaler Touristen",
+    "vs4_d": "Medellín 2019 vs 2024",
+    "glob_label": "Globale Investition · Grenzenlos",
+    "glob_title": "Investieren Sie von überall auf der Welt",
+    "glob_desc": "Egal in welchem Land Sie leben oder in welcher Währung Sie Ihr Kapital haben.",
+    "gs1_t": "Keine kolumbianischen Pesos? Kein Problem.",
+    "gs1_d": "Alianza Fiduciaria konvertiert jede Währung in kolumbianische Pesos.",
+    "gs2_t": "Monetarisierung zum besten Marktkurs.",
+    "gs2_d": "Wir arbeiten mit spezialisierten Partnerunternehmen für Währungsmonetarisierung ohne unnötige Zwischenhändler und zum besten Marktkurs.",
+    "gs3_t": "100% digitaler Prozess. Keine Reisen nötig.",
+    "gs3_d": "Registrierung und Dokumentenunterzeichnung vollständig online.",
+    "gs4_t": "Integrierte SAGRILAFT-Konformität.",
+    "gs4_d": "Anti-Geldwäsche-Konformität integriert, vollständige Transparenz gewährleistet.",
+    "gh_title": "Ihre Investition, in Ihrer Währung",
+    "gh_desc": "Alianza Fiduciaria garantiert die Umrechnung jeder Währung auf regulierte Weise.",
+    "gh_alianza": "Alianza Fiduciaria — über 30 Jahre Erfahrung, unter SFC-Aufsicht — garantiert, dass jeder in Vivaltta Marriott investierte Peso gesetzlich geschützt ist.",
+    "more_curr": "+ weitere Währungen",
+    "gstat1": "Digitaler Prozess",
+    "gstat2": "Erforderliche Reisen",
+    "gstat3": "Beraterantwort",
+    "li1": "100% digitaler Prozess, keine Reisen erforderlich",
+    "li2": "Rechtliche Verwahrung durch Alianza Fiduciaria · SFC",
+    "li3": "In mehreren internationalen Währungen verfügbar",
+    "li4": "Projizierte Rendite ab 12% pro Jahr (Rental Pool)",
+    "lead_label": "Begrenzte Plätze",
+    "lead_title": "Sichern Sie sich Ihre Beteiligung heute",
+    "lead_desc": "Ein Fachberater meldet sich innerhalb von 24 Stunden. Ihr Vermögen kann nicht warten.",
+    "ph_name": "Vollständiger Name",
+    "ph_phone": "Telefon / WhatsApp",
+    "ph_email": "E-Mail",
+    "ph_country": "Wohnsitzland",
+    "ph_capital": "Geschätztes Investment",
+    "ph_lang": "Kontaktsprache",
+    "ph_other_lang": "Bitte Sprache angeben",
+    "cap1": "1 Suite · ab COP $381M",
+    "cap2": "2–5 Suiten",
+    "cap3": "6–10 Suiten",
+    "cap4": "Mehr als 10 Suiten",
+    "btn_submit": "Exklusive Info Anfordern",
+    "opt_other_lang": "Andere Sprache",
+    "disclaimer": "Daten geschützt. SAGRILAFT-Konformität integriert.",
+    "footer_legal": "© 2026 Londoño Gomez. Vivaltta Marriott Ciudad Peldar, Envigado, Kolumbien.",
+    "toastMsg": "Danke! Ein Berater meldet sich bald.",
+    "src_val": "Quelle: Camacol Antioquia, DANE und SIT Medellín.",
+    "src_calc": "Quelle: Projektionen nach STR-Global-Standards und Alianza Fiduciaria Rental-Pool-Modell.",
+    "arena_note": "Arena Primavera: 75+ Veranstaltungen/Jahr · 8 Minuten vom Hotel",
+    "fin_note_calc": "Diese Analyse konzentriert sich auf prognostizierte Betriebsgewinne. Sie beinhaltet nicht die Wertsteigerung des Rechts und des Assets, was einen außerordentlichen zusätzlichen Vermögensvorteil für den Investor darstellt.",
+    "fin_note_cmp": "Diese Analyse konzentriert sich auf Betriebsgewinne. Sie beinhaltet nicht die Wertsteigerung des Rechts und des Assets — historisch +22% in diesem Sektor."
+  }
+};
 
 /* ══════════════════════════════════════════════════════
-   CALCULATOR LOGIC — ExchangeRate-API live rates
-   Key: edb699d89c3de74e0d6cd0e9  |  Base: COP
-   Fallback chain: API → sessionStorage → hardcoded
+   SUITE CONFIG — Rental Pool Portfolio Calculator
 ══════════════════════════════════════════════════════ */
-const RP = 50000000;
-const RTS = {COP: 1, USD: 4150, EUR: 4500}; // updated live by fetchRates()
+const SUITE_PRICES = {a:381300000, b:516600000, c:615000000, d:701100000};
+const SUITE_MAX    = {a:40, b:38, c:38, d:38};
+const TOTAL_PROJECT = 84894600000;
+const SUITE_QTY    = {a:0, b:0, c:0, d:0};
+
+/* FX rates — updated live */
+const RTS = {COP:1, USD:4150, EUR:4500};
 const FX_KEY = 'edb699d89c3de74e0d6cd0e9';
 const FX_URL = `https://v6.exchangerate-api.com/v6/${FX_KEY}/latest/COP`;
-const FX_TTL = 10 * 60 * 1000; // refresh every 10 min
-let yC,cC,vC;
+const FX_TTL = 10 * 60 * 1000;
 
-function mY(o){if(o<=0)return 0;if(o<=63)return(o/63)*1;return 1+((o-63)/37)*1;}
-function fmt(v){
-  const c=document.getElementById('cs').value,l=document.getElementById('ls').value;
-  const lc=l==='en'?'en-US':'es-CO',cv=v/RTS[c];
-  const sy=c==='COP'?'$ ':c==='USD'?'US$ ':'€ ';
-  return sy+cv.toLocaleString(lc,{maximumFractionDigits:0});
+/* ── Suite counter ───────────────────────────────────── */
+function changeSuite(type, delta) {
+  const max = SUITE_MAX[type];
+  SUITE_QTY[type] = Math.max(0, Math.min(max, SUITE_QTY[type] + delta));
+  document.getElementById('qty_' + type).textContent = SUITE_QTY[type];
+  uc();
 }
-function uc(){
-  const r=+document.getElementById('inR').value,o=+document.getElementById('inO').value;
-  const m=mY(o),a=m*12,tot=r*RP,mi=tot*m/100,ai=mi*12,pb=a>0?100/a:0;
-  document.getElementById('vR').textContent=r;
-  document.getElementById('vO').textContent=o.toFixed(1)+'%';
-  document.getElementById('tInv').textContent=fmt(tot);
-  document.getElementById('rM').textContent=m.toFixed(2)+'%';
-  document.getElementById('rA').textContent=a.toFixed(2)+'%';
-  document.getElementById('rP').textContent=pb.toFixed(1);
-  document.getElementById('rIM').textContent=fmt(mi);
-  document.getElementById('rIY').textContent=fmt(ai);
-  document.getElementById('rI5').textContent=fmt(ai*5);
-  uyC(tot,a);
+
+/* ── Yield model (same proven formula) ──────────────── */
+function mY(o) {
+  if (o <= 0)  return 0;
+  if (o <= 63) return (o / 63) * 1;
+  return 1 + ((o - 63) / 37) * 1;
 }
-function uyC(tot,aY){
-  const c=document.getElementById('cs').value;
-  const d=['Año 1','Año 2','Año 3','Año 4','Año 5'].map((_,i)=>Math.round(tot*aY/100*(i+1)/RTS[c]));
-  if(!yC){
-    yC=new Chart(document.getElementById('yC').getContext('2d'),{
+
+/* ── Format currency ─────────────────────────────────── */
+function fmt(v) {
+  const c  = document.getElementById('cs').value;
+  const l  = document.getElementById('ls').value;
+  const lc = l === 'en' ? 'en-US' : 'es-CO';
+  const cv = v / RTS[c];
+  const sy = c === 'COP' ? '$ ' : c === 'USD' ? 'US$ ' : '€ ';
+  return sy + cv.toLocaleString(lc, {maximumFractionDigits: 0});
+}
+
+/* ── Main calculator update ──────────────────────────── */
+function uc() {
+  const o   = +document.getElementById('inO').value;
+  const m   = mY(o);
+  const a   = m * 12;
+
+  /* Total investment */
+  const tot = Object.keys(SUITE_QTY).reduce((s, t) => s + SUITE_QTY[t] * SUITE_PRICES[t], 0);
+
+  /* Participation % */
+  const part = tot > 0 ? (tot / TOTAL_PROJECT) * 100 : 0;
+
+  /* Income */
+  const mi  = tot * m / 100;
+  const ai  = mi * 12;
+  const pb  = a > 0 ? 100 / a : 0;
+
+  /* Update occupancy display */
+  document.getElementById('vO').textContent = o.toFixed(1) + '%';
+
+  /* Participation bar */
+  document.getElementById('partPct').textContent = part.toFixed(2) + '%';
+  document.getElementById('partBar').style.width = Math.min(part * 2, 100) + '%';
+
+  /* Investment display */
+  document.getElementById('tInv').textContent = tot > 0 ? fmt(tot) : '—';
+
+  if (tot === 0) {
+    ['rM','rA','rP','rIM','rIY','rI5'].forEach(id => document.getElementById(id).textContent = '—');
+    if (window.yC) { yC.data.datasets[0].data = [0,0,0,0,0]; yC.update(); }
+    return;
+  }
+
+  /* Metrics */
+  document.getElementById('rM').textContent  = m.toFixed(2) + '%';
+  document.getElementById('rA').textContent  = a.toFixed(2) + '%';
+  document.getElementById('rP').textContent  = pb.toFixed(1);
+  document.getElementById('rIM').textContent = fmt(mi);
+  document.getElementById('rIY').textContent = fmt(ai);
+  document.getElementById('rI5').textContent = fmt(ai * 5);
+
+  uyC(tot, a);
+}
+
+/* ── Yearly chart ────────────────────────────────────── */
+let yC, cC, vC;
+function uyC(tot, aY) {
+  const c = document.getElementById('cs').value;
+  const d = ['Año 1','Año 2','Año 3','Año 4','Año 5'].map((_,i) => Math.round(tot * aY / 100 * (i+1) / RTS[c]));
+  if (!yC) {
+    yC = new Chart(document.getElementById('yC').getContext('2d'), {
       type:'bar',
-      data:{labels:['Año 1','Año 2','Año 3','Año 4','Año 5'],datasets:[{data:d,backgroundColor:['rgba(230,68,55,.15)','rgba(230,68,55,.3)','rgba(230,68,55,.48)','rgba(230,68,55,.68)','rgba(230,68,55,.9)'],borderRadius:0,borderSkipped:false}]},
-      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{grid:{color:'rgba(31,31,33,.06)'},ticks:{font:{family:'Montserrat',size:10,weight:'500'}}},x:{grid:{display:false},ticks:{font:{family:'Montserrat',size:10}}}}}
+      data:{ labels:['Año 1','Año 2','Año 3','Año 4','Año 5'],
+              datasets:[{ data:d, backgroundColor:['rgba(230,68,55,.15)','rgba(230,68,55,.3)','rgba(230,68,55,.48)','rgba(230,68,55,.68)','rgba(230,68,55,.9)'], borderRadius:0, borderSkipped:false }] },
+      options:{ responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{ display:false } },
+        scales:{ y:{ grid:{ color:'rgba(31,31,33,.06)' }, ticks:{ font:{ family:'Montserrat',size:10 } } },
+                  x:{ grid:{ display:false }, ticks:{ font:{ family:'Montserrat',size:10 } } } } }
     });
-  }else{yC.data.datasets[0].data=d;yC.update();}
+  } else { yC.data.datasets[0].data = d; yC.update(); }
 }
-function bcC(){
-  cC=new Chart(document.getElementById('cC').getContext('2d'),{
+
+function bcC() {
+  cC = new Chart(document.getElementById('cC').getContext('2d'), {
     type:'bar',
-    data:{labels:['US Treasury','Dubai RE','TES','CDT','S&P500','REITs USA','V 63%','DANE 68.5%','V 85%','V 100%'],datasets:[{data:[4.5,7.0,8.2,9.5,10.0,9.0,12,13,18.5,24],backgroundColor:['#D8D8D8','#D8D8D8','#D8D8D8','#D8D8D8','#D8D8D8','#D8D8D8','rgba(230,68,55,.35)','rgba(230,68,55,.55)','rgba(230,68,55,.78)','rgba(230,68,55,1)'],borderRadius:0,borderSkipped:false}]},
-    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{color:'rgba(31,31,33,.06)'},ticks:{callback:v=>v+'%',font:{family:'Montserrat',size:10}}},y:{grid:{display:false},ticks:{font:{family:'Montserrat',size:10}}}}}
+    data:{ labels:['US Treasury','Dubai RE','TES','CDT','S&P500','REITs USA','V 63%','DANE 68.5%','V 85%','V 100%'],
+            datasets:[{ data:[4.5,7.0,8.2,9.5,10.0,9.0,12,13,18.5,24],
+              backgroundColor:['#D8D8D8','#D8D8D8','#D8D8D8','#D8D8D8','#D8D8D8','#D8D8D8','rgba(230,68,55,.35)','rgba(230,68,55,.55)','rgba(230,68,55,.78)','rgba(230,68,55,1)'],
+              borderRadius:0, borderSkipped:false }] },
+    options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{ display:false } },
+      scales:{ x:{ grid:{ color:'rgba(31,31,33,.06)' }, ticks:{ callback:v=>v+'%', font:{ family:'Montserrat',size:10 } } },
+                y:{ grid:{ display:false }, ticks:{ font:{ family:'Montserrat',size:10 } } } } }
   });
 }
-function bvC(){
-  vC=new Chart(document.getElementById('vC').getContext('2d'),{
+
+function bvC() {
+  vC = new Chart(document.getElementById('vC').getContext('2d'), {
     type:'line',
     data:{
       labels:['2020','2021','2022','2023','2024','2025*'],
       datasets:[
-        {label:'Ciudad Peldar',data:[0,4,8.5,13,18,22],borderColor:'#E64437',backgroundColor:'rgba(230,68,55,.06)',fill:true,tension:0.4,borderWidth:2,pointBackgroundColor:'#E64437',pointRadius:4},
-        {label:'Medellín',data:[0,3,5.5,9,12,16],borderColor:'#1F1F21',backgroundColor:'rgba(31,31,33,.04)',fill:true,tension:0.4,borderWidth:1.5,pointBackgroundColor:'#1F1F21',pointRadius:3},
-        {label:'Colombia',data:[0,2,4,6.5,9,12],borderColor:'#8A8A8A',backgroundColor:'transparent',tension:0.4,borderWidth:1.5,borderDash:[5,4],pointRadius:2,pointBackgroundColor:'#8A8A8A'}
+        { label:'Ciudad Peldar', data:[0,4,8.5,13,18,22], borderColor:'#E64437', backgroundColor:'rgba(230,68,55,.06)', fill:true, tension:0.4, borderWidth:2, pointBackgroundColor:'#E64437', pointRadius:4 },
+        { label:'Medellín',      data:[0,3,5.5,9,12,16],  borderColor:'#1F1F21', backgroundColor:'rgba(31,31,33,.04)',  fill:true, tension:0.4, borderWidth:1.5, pointBackgroundColor:'#1F1F21', pointRadius:3 },
+        { label:'Colombia',      data:[0,2,4,6.5,9,12],   borderColor:'#8A8A8A', backgroundColor:'transparent', tension:0.4, borderWidth:1.5, borderDash:[5,4], pointRadius:2, pointBackgroundColor:'#8A8A8A' }
       ]
     },
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{font:{family:'Montserrat',size:10},boxWidth:10}},tooltip:{mode:'index',intersect:false}},scales:{y:{grid:{color:'rgba(31,31,33,.06)'},ticks:{callback:v=>v+'%',font:{family:'Montserrat',size:10}}},x:{grid:{display:false},ticks:{font:{family:'Montserrat',size:10}}}}}
+    options:{ responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{ labels:{ font:{ family:'Montserrat',size:10 }, boxWidth:10 } }, tooltip:{ mode:'index', intersect:false } },
+      scales:{ y:{ grid:{ color:'rgba(31,31,33,.06)' }, ticks:{ callback:v=>v+'%', font:{ family:'Montserrat',size:10 } } },
+                x:{ grid:{ display:false }, ticks:{ font:{ family:'Montserrat',size:10 } } } } }
   });
 }
-function togOL(s){document.getElementById('oli').classList.toggle('sh',s.value==='other');}
+
+/* ── i18n engine ─────────────────────────────────────── */
 function getT(lang) {
-  /* Merge ES base with target lang — every missing key falls back to ES */
   return Object.assign({}, TRANSLATIONS['es'] || {}, TRANSLATIONS[lang] || {});
 }
 function translate() {
   var lang = document.getElementById('ls').value;
   var t    = getT(lang);
-  /* Update all text nodes */
   document.querySelectorAll('[data-i18n]').forEach(function(el) {
     var k = el.getAttribute('data-i18n');
     if (t[k] !== undefined) el.textContent = t[k];
   });
-  /* Update all placeholder nodes */
   document.querySelectorAll('[data-i18n-ph]').forEach(function(el) {
     var k = el.getAttribute('data-i18n-ph');
     if (t[k] !== undefined) el.placeholder = t[k];
   });
-  /* Refresh calculator display (currency formatting) */
-  if (typeof uc === 'function') { uc(); }
+  if (typeof uc === 'function') uc();
 }
 
-/* ── SCROLL ANIMATIONS ────────────────────────────────── */
-const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');});},{threshold:0.08});
-document.querySelectorAll('.fade,.fade-l,.fade-r').forEach(el=>obs.observe(el));
+function togOL(s) { document.getElementById('oli').classList.toggle('sh', s.value === 'other'); }
 
-/* ── NAV SCROLL ───────────────────────────────────────── */
-window.addEventListener('scroll',()=>{document.getElementById('mn').classList.toggle('sc',window.scrollY>60);});
-
-/* ── FORM SUBMIT ──────────────────────────────────────── */
-function sub(e){
-  e.preventDefault();
-  const t=getT(document.getElementById('ls').value);
-  const tst=document.getElementById('tst');
-  document.getElementById('tMsg').textContent=t.toastMsg||'Enviado!';
-  tst.classList.add('sh');
-  setTimeout(()=>tst.classList.remove('sh'),4500);
-  e.target.reset();
-  document.getElementById('oli').classList.remove('sh');
+/* ── FX ──────────────────────────────────────────────── */
+function fxTs() {
+  const n = new Date();
+  return n.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})
+       + ' · ' + n.toLocaleDateString([], {day:'2-digit',month:'short'});
 }
-
-/* ── FAQ ACCORDION ────────────────────────────────────── */
-function toggleFaq(btn){
-  const item=btn.parentElement;
-  const isOpen=item.classList.contains('open');
-  document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
-  if(!isOpen)item.classList.add('open');
-}
-
-/* ── LIGHTBOX ─────────────────────────────────────────── */
-function openLB(img){var lb=document.getElementById('lb');document.getElementById('lbImg').src=img.src;lb.style.display='flex';}
-function closeLB(){document.getElementById('lb').style.display='none';}
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLB();});
-
-/* ── LIVE FX ──────────────────────────────────────────── */
-function fxTs(){
-  const n=new Date();
-  return n.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})
-       +' · '+n.toLocaleDateString([],{day:'2-digit',month:'short'});
-}
-
-function applyFx(usdRate, eurRate, ts, isLive){
-  // usdRate = COP per 1 USD  |  eurRate = COP per 1 EUR
+function applyFx(usdRate, eurRate, ts, isLive) {
   RTS.USD = Math.round(usdRate);
   RTS.EUR = Math.round(eurRate);
-
-  // Nav badge
   const badge = document.getElementById('fxBadge');
-  if(badge){
+  if (badge) {
     badge.classList.toggle('live-on', isLive);
-    const st = document.getElementById('fxStatus');
-    if(st) st.textContent = isLive ? 'LIVE DATA' : 'ESTIMADO';
+    var st = document.getElementById('fxStatus');
+    if (st) st.textContent = isLive ? 'LIVE DATA' : 'ESTIMADO';
   }
-
-  // Calculator FX strip
-  const fmtCOP = v => Math.round(v).toLocaleString('es-CO');
-  const elU = document.getElementById('fxUSD');
-  const elE = document.getElementById('fxEUR');
-  const elT = document.getElementById('fxTime');
-  if(elU) elU.textContent = fmtCOP(usdRate);
-  if(elE) elE.textContent = fmtCOP(eurRate);
-  if(elT){
-    const lang = document.getElementById('ls').value;
-    const lbl = {es:'Actualizado',en:'Updated',fr:'Mis à jour',pt:'Atualizado',de:'Aktualisiert'};
-    elT.textContent = (lbl[lang]||'Actualizado')+': '+ts;
+  var fmtCOP = function(v) { return Math.round(v).toLocaleString('es-CO'); };
+  var eu = document.getElementById('fxUSD');
+  var ee = document.getElementById('fxEUR');
+  var et = document.getElementById('fxTime');
+  if (eu) eu.textContent = fmtCOP(usdRate);
+  if (ee) ee.textContent = fmtCOP(eurRate);
+  if (et) {
+    var lang  = document.getElementById('ls').value;
+    var labels = {es:'Actualizado',en:'Updated',fr:'Mis à jour',pt:'Atualizado',de:'Aktualisiert'};
+    et.textContent = (labels[lang]||'Actualizado') + ': ' + ts;
   }
-
-  uc(); // recalculate everything with new rates
+  uc();
 }
-
-async function fetchRates(){
-  try{
-    const res = await fetch(FX_URL, {cache:'no-store'});
-    if(!res.ok) throw new Error('HTTP '+res.status);
+async function fetchRates() {
+  try {
+    /* key: edb699d89c3de74e0d6cd0e9  |  base: COP */
+    const res  = await fetch(FX_URL, {
+      method: 'GET',
+      cache: 'no-store',
+      headers: { 'Accept': 'application/json' }
+    });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
     const data = await res.json();
-    if(data.result !== 'success') throw new Error(data['error-type']);
-
-    // API returns: conversion_rates.USD = how many USD you get per 1 COP
-    // We need COP per 1 USD → invert
+    if (data.result !== 'success') throw new Error(data['error-type'] || 'API error');
     const usdRate = 1 / data.conversion_rates.USD;
     const eurRate = 1 / data.conversion_rates.EUR;
-    const ts = fxTs();
-
-    applyFx(usdRate, eurRate, ts, true);
-
-    // Cache for session fallback
-    sessionStorage.setItem('fx_usd', usdRate);
-    sessionStorage.setItem('fx_eur', eurRate);
+    const ts      = fxTs();
+    applyFx(usdRate, eurRate, ts, true);   /* isLive=true → badge verde */
+    sessionStorage.setItem('fx_usd', String(usdRate));
+    sessionStorage.setItem('fx_eur', String(eurRate));
     sessionStorage.setItem('fx_ts',  ts);
-
-    console.log('[FX] Live: 1 USD =', Math.round(usdRate).toLocaleString('es-CO'), 'COP');
-  }catch(err){
-    console.warn('[FX] API failed:', err.message);
-    // Layer 2 — session cache
+  } catch(err) {
+    /* badge permanece gris — no muestra LIVE */
+    var badge = document.getElementById('fxBadge');
+    if (badge) badge.classList.remove('live-on');
+    var st = document.getElementById('fxStatus');
+    if (st) st.textContent = 'ESTIMADO';
     const cu = sessionStorage.getItem('fx_usd');
     const ce = sessionStorage.getItem('fx_eur');
     const ct = sessionStorage.getItem('fx_ts');
-    if(cu && ce){ applyFx(+cu, +ce, ct, false); return; }
-    // Layer 3 — hardcoded reference
+    if (cu && ce) { applyFx(+cu, +ce, ct, false); return; }
     applyFx(4150, 4500, 'Referencia BCR', false);
   }
 }
 
-/* ── TRANSLATIONS: add src_val / src_calc keys to all langs ── */
-(function injectSrcKeys(){
-  const keys = {
-    es:{ src_val:'Fuente: Camacol Antioquia, DANE y SIT Medellín.',
-         src_calc:'Fuente: Proyecciones basadas en estándares STR Global y Alianza Fiduciaria.' },
-    en:{ src_val:'Source: Camacol Antioquia, DANE and SIT Medellín.',
-         src_calc:'Source: Projections based on STR Global standards and Alianza Fiduciaria.' },
-    fr:{ src_val:'Source: Camacol Antioquia, DANE et SIT Medellín.',
-         src_calc:"Source: Projections selon les normes STR Global et Alianza Fiduciaria." },
-    pt:{ src_val:'Fonte: Camacol Antioquia, DANE e SIT Medellín.',
-         src_calc:'Fonte: Projeções baseadas nos padrões STR Global e Alianza Fiduciaria.' },
-    de:{ src_val:'Quelle: Camacol Antioquia, DANE und SIT Medellín.',
-         src_calc:'Quelle: Projektionen nach STR-Global-Standards und Alianza Fiduciaria.' }
-  };
-  for(const lang in keys){
-    if(TRANSLATIONS[lang]) Object.assign(TRANSLATIONS[lang], keys[lang]);
-    else TRANSLATIONS[lang] = keys[lang];
-  }
-})();
+/* ── Scroll animations ───────────────────────────────── */
+/* Charts init on first scroll into view */
+let vCinit = false, cCinit = false;
+const chartObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    if (e.target.id === 'vC-wrap' && !vCinit) { vCinit = true; bvC(); }
+    if (e.target.id === 'cC-wrap' && !cCinit) { cCinit = true; bcC(); }
+  });
+}, {threshold: 0.1});
+document.addEventListener('DOMContentLoaded', () => {
+  const vw = document.getElementById('vC-wrap');
+  const cw = document.getElementById('cC-wrap');
+  if (vw) chartObs.observe(vw);
+  if (cw) chartObs.observe(cw);
+});
 
-/* ── INIT ─────────────────────────────────────────────── */
+const obs = new IntersectionObserver(es => {
+  es.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      if (vC) vC.resize();
+      if (cC) cC.resize();
+    }
+  });
+}, {threshold:0.08});
+document.querySelectorAll('.fade,.fade-l,.fade-r').forEach(el => obs.observe(el));
+
+/* ── Nav scroll ──────────────────────────────────────── */
+window.addEventListener('scroll', () => { document.getElementById('mn').classList.toggle('sc', window.scrollY > 60); });
+
+/* ── Form submit ─────────────────────────────────────── */
+function sub(e) {
+  e.preventDefault();
+  const t   = getT(document.getElementById('ls').value);
+  const tst = document.getElementById('tst');
+  document.getElementById('tMsg').textContent = t.toastMsg || '¡Gracias!';
+  tst.classList.add('sh');
+  setTimeout(() => tst.classList.remove('sh'), 4500);
+  e.target.reset();
+  document.getElementById('oli').classList.remove('sh');
+}
+
+/* ── FAQ accordion ───────────────────────────────────── */
+function toggleFaq(btn) {
+  const item   = btn.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+/* ── Lightbox ────────────────────────────────────────── */
+function openLB(img) { var lb=document.getElementById('lb'); document.getElementById('lbImg').src=img.src; lb.style.display='flex'; }
+function closeLB()   { document.getElementById('lb').style.display='none'; }
+document.addEventListener('keydown', function(e) { if(e.key==='Escape') closeLB(); });
+
+/* ── INIT ────────────────────────────────────────────── */
 document.getElementById('ls').addEventListener('change', translate);
 document.getElementById('cs').addEventListener('change', uc);
-document.getElementById('inR').addEventListener('input', uc);
-document.getElementById('inO').addEventListener('input', uc);
+document.getElementById('inO').addEventListener('input',  uc);
+
+/* Apply fallback FX immediately, then fetch live */
+applyFx(4150, 4500, 'Referencia BCR', false);
 
 window.addEventListener('load', () => {
-  translate();   // sets UI language + initial calc
-  bcC();         // comparison chart
-  bvC();         // valorization chart
-  fetchRates();  // async: fetch live rates, update RTS, re-calc
-  setInterval(fetchRates, FX_TTL); // refresh every 10 min silently
+  translate();
+  uc();
+  fetchRates();
+  setInterval(fetchRates, FX_TTL);
 });
 </script>
 </body>
