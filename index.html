@@ -2204,7 +2204,7 @@ function uc() {
 
   if (tot === 0) {
     ['rM','rA','rP','rIM','rIY','rI5'].forEach(id => document.getElementById(id).textContent = '—');
-    if (window.yC) { yC.data.datasets[0].data = [0,0,0,0,0]; yC.update(); }
+    if (yC && yC.data) { yC.data.datasets[0].data = [0,0,0,0,0]; yC.update(); }
     return;
   }
 
