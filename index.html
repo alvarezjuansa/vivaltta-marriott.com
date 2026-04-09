@@ -2336,6 +2336,7 @@ async function fetchRates() {
     sessionStorage.setItem('fx_eur', String(eurRate));
     sessionStorage.setItem('fx_ts',  ts);
   } catch(err) {
+    console.error('[FX] fetchRates failed:', err.message || err);
     /* badge permanece gris — no muestra LIVE */
     var badge = document.getElementById('fxBadge');
     if (badge) badge.classList.remove('live-on');
