@@ -1,0 +1,2824 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vivaltta Marriott · Ciudad Peldar | Londoño Gómez</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ─── TOKENS ─────────────────────────────────────────── */
+:root{
+  --bg:#F0F0F0;
+  --ink:#1F1F21;
+  --red:#E64437;
+  --red2:#c93428;
+  --line:#8A8A8A;
+  --white:#FFFFFF;
+  --muted:#484848;
+  --card:#E8E8E6;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Montserrat',sans-serif;
+  --green:#2D6A4F;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);overflow-x:hidden;font-size:15px;line-height:1.6;}
+img{display:block;max-width:100%;}
+a{text-decoration:none;color:inherit;}
+
+/* ─── TYPOGRAPHY ─────────────────────────────────────── */
+.serif{font-family:var(--serif);}
+h1,h2,h3,h4{font-family:var(--serif);line-height:1.1;font-weight:400;}
+.display{font-family:var(--serif);font-style:italic;line-height:1.0;}
+.eyebrow{font-family:var(--sans);font-size:.62rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);}
+.eyebrow-red{color:var(--red);}
+.lead{font-size:1.05rem;line-height:1.85;color:var(--muted);font-weight:400;max-width:560px;}
+
+/* ─── LAYOUT ─────────────────────────────────────────── */
+.container{max-width:1280px;margin:0 auto;padding:0 6%;}
+.section{padding:110px 0;}
+.section-sm{padding:70px 0;}
+hr.rule{border:none;border-top:1px solid var(--line);opacity:.35;margin:0;}
+
+/* ─── SCROLL ANIMATIONS ──────────────────────────────── */
+.fade{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease;}
+.fade.in{opacity:1;transform:translateY(0);}
+.fade-l{opacity:0;transform:translateX(-28px);transition:opacity .8s ease,transform .8s ease;}
+.fade-l.in{opacity:1;transform:translateX(0);}
+.fade-r{opacity:0;transform:translateX(28px);transition:opacity .8s ease,transform .8s ease;}
+.fade-r.in{opacity:1;transform:translateX(0);}
+
+/* ─── DECORATIVE ELEMENTS ────────────────────────────── */
+.arc{width:80px;height:40px;border:1px solid var(--red);border-bottom:none;border-radius:80px 80px 0 0;display:inline-block;}
+.arc-sm{width:40px;height:20px;border:1px solid var(--red);border-bottom:none;border-radius:40px 40px 0 0;display:inline-block;}
+.vline{width:1px;height:60px;background:var(--line);opacity:.4;display:block;}
+.vline-red{background:var(--red);opacity:.8;}
+.dot-red{width:6px;height:6px;background:var(--red);border-radius:50%;display:inline-block;}
+
+/* ─── PILL BUTTONS ───────────────────────────────────── */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 32px;background:var(--red);color:#fff;border-radius:50px;font-family:var(--sans);font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;border:none;cursor:pointer;transition:background .2s,transform .2s;}
+.btn:hover{background:var(--red2);transform:translateY(-2px);}
+.btn-outline{background:transparent;color:var(--ink);border:1px solid var(--ink);}
+.btn-outline:hover{background:var(--ink);color:#fff;}
+.btn-outline-w{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.5);}
+.btn-outline-w:hover{background:rgba(255,255,255,.1);border-color:#fff;}
+
+/* ─── FRAMED IMAGE ───────────────────────────────────── */
+.frame{position:relative;display:inline-block;}
+.frame::before{content:'';position:absolute;top:-10px;left:-10px;right:10px;bottom:10px;border:1px solid var(--line);opacity:.4;pointer-events:none;z-index:0;}
+.frame img{position:relative;z-index:1;}
+.frame-inner{position:relative;}
+.frame-inner::after{content:'';position:absolute;inset:0;border:1px solid rgba(255,255,255,.15);pointer-events:none;}
+
+/* ══════════════════════════════════════════════════════
+   NAV
+══════════════════════════════════════════════════════ */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 6%;display:flex;align-items:center;justify-content:space-between;height:74px;transition:background .4s,border-color .4s;border-bottom:1px solid transparent;}
+nav.sc{background:rgba(240,240,240,.97);backdrop-filter:blur(12px);border-bottom-color:rgba(138,138,138,.25);}
+/* ── Logo coalition ─────────────────────────────────────────── */
+.nav-logo{display:flex;align-items:center;gap:20px;}
+/* Logos nav — mismo sistema para LG y AyC */
+.nav-logo img{height:51px;transition:filter .3s;}
+/* Hero oscuro: ambos logos → blancos */
+nav:not(.sc) .nav-logo img{filter:brightness(0) invert(1);}
+/* Nav claro al hacer scroll: sin filtro → logo original a color */
+.nav-logo-text{font-family:var(--serif);font-size:1.1rem;font-weight:600;letter-spacing:.06em;display:none;color:#fff;transition:color .3s;}
+nav.sc .nav-logo-text{color:var(--ink);}
+/* ── Separador entre logos ───────────────────────────────────── */
+.nav-logo-sep{width:1px;height:32px;background:rgba(255,255,255,.3);flex-shrink:0;transition:background .4s;}
+nav.sc .nav-logo-sep{background:rgba(138,138,138,.35);}
+/* Mobile */
+@media(max-width:480px){
+  .nav-logo-sep,.nav-logo img:last-child{display:none;}
+  .nav-logo img{height:44px;}
+}
+.nav-right{display:flex;gap:10px;align-items:center;}
+.nav-sel{padding:7px 12px;border-radius:50px;border:1px solid rgba(255,255,255,.25);background:transparent;color:#fff;font-family:var(--sans);font-size:.68rem;font-weight:600;cursor:pointer;outline:none;transition:.2s;letter-spacing:.04em;}
+nav.sc .nav-sel{border-color:rgba(138,138,138,.4);color:var(--ink);}
+.nav-sel option{background:var(--ink);color:#fff;}
+.nav-cta{padding:9px 24px;background:var(--red);color:#fff;border-radius:50px;font-family:var(--sans);font-size:.68rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;transition:.2s;white-space:nowrap;}
+.nav-cta:hover{background:var(--red2);}
+
+/* ══════════════════════════════════════════════════════
+   HERO
+══════════════════════════════════════════════════════ */
+.hero{height:100vh;min-height:700px;position:relative;display:flex;align-items:flex-end;padding-bottom:72px;}
+.hero-bg{position:absolute;inset:0;background:url('img/hero-marriott.jpg') center/cover no-repeat;z-index:0;}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(31,31,33,.85) 0%,rgba(31,31,33,.2) 60%,transparent 100%);z-index:1;}
+.hero-content{position:relative;z-index:2;padding:0 6%;}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;margin-bottom:28px;animation:fadeUp .7s ease both;}
+.hero-badge span{font-family:var(--sans);font-size:.6rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.65);}
+.hero h1{font-family:var(--serif);font-size:clamp(4rem,8vw,7.5rem);font-weight:300;color:#fff;line-height:.95;animation:fadeUp .8s .1s ease both;}
+.hero h1 em{font-style:italic;display:block;color:rgba(255,255,255,.9);}
+.hero-sub{font-family:var(--sans);font-size:.95rem;color:rgba(255,255,255,.65);font-weight:300;max-width:480px;line-height:1.8;margin:28px 0 40px;animation:fadeUp .8s .2s ease both;}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;animation:fadeUp .8s .3s ease both;}
+.hero-scroll{position:absolute;bottom:36px;right:6%;z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;}
+.hero-scroll span{font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.4);}
+.scroll-line{width:1px;height:50px;background:linear-gradient(to bottom,rgba(255,255,255,.5),transparent);animation:scrollAnim 2s ease-in-out infinite;}
+@keyframes scrollAnim{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+/* ─── KPI STRIP ──────────────────────────────────────── */
+.kpi-strip{background:var(--ink);padding:0 6%;}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);}
+.kpi-item{padding:32px 0 32px 28px;border-right:1px solid rgba(255,255,255,.07);transition:.3s;}
+.kpi-item:first-child{border-left:1px solid rgba(255,255,255,.07);}
+.kpi-item:hover{background:rgba(255,255,255,.03);}
+.kpi-num{font-family:var(--serif);font-size:2.8rem;font-weight:300;color:#fff;display:block;line-height:1;font-style:italic;}
+.kpi-label{font-family:var(--sans);font-size:.58rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.35);display:block;margin-top:8px;}
+
+/* ══════════════════════════════════════════════════════
+   DEVELOPERS
+══════════════════════════════════════════════════════ */
+.dev-section{padding:120px 0;}
+.dev-header{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;margin-bottom:80px;}
+.dev-headline{font-family:var(--serif);font-size:clamp(2.5rem,4.5vw,4rem);font-weight:300;line-height:1.05;}
+.dev-headline em{font-style:italic;color:var(--red);}
+.dev-intro{font-family:var(--sans);font-size:.92rem;line-height:1.85;color:var(--muted);font-weight:400;}
+.dev-partners{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid rgba(138,138,138,.25);}
+.dev-partner{padding:40px 28px;border-right:1px solid rgba(138,138,138,.25);display:flex;flex-direction:column;justify-content:space-between;min-height:220px;transition:.3s;cursor:default;}
+.dev-partner:first-child{border-left:1px solid rgba(138,138,138,.25);}
+.dev-partner:hover{background:rgba(255,255,255,.5);}
+.dev-partner-num{font-family:var(--serif);font-size:3.5rem;font-weight:300;color:rgba(138,138,138,.2);line-height:1;font-style:italic;}
+.dev-partner-name{font-family:var(--serif);font-size:1.2rem;font-weight:500;line-height:1.2;margin-bottom:8px;}
+.dev-partner-desc{font-family:var(--sans);font-size:.75rem;color:var(--muted);line-height:1.75;font-weight:400;}
+.dev-partner-stat{font-family:var(--serif);font-size:1.5rem;font-weight:300;font-style:italic;color:var(--red);margin-top:auto;padding-top:16px;}
+
+/* ══════════════════════════════════════════════════════
+   CIUDAD PELDAR
+══════════════════════════════════════════════════════ */
+.peldar-section{padding:0;}
+.peldar-grid{display:grid;grid-template-columns:1fr 1fr;}
+.peldar-image{position:relative;min-height:600px;overflow:hidden;}
+.peldar-image img{width:100%;height:100%;object-fit:cover;display:block;}
+.peldar-image-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(31,31,33,.3),transparent);}
+.peldar-content{padding:90px 70px;background:var(--white);display:flex;flex-direction:column;justify-content:center;}
+.peldar-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(138,138,138,.2);border:1px solid rgba(138,138,138,.2);margin-top:44px;}
+.peldar-stat{padding:24px 20px;background:var(--bg);}
+.peldar-stat strong{font-family:var(--serif);font-size:2rem;font-weight:300;font-style:italic;display:block;line-height:1;color:var(--ink);}
+.peldar-stat span{font-size:.58rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:block;margin-top:6px;}
+.peldar-gallery{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:44px;}
+.peldar-gallery img{width:100%;height:120px;object-fit:cover;cursor:zoom-in;transition:.35s;}
+.peldar-gallery img:hover{opacity:.8;}
+
+/* ══════════════════════════════════════════════════════
+   MODELO DE NEGOCIO
+══════════════════════════════════════════════════════ */
+.model-section{background:var(--ink);padding:120px 0;}
+.model-inner{display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center;}
+.model-label{color:rgba(230,68,55,.7);}
+.model-headline{font-family:var(--serif);font-size:clamp(2.5rem,4vw,3.8rem);font-weight:300;color:#fff;line-height:1.05;margin:16px 0 24px;}
+.model-headline em{font-style:italic;}
+.model-body{font-size:.9rem;color:rgba(255,255,255,.65);line-height:1.9;font-weight:400;margin-bottom:32px;}
+.model-right{display:flex;flex-direction:column;gap:1px;background:rgba(255,255,255,.07);}
+.model-step{padding:28px 32px;background:rgba(255,255,255,.03);display:flex;gap:20px;align-items:flex-start;border-bottom:1px solid rgba(255,255,255,.06);transition:.3s;}
+.model-step:last-child{border-bottom:none;}
+.model-step:hover{background:rgba(255,255,255,.06);}
+.model-step-n{font-family:var(--serif);font-size:2rem;font-weight:300;color:rgba(230,68,55,.4);line-height:1;font-style:italic;flex-shrink:0;width:36px;}
+.model-step-body h4{font-family:var(--serif);font-size:1.1rem;font-weight:400;color:#fff;margin-bottom:6px;}
+.model-step-body p{font-size:.8rem;color:rgba(255,255,255,.6);line-height:1.75;}
+
+/* ─── WATERFALL ──────────────────────────────────────── */
+.waterfall{padding:80px 0 0;}
+.waterfall-title{font-family:var(--serif);font-size:1.1rem;font-weight:400;color:rgba(255,255,255,.5);letter-spacing:.04em;margin-bottom:40px;font-style:italic;}
+.waterfall-flow{display:flex;align-items:stretch;gap:0;}
+.wf-step{flex:1;display:flex;flex-direction:column;align-items:center;position:relative;}
+.wf-step:not(:last-child)::after{content:'→';position:absolute;right:-12px;top:30px;color:rgba(230,68,55,.5);font-size:1.1rem;z-index:2;}
+.wf-node{width:100%;padding:20px 14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-bottom:2px solid var(--red);text-align:center;transition:.3s;}
+.wf-node:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.15);border-bottom-color:var(--red);}
+.wf-icon{font-size:1.3rem;margin-bottom:8px;display:block;}
+.wf-label{font-family:var(--sans);font-size:.58rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.35);display:block;margin-bottom:4px;}
+.wf-name{font-family:var(--serif);font-size:.95rem;font-weight:400;color:#fff;display:block;line-height:1.2;}
+.wf-sub{font-size:.7rem;color:rgba(255,255,255,.55);display:block;margin-top:4px;}
+
+/* ══════════════════════════════════════════════════════
+   HOW IT WORKS
+══════════════════════════════════════════════════════ */
+.hiw-section{padding:120px 0;background:var(--white);}
+.hiw-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid rgba(138,138,138,.2);margin-top:60px;}
+.hiw-card{padding:48px 38px;border-right:1px solid rgba(138,138,138,.2);position:relative;overflow:hidden;transition:.3s;}
+.hiw-card:last-child{border-right:none;}
+.hiw-card:hover{background:var(--bg);}
+.hiw-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:.4s;}
+.hiw-card:hover::before{transform:scaleX(1);}
+.hiw-card-num{font-family:var(--serif);font-size:5rem;font-weight:300;color:rgba(230,68,55,.08);line-height:1;position:absolute;top:20px;right:24px;font-style:italic;}
+.hiw-card h3{font-family:var(--serif);font-size:1.4rem;font-weight:400;margin:16px 0 12px;line-height:1.2;}
+.hiw-card p{font-size:.84rem;color:var(--muted);line-height:1.8;font-weight:400;}
+
+/* ══════════════════════════════════════════════════════
+   FINANCIAL BLOCK
+══════════════════════════════════════════════════════ */
+.fin-section{padding:120px 0;background:var(--bg);}
+.fin-note{display:flex;gap:14px;align-items:flex-start;padding:20px 24px;border-left:2px solid var(--red);background:rgba(230,68,55,.04);margin-bottom:56px;}
+.fin-note p{font-family:var(--serif);font-style:italic;font-size:.95rem;color:var(--ink);line-height:1.7;font-weight:400;}
+.calc-grid{display:grid;grid-template-columns:340px 1fr;gap:24px;}
+.calc-panel{background:var(--white);border:1px solid rgba(138,138,138,.2);padding:38px;}
+.calc-label-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.calc-label{font-family:var(--sans);font-size:.6rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--ink);}
+.vt{font-family:var(--serif);font-size:1.1rem;font-weight:400;font-style:italic;color:var(--red);}
+.calc-ib{margin-bottom:28px;}
+input[type="range"]{width:100%;-webkit-appearance:none;height:1px;background:rgba(138,138,138,.4);outline:none;cursor:pointer;accent-color:var(--red);margin-bottom:6px;}
+input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;background:var(--red);border-radius:50%;cursor:pointer;}
+.range-labels{display:flex;justify-content:space-between;font-size:.62rem;color:var(--muted);}
+.inv-display{background:var(--ink);padding:18px 20px;margin-top:8px;}
+.inv-label{font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4);font-weight:600;margin-bottom:4px;}
+.itv{font-family:var(--serif);font-size:2rem;font-weight:300;color:#fff;font-style:italic;}
+.calc-legal-note{margin-top:16px;font-size:.7rem;color:rgba(230,68,55,.8);line-height:1.7;border-left:2px solid var(--red);padding-left:12px;}
+.calc-disclaimer{margin-top:10px;font-size:.65rem;font-style:italic;color:var(--muted);line-height:1.6;}
+.results-panel{background:var(--white);border:1px solid rgba(138,138,138,.2);padding:38px;}
+.metrics-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(138,138,138,.2);margin-bottom:28px;}
+.metric-box{padding:22px 18px;background:var(--white);text-align:center;}
+.metric-box.highlight{background:var(--ink);}
+.mv{font-family:var(--serif);font-size:2.2rem;font-weight:300;font-style:italic;color:var(--ink);}
+.mv.ps{color:var(--green);}
+.metric-box.highlight .mv{color:#fff;}
+.ml{font-size:.56rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:6px;display:block;}
+.metric-box.highlight .ml{color:rgba(255,255,255,.4);}
+.income-row{display:flex;justify-content:space-between;background:rgba(230,68,55,.04);border-left:2px solid var(--red);padding:16px 20px;margin-bottom:24px;}
+.income-item{text-align:center;}
+.income-item span{display:block;font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+.income-item strong{font-family:var(--serif);font-size:1.2rem;font-weight:400;font-style:italic;color:var(--ink);}
+.chart-wrap{height:220px;}
+
+/* Valorization + Comparison */
+.val-section{padding:0 0 120px 0;background:var(--bg);}
+.val-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:40px;align-items:start;}
+.val-stats{display:flex;flex-direction:column;gap:1px;background:rgba(138,138,138,.2);border:1px solid rgba(138,138,138,.2);}
+.val-stat-row{padding:20px 24px;background:var(--white);display:flex;justify-content:space-between;align-items:center;transition:.3s;border-bottom:1px solid rgba(138,138,138,.1);}
+.val-stat-row:last-child{border-bottom:none;}
+.val-stat-row:hover{background:var(--bg);}
+.val-stat-text h4{font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:3px;}
+.val-stat-text p{font-size:.78rem;color:var(--muted);}
+.val-stat-num{font-family:var(--serif);font-size:2rem;font-weight:300;font-style:italic;}
+.val-stat-num.up{color:var(--green);}
+.chart-container{background:var(--white);border:1px solid rgba(138,138,138,.2);padding:28px;height:340px;}
+.cmp-section{padding:0 0 120px 0;background:var(--bg);}
+.cmp-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;}
+.cmp-table-wrap{background:var(--white);border:1px solid rgba(138,138,138,.2);}
+.ct{width:100%;border-collapse:collapse;}
+.ct thead tr{border-bottom:1px solid rgba(138,138,138,.25);}
+.ct th{font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:14px 16px;text-align:left;}
+.ct tbody tr{border-bottom:1px solid rgba(138,138,138,.1);transition:.2s;}
+.ct tbody tr:hover{background:var(--bg);}
+.ct td{padding:13px 16px;font-size:.83rem;}
+.hl{background:rgba(230,68,55,.04);}
+.ct td:nth-child(1){font-family:var(--serif);font-size:.95rem;font-weight:400;}
+.bg{display:inline-block;padding:3px 9px;border-radius:50px;font-size:.56rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;}
+.bg-g{background:rgba(45,106,79,.1);color:var(--green);}
+.bg-y{background:rgba(176,100,0,.1);color:#A05000;}
+.bg-r{background:rgba(200,48,48,.1);color:#B03030;}
+.bg-d{background:rgba(31,31,33,.1);color:var(--ink);}
+.cmp-chart-wrap{background:var(--white);border:1px solid rgba(138,138,138,.2);padding:28px;height:396px;}
+.cc{height:340px;}
+
+/* ══════════════════════════════════════════════════════
+   MEDICAL TOURISM
+══════════════════════════════════════════════════════ */
+.med-section{background:var(--white);padding:120px 0;}
+.med-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-top:60px;align-items:start;}
+.med-cards{display:flex;flex-direction:column;gap:1px;background:rgba(138,138,138,.2);}
+.med-card{padding:24px 28px;background:var(--white);display:flex;gap:20px;align-items:flex-start;transition:.25s;border-left:2px solid transparent;}
+.med-card:hover{border-left-color:var(--red);background:var(--bg);padding-left:26px;}
+.med-card-icon{width:36px;height:36px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;font-size:.9rem;}
+.med-card h4{font-family:var(--serif);font-size:1.05rem;font-weight:400;margin-bottom:5px;}
+.med-card p{font-size:.78rem;color:var(--muted);line-height:1.75;}
+.med-stats-panel{background:var(--ink);padding:44px;}
+.med-stats-panel h3{font-family:var(--serif);font-size:1.6rem;font-weight:300;color:#fff;font-style:italic;margin-bottom:28px;}
+.med-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.07);margin-bottom:28px;}
+.med-stat-cell{padding:20px 18px;background:rgba(255,255,255,.03);text-align:center;}
+.med-stat-cell strong{font-family:var(--serif);font-size:2.2rem;font-weight:300;color:rgba(230,68,55,.9);font-style:italic;display:block;line-height:1;}
+.med-stat-cell span{font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);display:block;margin-top:6px;}
+.med-tower-card{padding:20px 22px;border-left:2px solid var(--red);background:rgba(255,255,255,.03);margin-bottom:12px;}
+.med-tower-card:last-child{margin-bottom:0;}
+.med-tower-card h4{font-family:var(--sans);font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:6px;}
+.med-tower-card p{font-size:.78rem;color:rgba(255,255,255,.45);line-height:1.7;}
+
+/* ══════════════════════════════════════════════════════
+   GLOBAL INVESTMENT
+══════════════════════════════════════════════════════ */
+.global-section{background:var(--bg);padding:120px 0;}
+.global-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-top:60px;align-items:start;}
+.global-steps{display:flex;flex-direction:column;gap:0;}
+.global-step{display:flex;gap:24px;align-items:flex-start;padding:28px 0;border-bottom:1px solid rgba(138,138,138,.2);}
+.global-step:last-child{border-bottom:none;}
+.global-step-n{font-family:var(--serif);font-size:2.5rem;font-weight:300;font-style:italic;color:rgba(230,68,55,.3);line-height:1;flex-shrink:0;width:40px;}
+.global-step h4{font-family:var(--serif);font-size:1.1rem;font-weight:400;margin-bottom:6px;}
+.global-step p{font-size:.84rem;color:var(--muted);line-height:1.8;font-weight:400;}
+.global-panel{background:var(--ink);padding:44px;display:flex;flex-direction:column;gap:28px;}
+.global-panel h3{font-family:var(--serif);font-size:1.6rem;font-weight:300;color:#fff;font-style:italic;}
+.currencies{display:flex;flex-wrap:wrap;gap:8px;}
+.currency-tag{padding:5px 14px;border:1px solid rgba(230,68,55,.3);border-radius:50px;font-size:.65rem;font-weight:600;color:rgba(255,255,255,.6);letter-spacing:.06em;}
+.global-panel-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.07);}
+.gstat{padding:18px 14px;background:rgba(255,255,255,.03);text-align:center;}
+.gstat strong{font-family:var(--serif);font-size:1.8rem;font-weight:300;font-style:italic;color:rgba(230,68,55,.8);display:block;line-height:1;}
+.gstat span{font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);display:block;margin-top:5px;}
+.fiduciaria-note{padding:18px 20px;border:1px solid rgba(230,68,55,.2);background:rgba(230,68,55,.06);}
+.fiduciaria-note p{font-size:.78rem;color:rgba(255,255,255,.55);line-height:1.75;}
+
+/* ══════════════════════════════════════════════════════
+   TRUST SECTION
+══════════════════════════════════════════════════════ */
+.trust-section{background:var(--ink);padding:80px 0;}
+.trust-strip{display:flex;gap:0;border:1px solid rgba(255,255,255,.07);}
+.trust-item{flex:1;padding:28px 24px;border-right:1px solid rgba(255,255,255,.07);display:flex;gap:16px;align-items:flex-start;}
+.trust-item:last-child{border-right:none;}
+.trust-item svg{width:22px;height:22px;fill:none;stroke:rgba(230,68,55,.7);stroke-width:1.5;flex-shrink:0;margin-top:2px;}
+.trust-item h4{font-family:var(--serif);font-size:.9rem;font-weight:400;color:#fff;margin-bottom:4px;}
+.trust-item p{font-size:.72rem;color:rgba(255,255,255,.35);line-height:1.65;}
+
+/* ══════════════════════════════════════════════════════
+   FAQ
+══════════════════════════════════════════════════════ */
+.faq-section{background:var(--white);padding:120px 0;}
+.faq-grid{display:grid;grid-template-columns:1fr 2fr;gap:80px;margin-top:60px;}
+.faq-intro p{font-size:.9rem;color:var(--muted);line-height:1.8;font-weight:300;margin-top:16px;}
+.faq-list{display:flex;flex-direction:column;}
+.faq-item{border-bottom:1px solid rgba(138,138,138,.2);}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:22px 0;cursor:pointer;gap:20px;user-select:none;}
+.faq-q h4{font-family:var(--serif);font-size:1.1rem;font-weight:400;line-height:1.25;}
+.faq-icon{width:28px;height:28px;border:1px solid rgba(138,138,138,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.9rem;color:var(--muted);transition:.3s;font-style:normal;}
+.faq-item.open .faq-icon{background:var(--red);border-color:var(--red);color:#fff;transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s ease;}
+.faq-item.open .faq-a{max-height:300px;}
+.faq-a p{font-size:.85rem;color:var(--muted);line-height:1.85;font-weight:300;padding-bottom:22px;}
+
+/* ══════════════════════════════════════════════════════
+   LEAD FORM / CLOSING
+══════════════════════════════════════════════════════ */
+.lead-section{background:var(--ink);padding:120px 0;}
+.lead-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.lead-left .arc{margin-bottom:24px;}
+.lead-headline{font-family:var(--serif);font-size:clamp(2.5rem,4vw,3.8rem);font-weight:300;color:#fff;line-height:1.05;margin:14px 0 20px;}
+.lead-headline em{font-style:italic;}
+.lead-body{font-size:.85rem;color:rgba(255,255,255,.45);line-height:1.85;font-weight:300;margin-bottom:32px;}
+.lead-info{display:flex;flex-direction:column;gap:16px;}
+.lead-info-item{display:flex;gap:14px;align-items:center;}
+.lead-info-item .dot-red{flex-shrink:0;}
+.lead-info-item span{font-size:.78rem;color:rgba(255,255,255,.5);}
+.lead-form-wrap{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);padding:44px;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.form-input{padding:14px 18px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#fff;font-family:var(--sans);font-size:.82rem;outline:none;transition:.2s;width:100%;border-radius:0;}
+.form-input::placeholder{color:rgba(255,255,255,.25);}
+.form-input:focus{border-color:var(--red);background:rgba(255,255,255,.08);}
+.form-input option{background:var(--ink);color:#fff;}
+.form-full{grid-column:1/-1;}
+#oli{display:none;}
+#oli.sh{display:block;}
+.form-submit{width:100%;padding:16px;background:var(--red);color:#fff;border:none;border-radius:50px;font-family:var(--sans);font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:.2s;margin-top:4px;}
+.form-submit:hover{background:var(--red2);}
+.form-disclaimer{font-size:.62rem;color:rgba(255,255,255,.22);line-height:1.75;margin-top:14px;}
+
+/* ──────────────────────────────────────────────────── */
+footer{background:#0E0E0E;padding:48px 6%;display:flex;flex-direction:column;align-items:center;gap:24px;}
+.footer-logos{display:flex;align-items:center;gap:32px;flex-wrap:wrap;justify-content:center;}
+.footer-logos img{height:26px;filter:brightness(0) invert(1);opacity:.25;transition:.3s;}
+.footer-logos img:hover{opacity:.5;}
+.footer-sep{color:rgba(255,255,255,.1);}
+.footer-brand{font-family:var(--serif);font-size:.85rem;font-weight:400;color:rgba(255,255,255,.18);letter-spacing:.1em;font-style:italic;}
+.footer-legal{font-size:.6rem;color:rgba(255,255,255,.18);text-align:center;line-height:1.9;max-width:680px;}
+
+/* Toast */
+.tst{position:fixed;bottom:28px;right:28px;background:var(--ink);color:#fff;padding:16px 24px;border-left:3px solid var(--red);font-size:.8rem;font-weight:500;transform:translateY(80px);opacity:0;transition:.4s;z-index:9999;font-family:var(--serif);font-style:italic;}
+.tst.sh{transform:translateY(0);opacity:1;}
+
+/* Lightbox */
+#lb{cursor:zoom-out;}
+
+/* ─── LAUNCH CALLOUT ─────────────────────────────────── */
+.launch-callout{background:var(--red);padding:18px 6%;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+.launch-callout-label{font-family:var(--sans);font-size:.58rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.65);}
+.launch-callout-date{font-family:var(--serif);font-size:clamp(1.1rem,2.5vw,1.6rem);font-weight:300;color:#fff;font-style:italic;letter-spacing:.04em;}
+.launch-callout-pill{padding:8px 22px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.35);border-radius:50px;font-family:var(--sans);font-size:.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#fff;white-space:nowrap;transition:.2s;}
+.launch-callout-pill:hover{background:rgba(255,255,255,.25);}
+
+/* ─── TWO TOWERS INTRO ───────────────────────────────── */
+.towers-intro{background:var(--white);border-bottom:1px solid rgba(138,138,138,.2);}
+.towers-intro-inner{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.tower-card{padding:44px 48px;border-right:1px solid rgba(138,138,138,.2);}
+.tower-card:last-child{border-right:none;}
+.tower-tag{display:inline-block;padding:4px 12px;border-radius:50px;font-family:var(--sans);font-size:.56rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:18px;}
+.tower-tag-1{background:rgba(138,138,138,.1);color:var(--muted);}
+.tower-tag-2{background:rgba(230,68,55,.1);color:var(--red);}
+.tower-card h3{font-family:var(--serif);font-size:1.5rem;font-weight:400;line-height:1.15;margin-bottom:12px;}
+.tower-card p{font-size:.84rem;color:var(--muted);line-height:1.8;font-weight:400;}
+.tower-card-cta{display:inline-flex;align-items:center;gap:8px;margin-top:22px;font-family:var(--sans);font-size:.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--red);}
+.tower-card-cta::after{content:'→';font-style:normal;}
+
+@media(max-width:768px){
+  .towers-intro-inner{grid-template-columns:1fr;}
+  .tower-card{border-right:none;border-bottom:1px solid rgba(138,138,138,.2);padding:36px 28px;}
+  .tower-card:last-child{border-bottom:none;}
+  .launch-callout{flex-direction:column;text-align:center;}
+}
+
+/* ─── FAQ i18n ───────────────────────────────────────── */
+.faq-q h4{font-family:var(--serif);font-size:1.1rem;font-weight:400;line-height:1.25;}
+.faq-a p{font-size:.86rem;color:var(--muted);line-height:1.85;font-weight:400;padding-bottom:22px;}
+@media(max-width:1024px){
+  .dev-partners{grid-template-columns:repeat(3,1fr);}
+  .dev-header{grid-template-columns:1fr;}
+  .peldar-grid,.model-inner,.global-grid,.lead-grid,.med-grid,.val-grid,.cmp-grid,.faq-grid{grid-template-columns:1fr;}
+  .calc-grid{grid-template-columns:1fr;}
+  .waterfall-flow{flex-wrap:wrap;}
+  .wf-step{min-width:45%;}
+  .trust-strip{flex-wrap:wrap;}
+  .trust-item{min-width:45%;}
+  .kpi-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:768px){
+  .section{padding:70px 0;}
+  .dev-partners{grid-template-columns:1fr 1fr;}
+  .hiw-grid{grid-template-columns:1fr;}
+  .hiw-card{border-right:none;border-bottom:1px solid rgba(138,138,138,.2);}
+  .form-grid{grid-template-columns:1fr;}
+  .metrics-row{grid-template-columns:1fr 1fr;}
+  .nav-cta{display:none;}
+  .hero h1{font-size:clamp(3rem,9vw,4.5rem);}
+  .peldar-content{padding:60px 32px;}
+  .lead-form-wrap{padding:28px;}
+  .model-section,.lead-section,.med-section{padding:70px 0;}
+}
+@media(max-width:480px){
+  .kpi-grid{grid-template-columns:1fr 1fr;}
+  .dev-partners{grid-template-columns:1fr;}
+  .med-stat-grid{grid-template-columns:1fr;}
+  .peldar-stats{grid-template-columns:1fr 1fr;}
+}
+
+/* ══════════════════════════════════════════════════════
+   LIVE FX BADGE  (new — does not override existing styles)
+══════════════════════════════════════════════════════ */
+.fx-wrap{display:flex;flex-direction:column;align-items:center;gap:2px;}
+.fx-badge{display:inline-flex;align-items:center;justify-content:center;gap:3px;
+  font-family:var(--sans);font-size:.48rem;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:rgba(255,255,255,.38);white-space:nowrap;
+  transition:color .3s;}
+nav.sc .fx-badge{color:rgba(31,31,33,.38);}
+.fx-badge.live-on{color:rgba(45,106,79,.85);}
+nav.sc .fx-badge.live-on{color:rgba(30,80,50,.85);}
+.fx-dot{width:5px;height:5px;border-radius:50%;background:rgba(138,138,138,.5);
+  display:inline-block;flex-shrink:0;transition:background .4s;}
+.fx-badge.live-on .fx-dot{background:#2D9E6B;animation:livePulse 2s ease-in-out infinite;}
+@keyframes livePulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
+
+/* FX Strip inside calculator */
+.fx-strip{display:flex;align-items:center;flex-wrap:wrap;gap:8px;
+  margin-top:10px;padding:7px 12px;
+  background:rgba(230,68,55,.04);border-left:2px solid rgba(230,68,55,.2);}
+.fx-strip-item{font-family:var(--sans);font-size:.6rem;color:var(--muted);}
+.fx-strip-item strong{font-weight:700;color:var(--ink);}
+.fx-strip-sep{color:rgba(138,138,138,.4);font-size:.6rem;}
+.fx-strip-time{font-size:.52rem;color:rgba(138,138,138,.55);margin-left:auto;white-space:nowrap;}
+
+/* Source note (10px, grey tenue) */
+.source-note{display:block;font-family:var(--sans);font-size:.6rem;
+  color:rgba(138,138,138,.6);letter-spacing:.05em;line-height:1.7;
+  margin-top:14px;padding-top:10px;
+  border-top:1px solid rgba(138,138,138,.15);}
+
+/* ══════════════════════════════════════════════════════
+   PORTFOLIO CALCULATOR (Rental Pool)
+══════════════════════════════════════════════════════ */
+.suite-grid{display:flex;justify-content:center;flex-wrap:wrap;gap:1.5rem;width:100%;margin:0 auto 20px;}
+.suite-card{background:var(--bg);border:1px solid rgba(138,138,138,.25);padding:16px 18px;transition:.25s;width:calc(50% - 0.75rem);max-width:220px;box-sizing:border-box;}
+.suite-card:hover{border-color:rgba(230,68,55,.4);background:rgba(230,68,55,.02);}
+.suite-card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;}
+.suite-tag{font-family:var(--sans);font-size:.54rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--red);}
+.suite-avail{font-family:var(--sans);font-size:.52rem;color:var(--muted);letter-spacing:.06em;}
+.suite-area{font-family:var(--serif);font-size:1.4rem;font-weight:300;font-style:italic;color:var(--ink);line-height:1;margin-bottom:2px;}
+.suite-price{font-family:var(--sans);font-size:.6rem;color:var(--muted);margin-bottom:10px;}
+.suite-counter{display:flex;align-items:center;gap:10px;}
+.suite-btn{width:28px;height:28px;border:1px solid rgba(138,138,138,.35);background:var(--white);color:var(--ink);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:4px;transition:.15s;line-height:1;padding:0;font-family:var(--sans);}
+.suite-btn:hover{border-color:var(--red);color:var(--red);}
+.suite-qty{font-family:var(--serif);font-size:1.3rem;font-weight:300;font-style:italic;min-width:28px;text-align:center;color:var(--ink);}
+.participation-bar-wrap{margin:16px 0 8px;}
+.participation-label{display:flex;justify-content:space-between;font-family:var(--sans);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.participation-label strong{color:var(--red);font-size:.72rem;}
+.participation-bar{height:4px;background:rgba(138,138,138,.2);border-radius:2px;overflow:hidden;}
+.participation-fill{height:100%;background:var(--red);border-radius:2px;transition:width .4s ease;}
+.rental-pool-note{font-family:var(--serif);font-style:italic;font-size:.8rem;color:var(--muted);line-height:1.65;padding:14px 16px;border-left:2px solid rgba(230,68,55,.35);background:rgba(230,68,55,.03);margin-top:12px;}
+@media(max-width:580px){.suite-card{width:100%;max-width:100%;}}
+
+/* ══════════════════════════════════════════════════════
+   ASESOR VIRTUAL · LiveAvatar
+══════════════════════════════════════════════════════ */
+.avatar-section{background:var(--white);padding:100px 0;}
+.avatar-inner{
+  display:flex;
+  gap:60px;
+  align-items:center;
+  max-width:1280px;
+  margin:0 auto;
+  padding:0 6%;
+}
+/* ── Left column: text ─────────────────────────────── */
+.avatar-text{flex:1;min-width:0;}
+.avatar-text .eyebrow{display:block;margin-bottom:20px;}
+.avatar-text h2{
+  font-family:var(--serif);
+  font-size:clamp(2.2rem,3.8vw,3.4rem);
+  font-weight:300;
+  line-height:1.08;
+  color:var(--ink);
+  margin-bottom:24px;
+}
+.avatar-text h2 em{font-style:italic;}
+.avatar-text p{
+  font-family:var(--sans);
+  font-size:.88rem;
+  color:var(--muted);
+  line-height:1.9;
+  font-weight:400;
+  max-width:440px;
+  margin-bottom:36px;
+}
+.avatar-badges{display:flex;gap:10px;flex-wrap:wrap;}
+.avatar-badge{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:7px 18px;
+  border:1px solid rgba(138,138,138,.28);
+  border-radius:50px;
+  font-family:var(--sans);font-size:.58rem;
+  font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);
+}
+/* ── Right column: video + chat ─────────────────────── */
+.avatar-frame{
+  flex:0 0 340px;
+  width:340px;
+  display:flex;
+  flex-direction:column;
+  border-radius:24px;
+  overflow:hidden;
+  box-shadow:0 28px 60px rgba(31,31,33,.18),
+             0 8px 24px rgba(31,31,33,.10);
+}
+/* ── Video wrapper ──────────────────────────────────── */
+.avatar-video-wrap{
+  position:relative;
+  flex:1;
+  overflow:hidden;
+  background:#1a1a1a;
+  min-height:460px;
+}
+.avatar-video-wrap video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+/* ── Overlay: nombre + live dot ─────────────────────── */
+.avatar-overlay{
+  position:absolute;
+  bottom:0;left:0;right:0;
+  padding:48px 18px 18px;
+  background:linear-gradient(to top,rgba(10,10,10,.72) 0%,transparent 100%);
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+  z-index:3;
+}
+.avatar-live-row{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  margin-bottom:4px;
+}
+.avatar-live-dot{
+  width:7px;height:7px;
+  border-radius:50%;
+  background:#2D9E6B;
+  animation:livePulse 2s ease-in-out infinite;
+  flex-shrink:0;
+}
+.avatar-overlay-name{
+  font-family:var(--serif);
+  font-size:1.15rem;
+  font-weight:400;
+  color:#fff;
+  line-height:1.1;
+}
+.avatar-overlay-role{
+  font-family:var(--sans);
+  font-size:.55rem;
+  font-weight:600;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.55);
+}
+.avatar-overlay-live{
+  font-family:var(--sans);
+  font-size:.52rem;
+  font-weight:600;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:#2D9E6B;
+}
+/* ── Chat bar ───────────────────────────────────────── */
+.avatar-chat{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:12px 14px;
+  background:#fff;
+  border-top:1px solid rgba(138,138,138,.15);
+  flex-shrink:0;
+}
+.avatar-chat-input{
+  flex:1;
+  border:1px solid rgba(138,138,138,.28);
+  border-radius:50px;
+  padding:9px 16px;
+  font-family:var(--sans);
+  font-size:.72rem;
+  color:var(--ink);
+  outline:none;
+  background:#f8f8f8;
+  transition:border-color .2s;
+}
+.avatar-chat-input:focus{
+  border-color:var(--red);
+  background:#fff;
+}
+.avatar-chat-input::placeholder{color:rgba(138,138,138,.7);}
+.avatar-chat-btn{
+  flex-shrink:0;
+  padding:9px 16px;
+  background:var(--red);
+  color:#fff;
+  border:none;
+  border-radius:50px;
+  font-family:var(--sans);
+  font-size:.62rem;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:background .2s, transform .15s;
+  white-space:nowrap;
+}
+.avatar-chat-btn:hover{background:var(--red2);transform:scale(1.03);}
+/* ── Responsive ────────────────────────────────────── */
+@media(max-width:900px){
+  .avatar-inner{flex-direction:column;gap:48px;}
+  .avatar-frame{flex:none;width:100%;max-width:340px;margin:0 auto;}
+  .avatar-video-wrap{min-height:420px;}
+  .avatar-text p{max-width:100%;}
+}
+@media(max-width:480px){
+  .avatar-section{padding:70px 0;}
+  .avatar-frame{max-width:290px;}
+  .avatar-video-wrap{min-height:360px;}
+}
+
+/* ── Mute/unmute button ─────────────────────────────────────── */
+.avatar-mute-btn{
+  position:absolute;
+  top:12px;
+  right:12px;
+  z-index:5;
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  border:1.5px solid rgba(255,255,255,.35);
+  background:rgba(0,0,0,.42);
+  backdrop-filter:blur(6px);
+  color:#fff;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:background .2s,transform .15s;
+  flex-shrink:0;
+  padding:0;
+}
+.avatar-mute-btn:hover{background:rgba(0,0,0,.65);transform:scale(1.08);}
+.avatar-mute-btn svg{
+  width:17px;height:17px;
+  fill:none;stroke:#fff;stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+</style>
+</head>
+<body>
+
+<!-- ════ NAV ════════════════════════════════════════════ -->
+<nav id="mn">
+  <div class="nav-logo">
+    <img src="https://londonogomez.com/sites/default/files/Lonodo%C3%B1o-G%C3%B3mez-Promotora-de-proyectos-logo.png" alt="Londoño Gómez" onerror="this.style.display='none';document.querySelector('.nav-logo-text').style.display='block'">
+    <span class="nav-logo-text">LONDOÑO GÓMEZ</span>
+    <!-- Partner separator -->
+    <span class="nav-logo-sep"></span>
+    <!-- Arquitectura y Concreto logo -->
+    <img src="https://arquitecturayconcreto.com/static/logo-azul-ayc-6123e40983299d0b5d9edecd5f2c3801.webp" alt="Arquitectura y Concreto" onerror="this.style.display='none'">
+  </div>
+  <div class="nav-right">
+    <select id="ls" class="nav-sel"><option value="es">ES</option><option value="en">EN</option><option value="fr">FR</option><option value="pt">PT</option><option value="de">DE</option></select>
+    <div class="fx-wrap">
+      <select id="cs" class="nav-sel"><option value="COP">$ COP</option><option value="USD">US$</option><option value="EUR">€ EUR</option></select>
+      <span class="fx-badge" id="fxBadge"><span class="fx-dot" id="fxDot"></span><span id="fxStatus">LIVE DATA</span></span>
+    </div>
+    <a href="#lead-form" class="nav-cta" data-i18n="nav_cta">Invertir Ahora</a>
+  </div>
+</nav>
+
+<!-- ════ HERO ════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="dot-red"></span>
+      <span data-i18n="heroBadge">Lanzamiento Mayo 2026 · Ciudad Peldar, Envigado</span>
+    </div>
+    <h1 class="display">Vivaltta<br><em>Marriott</em></h1>
+    <p class="hero-sub" data-i18n="heroSub">Vivaltta es el corazón empresarial de Ciudad Peldar: dos torres en sinergia perfecta. La Torre 1 alberga quirófanos y oficinas especializadas; la Torre 2 es el <strong style="color:#fff;font-weight:500;">Hotel Marriott</strong> — el activo disponible para inversión mediante Derechos Fiduciarios.</p>
+    <div class="hero-actions">
+      <a href="#modelo" class="btn" data-i18n="btn_model">Conocer el Modelo de Inversión</a>
+      <a href="#calculadora" class="btn btn-outline-w" data-i18n="btn_calc">Ver Rentabilidad</a>
+    </div>
+  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div><span>Scroll</span></div>
+</section>
+
+<!-- ════ ASESOR VIRTUAL ══════════════════════════════ -->
+<section class="avatar-section" id="asesor-virtual">
+  <div class="avatar-inner">
+
+    <!-- Columna izquierda: texto -->
+    <div class="avatar-text fade-l">
+      <span class="eyebrow" data-i18n="av_eyebrow">Asesor Virtual · Disponible ahora</span>
+      <h2 data-i18n="av_title">Tu Asesor Personal de <em>Inversión</em></h2>
+      <p data-i18n="av_body">Habla directamente con Juan Salvador Álvarez, nuestro asesor digital disponible 24/7. Pregunta por tipologías de suite, rentabilidades, el proceso fiduciario o cualquier detalle del proyecto — por voz o chat, en tu idioma.</p>
+      <div class="avatar-badges">
+        <span class="avatar-badge">
+          <span class="dot-red"></span>
+          <span data-i18n="av_badge1">Disponible 24/7</span>
+        </span>
+        <span class="avatar-badge">
+          <span class="dot-red"></span>
+          <span data-i18n="av_badge2">Voz y chat</span>
+        </span>
+        <span class="avatar-badge">
+          <span class="dot-red"></span>
+          <span data-i18n="av_badge3">Multiidioma</span>
+        </span>
+      </div>
+    </div>
+
+    <!-- Columna derecha: video pregrabado + chat -->
+    <div class="avatar-frame fade-r" style="transition-delay:.15s;">
+
+      <!-- Video con overlay de nombre/live -->
+      <div class="avatar-video-wrap">
+        <video id="advisorVideoPlayer" autoplay loop muted playsinline>
+          <source src="img/avatars/46c07525-4eb8-49f3-80a2-e6e729a6e1a4.mp4" type="video/mp4">
+        </video>
+
+        <!-- Botón mute/unmute -->
+        <button class="avatar-mute-btn" id="avatarMuteBtn"
+                onclick="toggleAdvisorMute()" aria-label="Activar sonido">
+          <svg id="iconMuted" viewBox="0 0 24 24">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+            <line x1="23" y1="9" x2="17" y2="15"/>
+            <line x1="17" y1="9" x2="23" y2="15"/>
+          </svg>
+          <svg id="iconSound" viewBox="0 0 24 24" style="display:none;">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+          </svg>
+        </button>
+
+        <div class="avatar-overlay">
+          <div class="avatar-live-row">
+            <span class="avatar-live-dot"></span>
+            <span class="avatar-overlay-live" data-i18n="av_live_label">En vivo</span>
+          </div>
+          <span class="avatar-overlay-name">Juan Salvador Álvarez</span>
+          <span class="avatar-overlay-role" data-i18n="av_role">Asesor Digital</span>
+        </div>
+      </div>
+
+      <!-- Barra de chat inferior -->
+      <div class="avatar-chat">
+        <input
+          type="text"
+          class="avatar-chat-input"
+          id="avatarChatInput"
+          data-i18n-ph="av_chat_ph"
+          placeholder="Escribe tu consulta aquí..."
+          autocomplete="off">
+        <button class="avatar-chat-btn" id="avatarChatBtn" data-i18n="av_chat_send">Enviar</button>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<hr class="rule">
+<!-- ─── LAUNCH CALLOUT ─────────────────────────────────── -->
+<div class="launch-callout">
+  <span class="launch-callout-label" data-i18n="launch_label">Lanzamiento Oficial</span>
+  <span class="launch-callout-date" data-i18n="launch_date">Mayo 2026 · Ciudad Peldar, Envigado, Colombia</span>
+  <a href="#lead-form" class="launch-callout-pill" data-i18n="nav_cta">Invertir Ahora</a>
+</div>
+
+<!-- ─── TWO TOWERS INTRO ───────────────────────────────── -->
+<div class="towers-intro">
+  <div class="towers-intro-inner">
+    <div class="tower-card fade">
+      <span class="tower-tag tower-tag-1" data-i18n="tower1_tag">Torre 1 · Salud · Próxima a agotarse</span>
+      <h3 data-i18n="tower1_title">Quirófanos y consultorios médicos especializados</h3>
+      <p data-i18n="tower1_body">Torre de salud y servicios especializados — próxima a agotarse en su totalidad, al igual que Vittrio y Cristtali en el mismo plan parcial. Forma el ecosistema que garantiza ocupación permanente al hotel.</p>
+    </div>
+    <div class="tower-card fade" style="transition-delay:.15s;">
+      <span class="tower-tag tower-tag-2" data-i18n="tower2_tag">Torre 2 · Hotel Marriott · Activo de Inversión</span>
+      <h3 data-i18n="tower2_title">154 habitaciones operadas bajo la marca Marriott por OXO Hotels</h3>
+      <p data-i18n="tower2_body">El activo de inversión: el único hotel de marca internacional en la Milla de Diamante. Operado por OXO Hotels bajo el estándar Marriott, captura la demanda del clúster médico, corporativo y — crucialmente — de la Arena Primavera (75+ eventos al año, a solo 8 minutos). Su patrimonio genera Utilidad Operativa sin importar si su suite individual está ocupada.</p>
+      <a href="#modelo" class="tower-card-cta" data-i18n="btn_model">Conocer el Modelo de Inversión</a>
+    </div>
+  </div>
+</div>
+
+
+<div class="kpi-strip">
+  <div class="kpi-grid">
+    <div class="kpi-item fade"><span class="kpi-num">68.5%</span><span class="kpi-label" data-i18n="kpi1">Ocupación Hotelera · DANE</span></div>
+    <div class="kpi-item fade" style="transition-delay:.1s"><span class="kpi-num">+12%</span><span class="kpi-label" data-i18n="kpi2">Rentabilidad Anual Base</span></div>
+    <div class="kpi-item fade" style="transition-delay:.2s"><span class="kpi-num">154</span><span class="kpi-label" data-i18n="kpi3">Habitaciones Premium</span></div>
+    <div class="kpi-item fade" style="transition-delay:.3s"><span class="kpi-num">75+</span><span class="kpi-label" data-i18n="kpi4">Eventos/Año Arena Primavera</span></div>
+  </div>
+</div>
+
+<hr class="rule">
+
+<!-- ════ 2. DESARROLLADORES ═════════════════════════════ -->
+<section class="dev-section" id="desarrolladores">
+  <div class="container">
+    <div class="dev-header fade">
+      <div>
+        <span class="eyebrow" data-i18n="trust_label">Respaldos Institucionales</span>
+        <div class="dev-headline" style="margin-top:14px" data-i18n="dev_headline">Más de 50 años<br>transformando el <em>skyline</em><br>de Colombia</div>
+      </div>
+      <div>
+        <p class="dev-intro" data-i18n="dev_intro">Londoño Gómez no es solo un Desarrollador de Proyectos — es el arquitecto de comunidades enteras. Con más de cinco décadas liderando proyectos de uso mixto y un compromiso inquebrantable con la excelencia arquitectónica, su nombre es la garantía más sólida que puede respaldar la inversión de un extranjero en Colombia. Los demás nombres en esta página son los mejores en sus respectivos campos: juntos forman el equipo más robusto del mercado inmobiliario hotelero del país.</p>
+      </div>
+    </div>
+    <div class="dev-partners">
+      <div class="dev-partner fade">
+        <div class="dev-partner-num">01</div>
+        <div>
+          <div class="dev-partner-name">Londoño Gómez</div>
+          <div class="dev-partner-desc" data-i18n="lg_desc">Desarrollador líder con más de 50 años de trayectoria transformando el panorama inmobiliario de Colombia. Visionarios detrás de Ciudad Peldar —el megaproyecto más exitoso del país—, Londoño Gómez garantiza solidez, valorización y una gestión estratégica orientada a la rentabilidad del inversionista.</div>
+          <div class="dev-partner-stat">53+ años</div>
+        </div>
+      </div>
+      <div class="dev-partner fade" style="transition-delay:.1s">
+        <div class="dev-partner-num">02</div>
+        <div>
+          <div class="dev-partner-name">Arq. y Concreto</div>
+          <div class="dev-partner-desc" data-i18n="tp5_d">Constructora referente en innovación y excelencia técnica. Con una hoja de ruta impecable en proyectos de gran escala y alta complejidad, aseguran los más altos estándares de calidad constructiva y cumplimiento, materializando hitos urbanos que perduran en el tiempo.</div>
+          <div class="dev-partner-stat">33 años</div>
+        </div>
+      </div>
+      <div class="dev-partner fade" style="transition-delay:.2s">
+        <div class="dev-partner-num">03</div>
+        <div>
+          <div class="dev-partner-name">Alianza Fiduciaria</div>
+          <div class="dev-partner-desc" data-i18n="tp1_d">Todos los recursos custodiados por Alianza Fiduciaria, vigilada por la SFC.</div>
+          <div class="dev-partner-stat">30+ años</div>
+        </div>
+      </div>
+      <div class="dev-partner fade" style="transition-delay:.3s">
+        <div class="dev-partner-num">04</div>
+        <div>
+          <div class="dev-partner-name">OXO Hotels</div>
+          <div class="dev-partner-desc" data-i18n="tp3_d">Operador hotelero especialista en Colombia con historial en proyectos de lujo.</div>
+          <div class="dev-partner-stat">Operador Líder</div>
+        </div>
+      </div>
+      <div class="dev-partner fade" style="transition-delay:.4s">
+        <div class="dev-partner-num">05</div>
+        <div>
+          <div class="dev-partner-name">Marriott International</div>
+          <div class="dev-partner-desc" data-i18n="tp2_d">La cadena hotelera #1 del mundo garantiza ocupación y reputación global.</div>
+          <div class="dev-partner-stat">#1 Mundial</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ════ 3. CIUDAD PELDAR ═══════════════════════════════ -->
+<section class="peldar-section" id="ciudad-peldar">
+  <div class="peldar-grid">
+    <div class="peldar-image fade-l">
+      <img src="img/onelink-fachada.jpg" alt="Vivaltta · Ciudad Peldar · Fachada" onclick="openLB(this)" style="cursor:zoom-in">
+      <div class="peldar-image-overlay"></div>
+    </div>
+    <div class="peldar-content fade-r">
+      <span class="eyebrow">Milla de Diamante · Ciudad Peldar · Envigado</span>
+      <h2 style="font-family:var(--serif);font-size:clamp(2rem,3.5vw,3rem);font-weight:300;line-height:1.05;margin:14px 0 20px;" data-i18n="peldar_title">Ciudad a menos de<br><em>15 minutos</em> de todo</h2>
+      <div style="width:36px;height:1px;background:var(--red);margin:20px 0;"></div>
+      <p class="lead" style="max-width:100%;" data-i18n="peldarDesc">Ciudad Peldar ocupa 101.445 m² del histórico lote Peldar — el mejor lote del Valle de Aburrá. Es el megaproyecto #1 más vendido de Colombia: más de 1.000 familias ya eligieron Vittrio y Cristtali en el mismo plan parcial. Vivaltta Marriott es su coronación comercial: frente al Metro, al lado de Viva Envigado. Conecta directamente con tres vías principales: Av. Las Vegas, Av. Regional y Av. Simón Bolívar.</p>
+      <div class="peldar-stats">
+        <div class="peldar-stat">
+          <strong>CC Viva</strong>
+          <span data-i18n="pf1">Pasando la calle</span>
+        </div>
+        <div class="peldar-stat">
+          <strong>Metro</strong>
+          <span data-i18n="pf2">Al lado del proyecto</span>
+        </div>
+        <div class="peldar-stat">
+          <strong>+22%</strong>
+          <span data-i18n="pf3">Valorización sector 5 años</span>
+        </div>
+        <div class="peldar-stat">
+          <strong>#1</strong>
+          <span data-i18n="pf4">Proyecto + vendido Colombia</span>
+        </div>
+      </div>
+      <div class="peldar-gallery">
+        <img src="img/fachada-torre1.jpg" alt="Vivaltta — Fachada Torre 1" onclick="openLB(this)">
+        <img src="img/urbanismo.jpg" alt="Urbanismo · Plan Parcial Ciudad Peldar" onclick="openLB(this)">
+        <img src="img/boulevard-dia.jpg" alt="Boulevard comercial · Ciudad Peldar" onclick="openLB(this)">
+        <img src="img/boulevard-noche.jpg" alt="Boulevard nocturno · Ciudad Peldar" onclick="openLB(this)">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div id="lb" onclick="closeLB()" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.92);align-items:center;justify-content:center;">
+  <img id="lbImg" src="" alt="" style="max-width:92vw;max-height:88vh;object-fit:contain;box-shadow:0 8px 48px rgba(0,0,0,.8);">
+  <span onclick="closeLB()" style="position:absolute;top:20px;right:28px;color:#fff;font-size:2rem;line-height:1;cursor:pointer;opacity:.7;font-style:normal;">&times;</span>
+</div>
+
+<hr class="rule">
+
+<!-- ════ 4. MODELO DE NEGOCIO ═══════════════════════════ -->
+<section class="model-section" id="modelo">
+  <div class="container">
+    <div class="model-inner">
+      <div class="fade">
+        <span class="eyebrow model-label" data-i18n="hiw_label">Modelo de Inversión</span>
+        <h2 class="model-headline" data-i18n="hiw_title">¿Cómo funciona el <em>Modelo Rental Pool?</em></h2>
+        <p class="model-body" data-i18n="hiw_desc">Como inversionista, adquiere un Derecho Fiduciario vinculado a una Suite específica. El hotel opera como un pool unificado: su patrimonio genera Utilidad Operativa proporcional a su participación, eliminando el riesgo de vacancia individual.</p>
+        <a href="#lead-form" class="btn" data-i18n="btn_acquire">Adquiere Tu Derecho</a>
+      </div>
+      <div class="model-right fade" style="transition-delay:.2s">
+        <div class="model-step">
+          <span class="model-step-n">01</span>
+          <div class="model-step-body"><h4 data-i18n="hiw1_t">Adquiere tu Derecho Fiduciario</h4><p data-i18n="hiw1_d">Al formalizar la operación, se emite un título fiduciario respaldado por Alianza Fiduciaria. Su inversión queda jurídicamente protegida y separada del patrimonio del Desarrollador de Proyectos.</p></div>
+        </div>
+        <div class="model-step">
+          <span class="model-step-n">02</span>
+          <div class="model-step-body"><h4 data-i18n="hiw2_t">Alianza Fiduciaria Custodia tu Capital</h4><p data-i18n="hiw2_d">Alianza Fiduciaria, vigilada por la SFC, custodia el 100% de los recursos. Una garantía legal, no una promesa.</p></div>
+        </div>
+        <div class="model-step">
+          <span class="model-step-n">03</span>
+          <div class="model-step-body"><h4 data-i18n="hiw3_t">Recibes tus Utilidades</h4><p data-i18n="hiw3_d">Con Marriott y OXO Hotels operando, recibe su participación proporcional de la Utilidad Operativa mensualmente, directo a su cuenta.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WATERFALL -->
+    <div class="waterfall fade">
+      <div class="waterfall-title" data-i18n="wf_title">Flujo de transparencia del dinero</div>
+      <div class="waterfall-flow">
+        <div class="wf-step">
+          <div class="wf-node">
+            <span class="wf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="1.2" width="20" height="20"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><rect x="9" y="14" width="6" height="7"/></svg></span>
+            <span class="wf-label" data-i18n="wf_l1">Origen</span>
+            <span class="wf-name"  data-i18n="wf_n1">Huésped</span>
+            <span class="wf-sub"   data-i18n="wf_s1">Paga su estadía</span>
+          </div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-node">
+            <span class="wf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="1.2" width="20" height="20"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14M15.54 8.46a5 5 0 010 7.07M8.46 8.46a5 5 0 000 7.07"/></svg></span>
+            <span class="wf-label" data-i18n="wf_l2">Operación</span>
+            <span class="wf-name">OXO Hotels</span>
+            <span class="wf-sub"  data-i18n="wf_s2">Bajo marca Marriott</span>
+          </div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-node">
+            <span class="wf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="1.2" width="20" height="20"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+            <span class="wf-label" data-i18n="wf_l3">Resultado</span>
+            <span class="wf-name"  data-i18n="wf_n3">Utilidad Neta</span>
+            <span class="wf-sub"   data-i18n="wf_s3">Utilidad Operativa</span>
+          </div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-node">
+            <span class="wf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="1.2" width="20" height="20"><path d="M12 2l7 4v6c0 5-3.5 9.7-7 11-3.5-1.3-7-6-7-11V6l7-4z"/></svg></span>
+            <span class="wf-label" data-i18n="wf_l4">Custodia · SFC</span>
+            <span class="wf-name">Alianza Fiduciaria</span>
+            <span class="wf-sub" data-i18n="wf_s4">Distribución proporcional</span>
+          </div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-node" style="border-bottom-color:rgba(255,255,255,.5);">
+            <span class="wf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="1.2" width="20" height="20"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>
+            <span class="wf-label" data-i18n="wf_l5">Destino Final</span>
+            <span class="wf-name"  data-i18n="wf_n5">Inversionista</span>
+            <span class="wf-sub"   data-i18n="wf_s5">Mensual · Directo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<hr class="rule">
+
+<!-- ════ 6. BLOQUE FINANCIERO ═══════════════════════════ -->
+<!-- 6a. Calculadora -->
+<section class="fin-section" id="calculadora">
+  <div class="container">
+    <div class="fade">
+      <span class="eyebrow eyebrow-red" data-i18n="calc_label">Simulador de Inversión</span>
+      <h2 style="font-family:var(--serif);font-size:clamp(2rem,3.5vw,3rem);font-weight:300;margin:14px 0 20px;line-height:1.1;" data-i18n="calc_title">Calcula tu <em style="font-style:italic;">Rentabilidad</em></h2>
+    </div>
+    <div class="fin-note fade">
+      <div class="dot-red" style="flex-shrink:0;margin-top:4px;"></div>
+      <p data-i18n="fin_note_calc">Este análisis se centra en utilidades operativas proyectadas. No incluye la valorización del derecho y el activo, lo cual representa un beneficio patrimonial adicional extraordinario para el inversionista.</p>
+    </div>
+    <div class="calc-grid">
+      <!-- LEFT: Portfolio Selector -->
+      <div class="calc-panel fade">
+        <div style="margin-bottom:20px;">
+          <span class="calc-label" style="display:block;margin-bottom:4px;" data-i18n="calc_suite_title">Composición de Portafolio</span>
+          <p style="font-size:.7rem;color:var(--muted);line-height:1.6;" data-i18n="calc_suite_sub">Selecciona las suites que deseas adquirir</p>
+        </div>
+
+        <div class="suite-grid">
+          <!-- Tipo A -->
+          <div class="suite-card">
+            <div class="suite-card-header">
+              <span class="suite-tag" data-i18n="suite_a_tag">Tipo A</span>
+              <span class="suite-avail"><span data-i18n="avail_label">Disp.</span>: <span id="avail_a">40</span></span>
+            </div>
+            <div class="suite-area">31 m²</div>
+            <div class="suite-price">$ 381.300.000 COP</div>
+            <div class="suite-counter">
+              <button class="suite-btn" onclick="changeSuite('a',-1)">−</button>
+              <span class="suite-qty" id="qty_a">0</span>
+              <button class="suite-btn" onclick="changeSuite('a',+1)">+</button>
+            </div>
+          </div>
+          <!-- Tipo B -->
+          <div class="suite-card">
+            <div class="suite-card-header">
+              <span class="suite-tag" data-i18n="suite_b_tag">Tipo B</span>
+              <span class="suite-avail"><span data-i18n="avail_label">Disp.</span>: <span id="avail_b">38</span></span>
+            </div>
+            <div class="suite-area">42 m²</div>
+            <div class="suite-price">$ 516.600.000 COP</div>
+            <div class="suite-counter">
+              <button class="suite-btn" onclick="changeSuite('b',-1)">−</button>
+              <span class="suite-qty" id="qty_b">0</span>
+              <button class="suite-btn" onclick="changeSuite('b',+1)">+</button>
+            </div>
+          </div>
+          <!-- Tipo C -->
+          <div class="suite-card">
+            <div class="suite-card-header">
+              <span class="suite-tag" data-i18n="suite_c_tag">Tipo C</span>
+              <span class="suite-avail"><span data-i18n="avail_label">Disp.</span>: <span id="avail_c">38</span></span>
+            </div>
+            <div class="suite-area">50 m²</div>
+            <div class="suite-price">$ 615.000.000 COP</div>
+            <div class="suite-counter">
+              <button class="suite-btn" onclick="changeSuite('c',-1)">−</button>
+              <span class="suite-qty" id="qty_c">0</span>
+              <button class="suite-btn" onclick="changeSuite('c',+1)">+</button>
+            </div>
+          </div>
+          <!-- Tipo D -->
+          <div class="suite-card">
+            <div class="suite-card-header">
+              <span class="suite-tag" data-i18n="suite_d_tag">Tipo D</span>
+              <span class="suite-avail"><span data-i18n="avail_label">Disp.</span>: <span id="avail_d">38</span></span>
+            </div>
+            <div class="suite-area">57 m²</div>
+            <div class="suite-price">$ 701.100.000 COP</div>
+            <div class="suite-counter">
+              <button class="suite-btn" onclick="changeSuite('d',-1)">−</button>
+              <span class="suite-qty" id="qty_d">0</span>
+              <button class="suite-btn" onclick="changeSuite('d',+1)">+</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Participation bar -->
+        <div class="participation-bar-wrap">
+          <div class="participation-label">
+            <span data-i18n="part_label">Participación en el Hotel</span>
+            <strong id="partPct">0.00%</strong>
+          </div>
+          <div class="participation-bar"><div class="participation-fill" id="partBar" style="width:0%"></div></div>
+        </div>
+
+        <!-- Occupancy slider -->
+        <div class="calc-ib" style="margin-top:16px;">
+          <div class="calc-label-row">
+            <span class="calc-label" data-i18n="l_occ">Ocupación Anual</span>
+            <span class="vt" id="vO">68.5%</span>
+          </div>
+          <input type="range" id="inO" min="0" max="100" value="68.5" step="0.5" oninput="uc()">
+          <div class="range-labels"><span>0%</span><span data-i18n="dane_avg">Prom. DANE: 68.5%</span><span>100%</span></div>
+        </div>
+
+        <!-- Total investment display -->
+        <div class="inv-display">
+          <div class="inv-label" data-i18n="total_inv">Inversión Total</div>
+          <div class="itv" id="tInv">—</div>
+        </div>
+        <div class="fx-strip" id="fxStrip">
+          <span class="fx-strip-item">USD <strong id="fxUSD">—</strong> COP</span>
+          <span class="fx-strip-sep">·</span>
+          <span class="fx-strip-item">EUR <strong id="fxEUR">—</strong> COP</span>
+          <span class="fx-strip-time" id="fxTime"></span>
+        </div>
+
+        <div class="rental-pool-note" data-i18n="rental_pool_note">
+          Tu rentabilidad está respaldada por la operación total del hotel, mitigando el riesgo de vacancia individual.
+        </div>
+
+        <p class="calc-legal-note" style="margin-top:12px;"><strong data-i18n="note_title">Metodología:</strong> <span data-i18n="note_body">1% mensual a 63% occ · 2% a 100% occ. Interpolación lineal. DANE 68.5%.</span></p>
+        <p class="calc-disclaimer" data-i18n="calc_legal">Los valores son estimados. El proyecto no garantiza rendimientos específicos.</p>
+      </div>
+
+      <!-- RIGHT: Results Panel -->
+      <div class="results-panel fade" style="transition-delay:.2s">
+        <div class="metrics-row">
+          <div class="metric-box"><div class="mv ps" id="rM">—</div><span class="ml" data-i18n="m_monthly">Rend. Mensual</span></div>
+          <div class="metric-box highlight"><div class="mv" id="rA" style="color:#fff;">—</div><span class="ml" data-i18n="m_annual">ROI Anual</span></div>
+          <div class="metric-box"><div class="mv" id="rP">—</div><span class="ml" data-i18n="m_payback">Payback (años)</span></div>
+        </div>
+        <div class="income-row">
+          <div class="income-item"><span data-i18n="inc_monthly">Ingreso Mensual</span><strong id="rIM">—</strong></div>
+          <div class="income-item"><span data-i18n="inc_annual">Ingreso Anual</span><strong id="rIY">—</strong></div>
+          <div class="income-item"><span data-i18n="inc_5y">Proyección 5 Años</span><strong id="rI5">—</strong></div>
+        </div>
+        <div class="chart-wrap"><canvas id="yC"></canvas></div>
+        <p class="source-note" data-i18n="src_calc">Fuente: Proyecciones basadas en estándares STR Global y Alianza Fiduciaria.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6b. Valorización -->
+<section class="val-section" id="valorizacion">
+  <div class="container">
+    <div class="fade" style="margin-bottom:40px;">
+      <span class="eyebrow" data-i18n="val_label">Análisis Inmobiliario</span>
+      <h2 style="font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.8rem);font-weight:300;margin:14px 0;line-height:1.1;" data-i18n="val_title">Valorización del Sector <em style="font-style:italic;">Envigado</em></h2>
+    </div>
+    <div class="val-grid">
+      <div class="val-stats fade">
+        <div class="val-stat-row"><div class="val-stat-text"><h4 data-i18n="vs1_t">Valorización acumulada (5 años)</h4><p data-i18n="vs1_d">Sector Ciudad Peldar</p></div><span class="val-stat-num up">+22%</span></div>
+        <div class="val-stat-row"><div class="val-stat-text"><h4 data-i18n="vs2_t">Valorización Medellín promedio</h4><p data-i18n="vs2_d">Valle de Aburrá</p></div><span class="val-stat-num">+16%</span></div>
+        <div class="val-stat-row"><div class="val-stat-text"><h4 data-i18n="vs3_t">Valorización Colombia promedio</h4><p data-i18n="vs3_d">Finca raíz urbana nacional</p></div><span class="val-stat-num">+12%</span></div>
+        <div class="val-stat-row"><div class="val-stat-text"><h4 data-i18n="vs4_t">Crecimiento turistas internacionales</h4><p data-i18n="vs4_d">Medellín 2019 vs 2024</p></div><span class="val-stat-num up">+38%</span></div>
+      </div>
+      <div class="chart-container" id="vC-wrap"><canvas id="vC"></canvas></div>
+    </div>
+    <p class="source-note" data-i18n="src_val">Fuente: Camacol Antioquia, DANE y SIT Medellín.</p>
+  </div>
+</section>
+
+<!-- 6c. Comparativo -->
+<section class="cmp-section" id="comparativo">
+  <div class="container">
+    <div class="fade" style="margin-bottom:40px;">
+      <span class="eyebrow" data-i18n="cmp_label">Análisis de Mercado</span>
+      <h2 style="font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.8rem);font-weight:300;margin:14px 0;line-height:1.1;" data-i18n="cmp_title">Vivaltta vs otras <em style="font-style:italic;">alternativas de inversión</em></h2>
+    </div>
+    <div class="cmp-grid">
+      <div class="cmp-table-wrap fade">
+        <table class="ct">
+          <thead><tr><th data-i18n="th_product">Producto</th><th data-i18n="th_return">Rend. Anual</th><th data-i18n="th_risk">Riesgo</th><th data-i18n="th_liq">Liquidez</th></tr></thead>
+          <tbody>
+            <tr><td>US Treasury 10Y</td><td>4.5%</td><td><span class="bg bg-g" data-i18n="r_vlow">Muy Bajo</span></td><td><span class="bg bg-g" data-i18n="l_high">Alta</span></td></tr>
+            <tr><td>Real Estate Dubai</td><td>6–8%</td><td><span class="bg bg-y" data-i18n="r_med">Medio</span></td><td><span class="bg bg-r" data-i18n="l_low">Baja</span></td></tr>
+            <tr><td>TES Colombia</td><td>8.2%</td><td><span class="bg bg-g" data-i18n="r_low">Bajo</span></td><td><span class="bg bg-g" data-i18n="l_high">Alta</span></td></tr>
+            <tr><td>CDT Bancolombia</td><td>9.5%</td><td><span class="bg bg-g" data-i18n="r_vlow">Muy Bajo</span></td><td><span class="bg bg-y" data-i18n="l_med">Media</span></td></tr>
+            <tr><td>S&amp;P 500 ETF</td><td>~10%</td><td><span class="bg bg-r" data-i18n="r_high">Alto</span></td><td><span class="bg bg-g" data-i18n="l_high">Alta</span></td></tr>
+            <tr><td>REITs USA</td><td>8–10%</td><td><span class="bg bg-y" data-i18n="r_med">Medio</span></td><td><span class="bg bg-g" data-i18n="l_high">Alta</span></td></tr>
+            <tr class="hl"><td><strong>Vivaltta 63% occ.</strong></td><td><strong style="color:var(--green)">12%</strong></td><td><span class="bg bg-d" data-i18n="r_low">Bajo</span></td><td><span class="bg bg-y" data-i18n="l_med">Media</span></td></tr>
+            <tr class="hl"><td><strong data-i18n="cmp_dane">Vivaltta DANE 68.5%</strong></td><td><strong style="color:var(--green)">13%</strong></td><td><span class="bg bg-d" data-i18n="r_low">Bajo</span></td><td><span class="bg bg-y" data-i18n="l_med">Media</span></td></tr>
+            <tr class="hl"><td><strong>Vivaltta 85% occ.</strong></td><td><strong style="color:var(--green)">18.5%</strong></td><td><span class="bg bg-d" data-i18n="r_low">Bajo</span></td><td><span class="bg bg-y" data-i18n="l_med">Media</span></td></tr>
+            <tr class="hl"><td><strong>Vivaltta 100% occ.</strong></td><td><strong style="color:var(--green)">24%</strong></td><td><span class="bg bg-d" data-i18n="r_low">Bajo</span></td><td><span class="bg bg-y" data-i18n="l_med">Media</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="cmp-chart-wrap" id="cC-wrap"><div class="cc"><canvas id="cC"></canvas></div></div>
+    </div>
+    <!-- Nota valorización en bloque financiero -->
+    <div class="fin-note fade" style="margin-top:32px;">
+      <div class="dot-red" style="flex-shrink:0;margin-top:4px;"></div>
+      <p data-i18n="fin_note_cmp">Este análisis se centra en utilidades operativas. No incluye la valorización del derecho y el activo, lo cual representa un beneficio patrimonial adicional extraordinario para el inversionista — históricamente del +22% en el sector.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ════ 7. TURISMO MÉDICO ══════════════════════════════ -->
+<section class="med-section" id="turismo-medico">
+  <div class="container">
+    <div class="fade">
+      <span class="eyebrow" data-i18n="med_label">Turismo Médico y Estético · Colombia</span>
+      <h2 style="font-family:var(--serif);font-size:clamp(2rem,3.5vw,3rem);font-weight:300;margin:14px 0 16px;line-height:1.1;" data-i18n="med_title">La primera torre: quirófanos y consultorios <em style="font-style:italic;">en el corazón del clúster médico</em></h2>
+      <div style="width:36px;height:1px;background:var(--red);margin:0 0 16px;"></div>
+      <p class="lead" data-i18n="med_desc">Colombia es el destino #1 de turismo médico y estético de América Latina.</p>
+    </div>
+    <div class="med-grid">
+      <div class="med-cards fade">
+        <div class="med-card"><div class="med-card-icon">✚</div><div><h4 data-i18n="med1_t">Torre 1: Salud Especializada</h4><p data-i18n="med1_d">Quirófanos, áreas médicas especializadas y consultorios terminados bajo estándares internacionales.</p></div></div>
+        <div class="med-card"><div class="med-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" width="18" height="18"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div><div><h4 data-i18n="med2_t">#1 en Turismo Médico Latinoamérica</h4><p data-i18n="med2_d">Colombia recibe más de 36.000 pacientes internacionales al año con precios 40–70% más bajos que EE.UU. o Europa.</p></div></div>
+        <div class="med-card"><div class="med-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" width="18" height="18"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><h4 data-i18n="med3_t">Clúster Médico · Milla de Diamante</h4><p data-i18n="med3_d">Vivaltta está en el epicentro: a pasos del Metro, Viva Envigado y las principales avenidas del Valle de Aburrá.</p></div></div>
+        <div class="med-card"><div class="med-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="1.2" width="20" height="20"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><rect x="9" y="14" width="6" height="7"/></svg></div><div><h4 data-i18n="med4_t">Demanda de Hospedaje Médico Garantizada</h4><p data-i18n="med4_d">Pacientes y acompañantes necesitan alojamiento de calidad. La Torre 2 (Hotel Marriott) captura exactamente esa demanda.</p></div></div>
+      </div>
+      <div class="fade" style="transition-delay:.2s">
+        <div class="med-stats-panel">
+          <h3 data-i18n="med_stat_title">Colombia: el destino médico de las Américas</h3>
+          <div class="med-stat-grid">
+            <div class="med-stat-cell"><strong>36K+</strong><span data-i18n="ms1">Pacientes internacionales/año</span></div>
+            <div class="med-stat-cell"><strong>−60%</strong><span data-i18n="ms2">Costo vs EE.UU./Europa</span></div>
+            <div class="med-stat-cell"><strong>#1</strong><span data-i18n="ms3">Destino médico LATAM</span></div>
+            <div class="med-stat-cell"><strong>+26%</strong><span data-i18n="ms4">Crecimiento turismo Antioquia H1 2024</span></div>
+          </div>
+          <div class="med-tower-card"><h4 data-i18n="torre_t">Torre 1 · Salud y Servicios</h4><p data-i18n="torre_d">Quirófanos · Áreas médicas especializadas · Consultorios y servicios · Próxima a agotarse.</p></div>
+          <div class="med-tower-card"><h4 data-i18n="torre2_t">Torre 2 · Hotel Marriott</h4><p data-i18n="torre2_d">154 suites Marriott por OXO Hotels. Único hotel de marca internacional en la Milla de Diamante. Captura la demanda del clúster médico, corporativo y de los 75+ eventos anuales de Arena Primavera (8 min).</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ════ 8. INVERSIÓN GLOBAL ════════════════════════════ -->
+<section class="global-section" id="inversores-globales">
+  <div class="container">
+    <div class="fade">
+      <span class="eyebrow" data-i18n="glob_label">Inversión Global · Sin Fronteras</span>
+      <h2 style="font-family:var(--serif);font-size:clamp(2rem,3.5vw,3rem);font-weight:300;margin:14px 0;line-height:1.1;" data-i18n="glob_title">Invierta desde <em style="font-style:italic;">cualquier parte del mundo</em></h2>
+      <div style="width:36px;height:1px;background:var(--red);margin:16px 0 0;"></div>
+    </div>
+    <div class="global-grid">
+      <div class="global-steps">
+        <div class="global-step fade"><span class="global-step-n">1</span><div><h4 data-i18n="gs1_t">¿No tiene pesos colombianos? No hay problema.</h4><p data-i18n="gs1_d">Alianza Fiduciaria cuenta con cuentas broker que monetizan cualquier divisa a pesos colombianos.</p></div></div>
+        <div class="global-step fade" style="transition-delay:.1s"><span class="global-step-n">2</span><div><h4 data-i18n="gs2_t">Monetización a la mejor tasa del mercado.</h4><p data-i18n="gs2_d">Contamos con empresas aliadas especializadas en monetización internacional sin intermediarios innecesarios.</p></div></div>
+        <div class="global-step fade" style="transition-delay:.2s"><span class="global-step-n">3</span><div><h4 data-i18n="gs3_t">Proceso 100% digital. Sin viajes necesarios.</h4><p data-i18n="gs3_d">La vinculación, firma de documentos y seguimiento se realizan completamente en línea.</p></div></div>
+        <div class="global-step fade" style="transition-delay:.3s"><span class="global-step-n">4</span><div><h4 data-i18n="gs4_t">Cumplimiento SAGRILAFT integrado.</h4><p data-i18n="gs4_d">El proceso incluye cumplimiento anti-lavado (SAGRILAFT/PTEE), garantizando transparencia total.</p></div></div>
+      </div>
+      <div class="global-panel fade" style="transition-delay:.15s">
+        <div>
+          <h3 data-i18n="gh_title">Su inversión, en su moneda</h3>
+          <p style="font-size:.82rem;color:rgba(255,255,255,.45);margin-top:10px;line-height:1.8;" data-i18n="gh_desc">Alianza Fiduciaria y nuestras alianzas garantizan la conversión de cualquier divisa a pesos colombianos de manera ágil y regulada.</p>
+        </div>
+        <div class="currencies">
+          <span class="currency-tag">USD</span><span class="currency-tag">EUR</span><span class="currency-tag">GBP</span>
+          <span class="currency-tag">CAD</span><span class="currency-tag">CHF</span><span class="currency-tag">BRL</span>
+          <span class="currency-tag">ARS</span><span class="currency-tag">MXN</span><span class="currency-tag" data-i18n="more_curr">+ más divisas</span>
+        </div>
+        <div class="global-panel-stats">
+          <div class="gstat"><strong>100%</strong><span data-i18n="gstat1">Proceso digital</span></div>
+          <div class="gstat"><strong>0</strong><span data-i18n="gstat2">Viajes necesarios</span></div>
+          <div class="gstat"><strong>24h</strong><span data-i18n="gstat3">Respuesta asesor</span></div>
+        </div>
+        <div class="fiduciaria-note"><p data-i18n="gh_alianza">Alianza Fiduciaria — más de 30 años de trayectoria, vigilada por la SFC — garantiza que cada peso invertido en Vivaltta Marriott esté protegido por ley.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ─── TRUST STRIP ────────────────────────────────────── -->
+<section class="trust-section">
+  <div class="container">
+    <div class="trust-strip fade">
+      <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M12 2l7 4v6c0 5-3.5 9.7-7 11-3.5-1.3-7-6-7-11V6l7-4z"/></svg><div><h4 data-i18n="tp1_t">Alianza Fiduciaria · SFC</h4><p data-i18n="tp1_d">Todos los recursos custodiados por Alianza Fiduciaria, vigilada por la SFC.</p></div></div>
+      <div class="trust-item"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg><div><h4 data-i18n="tp2_t">Marriott International</h4><p data-i18n="tp2_d">La cadena hotelera #1 del mundo.</p></div></div>
+      <div class="trust-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg><div><h4 data-i18n="tp3_t">OXO Hotels</h4><p data-i18n="tp3_d">Operador especialista en lujo.</p></div></div>
+      <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><div><h4 data-i18n="tp4_t">Londoño Gómez</h4><p data-i18n="tp4_d">50+ años construyendo Colombia.</p></div></div>
+      <div class="trust-item"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg><div><h4 data-i18n="tp5_t">Arq. y Concreto</h4><p data-i18n="tp5_d">33 años de experiencia constructora.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ════ 9a. FAQ ══════════════════════════════════════════ -->
+<section class="faq-section" id="faq">
+  <div class="container">
+    <div class="faq-grid">
+      <div class="fade">
+        <span class="eyebrow" data-i18n="faq_eyebrow">Preguntas Frecuentes</span>
+        <h2 style="font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.8rem);font-weight:300;margin:14px 0;line-height:1.1;" data-i18n="faq_title">Todo lo que necesita <em style="font-style:italic;">saber</em></h2>
+        <p class="lead" style="max-width:100%;margin-top:16px;" data-i18n="faq_desc">Resolvemos las dudas más frecuentes de nuestros inversionistas en Colombia y el mundo.</p>
+        <div style="margin-top:32px;"><a href="#lead-form" class="btn" data-i18n="faq_cta">Hablar con un Asesor</a></div>
+      </div>
+      <div class="faq-list fade" style="transition-delay:.15s">
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><h4 data-i18n="faq1_q">¿Qué es exactamente un Derecho Fiduciario?</h4><span class="faq-icon">+</span></div>
+          <div class="faq-a"><p data-i18n="faq1_a">Un Derecho Fiduciario es una participación proporcional en el patrimonio autónomo que constituye el Hotel Marriott Vivaltta. Al adquirirlo, se emite un título respaldado por Alianza Fiduciaria, completamente separado del patrimonio de Londoño Gómez. Este título es un activo líquido: se puede vender, ceder o transferir con la misma libertad que cualquier activo inmobiliario.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><h4 data-i18n="faq2_q">¿Cuánto vale un Derecho Fiduciario?</h4><span class="faq-icon">+</span></div>
+          <div class="faq-a"><p data-i18n="faq2_a">El precio de un Derecho Fiduciario es de COP $50.000.000. Puede adquirir desde 1 derecho hasta el número que desee, y cada derecho le otorga la misma participación proporcional en las utilidades del hotel.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><h4 data-i18n="faq3_q">¿Cuándo empiezo a recibir utilidades?</h4><span class="faq-icon">+</span></div>
+          <div class="faq-a"><p data-i18n="faq3_a">El proyecto se lanza en mayo de 2026 e inicia operaciones hoteleras a finales de 2029. Como inversionista, ya está ganando desde el día uno: durante los 3 años de construcción, su patrimonio se valoriza con el activo subyacente, un beneficio adicional extraordinario al margen de las utilidades operativas. Al abrir el hotel, la Utilidad Operativa se distribuye mensualmente de forma proporcional a su participación.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><h4 data-i18n="faq4_q">¿Puedo invertir desde el exterior?</h4><span class="faq-icon">+</span></div>
+          <div class="faq-a"><p data-i18n="faq4_a">Sí. El proceso es 100% digital — asegure su participación desde cualquier país. Contamos con empresas aliadas especialistas en monetización de divisas sin intermediarios innecesarios y a la mejor tasa del mercado. Alianza Fiduciaria gestiona la conversión de forma ágil y regulada. No se requiere ningún desplazamiento.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><h4 data-i18n="faq5_q">¿Cómo está protegido mi capital?</h4><span class="faq-icon">+</span></div>
+          <div class="faq-a"><p data-i18n="faq5_a">Su capital ingresa a un patrimonio autónomo administrado por Alianza Fiduciaria, entidad vigilada por la Superintendencia Financiera de Colombia. Los fondos están legalmente separados del patrimonio del Desarrollador de Proyectos y solo se liberan según el cronograma de obra auditado. Es la máxima protección legal disponible en Colombia.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><h4 data-i18n="faq6_q">¿Qué pasa si la ocupación del hotel es baja?</h4><span class="faq-icon">+</span></div>
+          <div class="faq-a"><p data-i18n="faq6_a">El modelo proyecta rentabilidades desde el 12% anual a una ocupación del 63%. El promedio histórico de ocupación hotelera en Colombia según DANE es del 68.5%. Marriott, como la cadena hotelera #1 del mundo, tiene sistemas de distribución global que optimizan la ocupación. Los valores proyectados son estimados y el proyecto no garantiza rendimientos específicos.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><h4 data-i18n="faq7_q">¿Puedo vender mi Derecho Fiduciario?</h4><span class="faq-icon">+</span></div>
+          <div class="faq-a"><p data-i18n="faq7_a">Sí. Como activo líquido, su Derecho Fiduciario se puede vender, ceder o transferir con la misma libertad que cualquier activo inmobiliario. El proceso es ágil y la liquidez es comparable a la de otros instrumentos de inversión inmobiliaria.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ════ 9b. LEAD FORM / CIERRE ══════════════════════════ -->
+<section class="lead-section" id="lead-form">
+  <div class="container">
+    <div class="lead-grid">
+      <div class="lead-left fade">
+        <div class="arc"></div>
+        <span class="eyebrow" style="color:rgba(230,68,55,.7);" data-i18n="lead_label">Cupos Limitados</span>
+        <h2 class="lead-headline" data-i18n="lead_title">Asegure su participación <em>hoy</em></h2>
+        <p class="lead-body" data-i18n="lead_desc">Un asesor especialista le contactará en menos de 24 horas con el prospecto completo. Su patrimonio no puede esperar.</p>
+        <div class="lead-info">
+          <div class="lead-info-item"><span class="dot-red"></span><span data-i18n="li1">Proceso 100% digital, sin desplazamientos</span></div>
+          <div class="lead-info-item"><span class="dot-red"></span><span data-i18n="li2">Custodia legal por Alianza Fiduciaria · SFC</span></div>
+          <div class="lead-info-item"><span class="dot-red"></span><span data-i18n="li3">Disponible en múltiples monedas internacionales</span></div>
+          <div class="lead-info-item"><span class="dot-red"></span><span data-i18n="li4">Rentabilidad proyectada desde 12% anual</span></div>
+        </div>
+      </div>
+      <div class="fade" style="transition-delay:.2s">
+        <div class="lead-form-wrap">
+          <form id="mF" onsubmit="sub(event)">
+            <div class="form-grid">
+              <input type="text" class="form-input" data-i18n-ph="ph_name" placeholder="Nombre completo" required>
+              <input type="tel" class="form-input" data-i18n-ph="ph_phone" placeholder="Teléfono / WhatsApp" required>
+              <input type="email" class="form-input form-full" data-i18n-ph="ph_email" placeholder="Correo electrónico" required>
+              <select class="form-input form-full" id="cSel">
+                <option value="" data-i18n="ph_country">País de residencia</option>
+                <option>Afganistán</option><option>Albania</option><option>Alemania</option><option>Andorra</option><option>Angola</option><option>Arabia Saudita</option><option>Argentina</option><option>Australia</option><option>Austria</option><option>Azerbaiyán</option><option>Bélgica</option><option>Bolivia</option><option>Brasil</option><option>Canadá</option><option>Chile</option><option>China</option><option>Colombia</option><option>Costa Rica</option><option>Cuba</option><option>Dinamarca</option><option>Ecuador</option><option>Egipto</option><option>El Salvador</option><option>Emiratos Árabes Unidos</option><option>España</option><option>Estados Unidos</option><option>Francia</option><option>Guatemala</option><option>Honduras</option><option>India</option><option>Israel</option><option>Italia</option><option>Japón</option><option>México</option><option>Noruega</option><option>Nueva Zelanda</option><option>Países Bajos</option><option>Panamá</option><option>Paraguay</option><option>Perú</option><option>Polonia</option><option>Portugal</option><option>Reino Unido</option><option>República Dominicana</option><option>Rusia</option><option>Singapur</option><option>Sudáfrica</option><option>Suecia</option><option>Suiza</option><option>Uruguay</option><option>Venezuela</option><option>Vietnam</option>
+              </select>
+              <select class="form-input form-full" id="capSel">
+                <option value="" data-i18n="ph_capital">Capital disponible para invertir</option>
+                <option data-i18n="cap1">1 Derecho · COP $50M</option>
+                <option data-i18n="cap2">2–5 Derechos · $100M–$250M</option>
+                <option data-i18n="cap3">6–10 Derechos · $300M–$500M</option>
+                <option data-i18n="cap4">Más de 10 Derechos · $500M+</option>
+              </select>
+              <select class="form-input form-full" id="lSel" onchange="togOL(this)">
+                <option value="" data-i18n="ph_lang">Idioma para ser contactado</option>
+                <option>Español</option><option>English</option><option>Français</option>
+                <option>Português</option><option>Deutsch</option><option>Italiano</option>
+                <option>中文 (Chino)</option><option>عربي (Árabe)</option>
+                <option value="other" data-i18n="opt_other_lang">Otro idioma</option>
+              </select>
+              <input type="text" id="oli" class="form-input form-full" data-i18n-ph="ph_other_lang" placeholder="Especifique su idioma">
+              <button type="submit" class="form-submit form-full" data-i18n="btn_submit">Solicitar Información Exclusiva</button>
+            </div>
+          </form>
+          <p class="form-disclaimer" data-i18n="disclaimer">Sus datos están protegidos bajo la Ley 1581. Proceso SAGRILAFT/PTEE integrado.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FOOTER ══════════════════════════════════════════ -->
+<footer>
+  <div class="footer-logos">
+    <img src="https://londonogomez.com/sites/default/files/Lonodo%C3%B1o-G%C3%B3mez-Promotora-de-proyectos-logo.png" alt="Londoño Gómez" onerror="this.style.display='none'">
+    <span class="footer-sep">·</span><span class="footer-brand">Alianza Fiduciaria</span>
+    <span class="footer-sep">·</span><span class="footer-brand">OXO Hotels</span>
+    <span class="footer-sep">·</span><span class="footer-brand">Marriott International</span>
+    <span class="footer-sep">·</span><span class="footer-brand">Arq. y Concreto</span>
+  </div>
+  <p class="footer-legal" data-i18n="footer_legal">© 2026 Londoño Gómez. Vivaltta Marriott Ciudad Peldar, Envigado, Colombia. Los datos financieros son proyecciones estimativas. Fiducia: Alianza Fiduciaria. Vigilado SFC. Cumplimiento SAGRILAFT/PTEE.</p>
+</footer>
+
+<!-- Toast -->
+<div class="tst" id="tst">✓ <span id="tMsg">¡Gracias! Un asesor lo contactará pronto.</span></div>
+
+<!-- ════ SCRIPTS ══════════════════════════════════════════ -->
+<script>
+const TRANSLATIONS = {
+  "es": {
+    "nav_cta": "Invertir Ahora",
+    "heroBadge": "Lanzamiento Mayo 2026 · Ciudad Peldar, Envigado",
+    "heroSub": "Vivaltta es el corazón empresarial de Ciudad Peldar: dos torres en sinergia perfecta. La Torre 1 alberga quirófanos y oficinas especializadas; la Torre 2 es el Hotel Marriott — disponible para inversión mediante Derechos Fiduciarios vinculados a una Suite Hotelera bajo el Modelo Rental Pool.",
+    "btn_calc": "Ver Rentabilidad",
+    "btn_how": "¿Cómo funciona?",
+    "btn_model": "Conocer el Modelo",
+    "btn_acquire": "Adquiere Tu Suite",
+    "launch_label": "Lanzamiento Oficial",
+    "launch_date": "Mayo 2026 · Ciudad Peldar, Envigado, Colombia",
+    "tower1_tag": "Torre 1 · Salud · Próxima a agotarse",
+    "tower1_title": "Quirófanos y consultorios médicos especializados",
+    "tower1_body": "Torre de salud y servicios especializados — próxima a agotarse en su totalidad, al igual que Vittrio y Cristtali en el mismo plan parcial. Forma el ecosistema que garantiza ocupación permanente al hotel.",
+    "tower2_tag": "Torre 2 · Hotel Marriott · Activo de Inversión",
+    "tower2_title": "154 suites hoteleras operadas bajo la marca Marriott por OXO Hotels",
+    "tower2_body": "El activo de inversión: el único hotel de marca internacional en la Milla de Diamante. Operado por OXO Hotels bajo el estándar Marriott, captura la demanda del clúster médico, corporativo y — crucialmente — de la Arena Primavera (75+ eventos al año, a solo 8 minutos). Su patrimonio genera Utilidad Operativa sin importar si su suite individual está ocupada.",
+    "dev_headline": "Más de 50 años transformando el skyline de Colombia",
+    "dev_intro": "Juntos, el equipo más sólido del mercado inmobiliario hotelero de Colombia. Cada nombre en esta página es referente máximo en su campo.",
+    "lg_desc": "Desarrollador líder con más de 50 años de trayectoria transformando el panorama inmobiliario de Colombia. Visionarios detrás de Ciudad Peldar —el megaproyecto más exitoso del país—, Londoño Gómez garantiza solidez, valorización y una gestión estratégica orientada a la rentabilidad del inversionista.",
+    "tp5_t": "Arq. y Concreto",
+    "tp5_d": "Constructora referente en innovación y excelencia técnica. Con una hoja de ruta impecable en proyectos de gran escala y alta complejidad, aseguran los más altos estándares de calidad constructiva y cumplimiento, materializando hitos urbanos que perduran en el tiempo.",
+    "peldarDesc": "Ciudad Peldar ocupa 101.445 m² del histórico lote Peldar — el mejor lote del Valle de Aburrá. El megaproyecto #1 más vendido de Colombia. Conecta directamente con tres vías principales: Av. Las Vegas, Av. Regional y Av. Simón Bolívar.",
+    "peldar_title": "Ciudad a menos de 15 minutos de todo",
+    "pf1": "Pasando la calle",
+    "pf2": "Al lado del proyecto",
+    "pf3": "Valorización sector 5 años",
+    "pf4": "Proyecto + vendido Colombia",
+    "faq_eyebrow": "Preguntas Frecuentes",
+    "faq_title": "Todo lo que necesita saber",
+    "faq_desc": "Resolvemos las dudas más frecuentes de nuestros inversionistas en Colombia y el mundo.",
+    "faq_cta": "Hablar con un Asesor",
+    "faq1_q": "¿Qué es un Derecho Fiduciario vinculado a una Suite?",
+    "faq1_a": "Un Derecho Fiduciario es una participación proporcional en el patrimonio autónomo que constituye el Hotel Marriott Vivaltta. Al adquirirlo, se emite un título respaldado por Alianza Fiduciaria, completamente separado del patrimonio de Londoño Gómez. Este título es un activo líquido: se puede vender, ceder o transferir con la misma libertad que cualquier activo inmobiliario.",
+    "faq2_q": "¿Cuánto vale una Suite?",
+    "faq2_a": "El valor por m² es $12.300.000 COP. Suite Tipo A (31 m²): $381.300.000. Suite Tipo B (42 m²): $516.600.000. Suite Tipo C (50 m²): $615.000.000. Suite Tipo D (57 m²): $701.100.000.",
+    "faq3_q": "¿Cuándo empieza a generar retorno mi inversión?",
+    "faq3_a": "Como inversionista, ya está ganando desde el día uno: durante los 3 años de construcción, su patrimonio se valoriza con el activo subyacente, un beneficio adicional extraordinario al margen de las utilidades operativas. Al abrir el hotel, la Utilidad Operativa se distribuye mensualmente de forma proporcional a su participación.",
+    "faq4_q": "¿Puedo invertir desde el exterior?",
+    "faq4_a": "Sí. El proceso es 100% digital — asegure su participación desde cualquier país. Contamos con empresas aliadas especialistas en monetización de divisas sin intermediarios innecesarios y a la mejor tasa del mercado. Alianza Fiduciaria gestiona la conversión de forma ágil y regulada. No se requiere ningún desplazamiento.",
+    "faq5_q": "¿Cómo está protegido mi capital?",
+    "faq5_a": "Su capital ingresa a un patrimonio autónomo administrado por Alianza Fiduciaria, vigilada por la SFC. Los fondos están legalmente separados del patrimonio del Desarrollador de Proyectos.",
+    "faq6_q": "¿Por qué el Rental Pool protege mi patrimonio?",
+    "faq6_a": "Porque su Utilidad Operativa proviene de la ocupación global del hotel — gestionada por Marriott y OXO Hotels —, no de si su suite individual está ocupada. Con la Arena Primavera a 8 minutos (75+ eventos al año) y el clúster médico frente al edificio, el flujo de huéspedes está asegurado. El promedio histórico DANE es del 68.5%.",
+    "faq7_q": "¿Puedo vender o transferir mi Derecho Fiduciario?",
+    "faq7_a": "Sí. Como activo líquido, su Derecho Fiduciario se puede vender, ceder o transferir con la misma libertad que cualquier activo inmobiliario. El proceso es ágil y la liquidez es comparable a la de otros instrumentos de inversión inmobiliaria.",
+    "kpi1": "Ocupación Hotelera · DANE",
+    "kpi2": "Rentabilidad Anual Base",
+    "kpi3": "Suites Hoteleras",
+    "kpi4": "Eventos/Año Arena Primavera",
+    "hiw_label": "Modelo Rental Pool",
+    "hiw_title": "¿Cómo funciona el Modelo Rental Pool?",
+    "hiw_desc": "Como inversionista, adquiere un Derecho Fiduciario vinculado a una Suite específica. El hotel opera como un pool unificado: su patrimonio genera Utilidad Operativa proporcional a su participación, eliminando el riesgo de vacancia individual.",
+    "hiw1_t": "Emita su Título Fiduciario",
+    "hiw1_d": "Al formalizar la operación, se emite un título fiduciario respaldado por Alianza Fiduciaria. Su inversión queda jurídicamente protegida y separada del patrimonio del Desarrollador de Proyectos.",
+    "hiw2_t": "Alianza Fiduciaria Custodia tu Capital",
+    "hiw2_d": "Alianza Fiduciaria, vigilada por la SFC, custodia el 100% de los recursos. Una garantía legal, no una promesa.",
+    "hiw3_t": "Reciba su Utilidad Operativa",
+    "hiw3_d": "Con Marriott y OXO Hotels operando, recibe su participación proporcional de la Utilidad Operativa mensualmente, directo a su cuenta.",
+    "wf_title": "Flujo de transparencia del dinero",
+    "wf_l1": "Origen",
+    "wf_n1": "Huésped",
+    "wf_s1": "Paga su estadía",
+    "wf_l2": "Operación",
+    "wf_s2": "Bajo marca Marriott",
+    "wf_l3": "GOP Total",
+    "wf_n3": "Utilidad del Hotel",
+    "wf_s3": "Utilidad Operativa",
+    "wf_l4": "Custodia · SFC",
+    "wf_s4": "Distribución proporcional",
+    "wf_l5": "Destino Final",
+    "wf_n5": "Inversionista",
+    "wf_s5": "Mensual · Directo",
+    "trust_label": "Respaldos Institucionales",
+    "trust_title": "Cinco pilares de confianza",
+    "tp1_t": "Alianza Fiduciaria · SFC",
+    "tp1_d": "Todos los recursos custodiados por Alianza Fiduciaria, vigilada por la SFC.",
+    "tp2_t": "Marriott International",
+    "tp2_d": "La cadena hotelera #1 del mundo garantiza ocupación y reputación global.",
+    "tp3_t": "OXO Hotels",
+    "tp3_d": "Operador hotelero especialista en Colombia con historial en proyectos de lujo.",
+    "tp4_t": "Londoño Gómez",
+    "tp4_d": "50+ años transformando Colombia. Ciudad Peldar, el megaproyecto más exitoso del país.",
+    "med_label": "Turismo Médico y Estético · Colombia",
+    "med_title": "La primera torre: quirófanos y consultorios en el corazón del clúster médico",
+    "med_desc": "Colombia es el destino #1 de turismo médico y estético de América Latina.",
+    "med1_t": "Torre 1: Salud Especializada",
+    "med1_d": "Quirófanos, áreas médicas especializadas y consultorios terminados bajo estándares internacionales.",
+    "med2_t": "#1 en Turismo Médico Latinoamérica",
+    "med2_d": "Colombia recibe más de 36.000 pacientes internacionales al año con precios 40–70% más bajos que EE.UU. o Europa.",
+    "med3_t": "Clúster Médico · Milla de Diamante",
+    "med3_d": "Vivaltta está en el epicentro: a pasos del Metro, Viva Envigado y las principales avenidas.",
+    "med4_t": "Demanda de Hospedaje Garantizada",
+    "med4_d": "Pacientes, médicos y acompañantes necesitan alojamiento de calidad. La Torre 2 captura exactamente esa demanda.",
+    "med_stat_title": "Colombia: el destino médico de las Américas",
+    "ms1": "Pacientes internacionales/año",
+    "ms2": "Costo vs EE.UU./Europa",
+    "ms3": "Destino médico LATAM #1",
+    "ms4": "Crecimiento turismo Antioquia H1 2024",
+    "torre_t": "Torre 1 · Salud y Servicios",
+    "torre_d": "Quirófanos · Áreas médicas especializadas · Consultorios y servicios · Próxima a agotarse.",
+    "torre2_t": "Torre 2 · Hotel Marriott",
+    "torre2_d": "154 suites Marriott por OXO Hotels. Único hotel de marca internacional en la Milla de Diamante. Captura la demanda del clúster médico, corporativo y de los 75+ eventos anuales de Arena Primavera (8 min).",
+    "calc_label": "Calculadora de Portafolio",
+    "calc_title": "Compón tu Portafolio de Suites",
+    "calc_desc": "Selecciona las suites y visualiza tu participación en tiempo real.",
+    "calc_suite_title": "Composición de Portafolio",
+    "calc_suite_sub": "Selecciona las suites que deseas adquirir",
+    "suite_a_tag": "Tipo A",
+    "suite_b_tag": "Tipo B",
+    "suite_c_tag": "Tipo C",
+    "suite_d_tag": "Tipo D",
+    "avail_label": "Disp.",
+    "part_label": "Participación en el Hotel",
+    "l_occ": "Ocupación Global del Hotel",
+    "dane_avg": "Prom. DANE: 68.5%",
+    "total_inv": "Inversión Total",
+    "note_title": "Metodología:",
+    "note_body": "1% mensual a 63% occ · 2% a 100% occ. Modelo Rental Pool. DANE 68.5%.",
+    "calc_legal": "Proyecciones estimadas. No constituyen promesa de rentabilidad.",
+    "rental_pool_note": "Tu rentabilidad está respaldada por la operación total del hotel, mitigando el riesgo de vacancia individual.",
+    "m_monthly": "Rend. Mensual",
+    "m_annual": "ROI Anual",
+    "m_payback": "Payback (años)",
+    "inc_monthly": "Ingreso Mensual",
+    "inc_annual": "Ingreso Anual",
+    "inc_5y": "Proyección 5 Años",
+    "cmp_label": "Análisis de Mercado",
+    "cmp_title": "Vivaltta vs otras alternativas de inversión",
+    "cmp_desc": "La mejor combinación de rentabilidad, respaldo y valorización.",
+    "cmp_dane": "Vivaltta DANE 68.5%",
+    "th_product": "Producto",
+    "th_return": "Rend. Anual",
+    "th_risk": "Riesgo",
+    "th_liq": "Liquidez",
+    "r_vlow": "Muy Bajo",
+    "r_low": "Bajo",
+    "r_med": "Medio",
+    "r_high": "Alto",
+    "l_high": "Alta",
+    "l_med": "Media",
+    "l_low": "Baja",
+    "val_label": "Análisis Inmobiliario",
+    "val_title": "Valorización del Sector Envigado",
+    "vs1_t": "Valorización acumulada (5 años)",
+    "vs1_d": "Sector Ciudad Peldar",
+    "vs2_t": "Valorización Medellín promedio",
+    "vs2_d": "Valle de Aburrá",
+    "vs3_t": "Valorización Colombia promedio",
+    "vs3_d": "Finca raíz urbana nacional",
+    "vs4_t": "Crecimiento turistas internacionales",
+    "vs4_d": "Medellín 2019 vs 2024",
+    "glob_label": "Inversión Global · Sin Fronteras",
+    "glob_title": "Invierta desde cualquier parte del mundo",
+    "glob_desc": "No importa en qué país viva ni en qué moneda tenga su capital.",
+    "gs1_t": "¿No tiene pesos colombianos? No hay problema.",
+    "gs1_d": "Alianza Fiduciaria cuenta con cuentas broker que monetizan cualquier divisa.",
+    "gs2_t": "Monetización a la mejor tasa del mercado.",
+    "gs2_d": "Contamos con empresas aliadas especialistas en monetización de divisas sin intermediarios innecesarios y a la mejor tasa del mercado.",
+    "gs3_t": "Proceso 100% digital. Sin viajes necesarios.",
+    "gs3_d": "La vinculación, firma de documentos y seguimiento se realizan completamente en línea.",
+    "gs4_t": "Cumplimiento SAGRILAFT integrado.",
+    "gs4_d": "El proceso incluye cumplimiento anti-lavado (SAGRILAFT/PTEE), garantizando transparencia total.",
+    "gh_title": "Su inversión, en su moneda",
+    "gh_desc": "Alianza Fiduciaria garantiza la conversión de cualquier divisa de manera ágil y regulada.",
+    "gh_alianza": "Alianza Fiduciaria — más de 30 años de trayectoria, vigilada por la SFC — garantiza que cada peso invertido en Vivaltta Marriott esté protegido por ley.",
+    "more_curr": "+ más divisas",
+    "gstat1": "Proceso digital",
+    "gstat2": "Viajes necesarios",
+    "gstat3": "Respuesta asesor",
+    "li1": "Proceso 100% digital, sin desplazamientos",
+    "li2": "Custodia legal por Alianza Fiduciaria · SFC",
+    "li3": "Disponible en múltiples monedas internacionales",
+    "li4": "Rentabilidad proyectada desde 12% anual (Rental Pool)",
+    "lead_label": "Cupos Limitados",
+    "lead_title": "Asegure su participación hoy",
+    "lead_desc": "Un asesor especialista le contactará en menos de 24 horas con el prospecto completo. Su patrimonio no puede esperar.",
+    "ph_name": "Nombre completo",
+    "ph_phone": "Teléfono / WhatsApp",
+    "ph_email": "Correo electrónico",
+    "ph_country": "País de residencia",
+    "ph_capital": "Inversión estimada",
+    "ph_lang": "Idioma para ser contactado",
+    "ph_other_lang": "Especifique su idioma",
+    "cap1": "1 Suite · desde $381M COP",
+    "cap2": "2–5 Suites",
+    "cap3": "6–10 Suites",
+    "cap4": "Más de 10 Suites",
+    "btn_submit": "Solicitar Información Exclusiva",
+    "opt_other_lang": "Otro idioma",
+    "disclaimer": "Sus datos están protegidos bajo la Ley 1581. Proceso SAGRILAFT/PTEE integrado.",
+    "footer_legal": "© 2026 Londoño Gómez. Vivaltta Marriott Ciudad Peldar, Envigado, Colombia. Proyecciones estimativas. Fiducia: Alianza Fiduciaria. Vigilado SFC.",
+    "toastMsg": "¡Gracias! Un asesor lo contactará pronto.",
+    "src_val": "Fuente: Camacol Antioquia, DANE y SIT Medellín.",
+    "src_calc": "Fuente: Proyecciones bajo estándares STR Global y modelo Rental Pool de Alianza Fiduciaria.",
+    "arena_note": "Arena Primavera: 75+ eventos/año · 8 minutos del hotel",
+    "fin_note_calc": "Este análisis se centra en utilidades operativas proyectadas. No incluye la valorización del derecho y el activo, lo cual representa un beneficio patrimonial adicional extraordinario para el inversionista.",
+    "fin_note_cmp": "Este análisis se centra en utilidades operativas. No incluye la valorización del derecho y el activo, lo cual representa un beneficio patrimonial adicional extraordinario para el inversionista — históricamente del +22% en el sector.",
+    "av_eyebrow": "Asesor Digital · Disponible ahora",
+    "av_title": "Tu Asesor Digital de Inversión",
+    "av_body": "Habla directamente con Juan Salvador Álvarez, nuestro asesor digital disponible 24/7. Pregunta por tipologías de suite, rentabilidades, el proceso fiduciario o cualquier detalle del proyecto — por voz o chat, en tu idioma.",
+    "av_badge1": "Disponible 24/7",
+    "av_badge2": "Voz y chat",
+    "av_badge3": "Multiidioma",
+    "av_role": "Asesor Digital",
+    "av_live_label": "En vivo",
+    "av_chat_ph": "Escribe tu consulta aquí...",
+    "av_chat_send": "Enviar"
+  },
+  "en": {
+    "nav_cta": "Invest Now",
+    "heroBadge": "Launching May 2026 · Ciudad Peldar, Envigado",
+    "heroSub": "Vivaltta is the commercial heart of Ciudad Peldar: two towers in perfect synergy. Tower 1 houses operating rooms and specialized offices; Tower 2 is the Marriott Hotel — available for investment through Fiduciary Rights linked to a Hotel Suite under the Rental Pool Model.",
+    "btn_calc": "See Returns",
+    "btn_how": "How does it work?",
+    "btn_model": "Discover the Model",
+    "btn_acquire": "Acquire Your Suite",
+    "launch_label": "Official Launch",
+    "launch_date": "May 2026 · Ciudad Peldar, Envigado, Colombia",
+    "tower1_tag": "Tower 1 · Health · Nearly Sold Out",
+    "tower1_title": "Operating rooms and specialized medical consulting offices",
+    "tower1_body": "Health and specialized services tower — nearly sold out, like Vittrio and Cristtali in the same master plan. Creates the ecosystem that guarantees permanent occupancy for the hotel.",
+    "tower2_tag": "Tower 2 · Marriott Hotel · Investment Asset",
+    "tower2_title": "154 hotel suites operated under the Marriott brand by OXO Hotels",
+    "tower2_body": "The investment asset: the only international brand hotel in the Diamond Mile. Operated by OXO Hotels under the Marriott standard, it captures demand from the medical and corporate cluster and — crucially — from Arena Primavera attendees (75+ events per year, just 8 minutes away). Your capital generates Operating Profit regardless of whether your individual suite is occupied.",
+    "dev_headline": "Over 50 years transforming the Colombian skyline",
+    "dev_intro": "Together, the most solid team in Colombia's hotel real estate market. Each name on this page is a leader in their field.",
+    "lg_desc": "Leading developer with over 50 years of track record transforming Colombia's real estate landscape. Visionaries behind Ciudad Peldar — the country's most successful megaproject — Londoño Gómez guarantees solidity, appreciation and strategic management oriented to investor returns.",
+    "tp5_t": "Arq. y Concreto",
+    "tp5_d": "Reference construction firm in innovation and technical excellence. With an impeccable track record in large-scale, high-complexity projects, they ensure the highest standards of construction quality and compliance, materializing urban milestones that stand the test of time.",
+    "peldarDesc": "Ciudad Peldar covers 101,445 m² of the historic Peldar factory site — the best lot in the Aburra Valley. Colombia's #1 best-selling megaproject. Directly connected to three major thoroughfares: Av. Las Vegas, Av. Regional and Av. Simón Bolívar.",
+    "peldar_title": "A city within 15 minutes of everything",
+    "pf1": "Across the street",
+    "pf2": "Next to the project",
+    "pf3": "5-year sector appreciation",
+    "pf4": "#1 Sold project in Colombia",
+    "faq_eyebrow": "Frequently Asked Questions",
+    "faq_title": "Everything you need to know",
+    "faq_desc": "We answer the most common questions from our investors worldwide.",
+    "faq_cta": "Talk to an Advisor",
+    "faq1_q": "What is a Fiduciary Right linked to a Suite?",
+    "faq1_a": "A Fiduciary Right is a proportional participation in the autonomous trust that constitutes the Vivaltta Marriott Hotel. Upon acquisition, a title backed by Alianza Fiduciaria is issued, completely separate from Londoño Gómez's assets. This title is a liquid asset: it can be sold, assigned or transferred with the same freedom as any real estate asset.",
+    "faq2_q": "How much does a Suite cost?",
+    "faq2_a": "Price per m² is COP $12,300,000. Type A (31 m²): $381,300,000. Type B (42 m²): $516,600,000. Type C (50 m²): $615,000,000. Type D (57 m²): $701,100,000.",
+    "faq3_q": "When does my investment start generating returns?",
+    "faq3_a": "As an investor, you start earning from day one: during the 3-year construction phase, your capital appreciates with the underlying asset — an extraordinary additional benefit beyond operating profits. Once the hotel opens, Operating Profit is distributed monthly in proportion to your participation.",
+    "faq4_q": "Can I invest from abroad?",
+    "faq4_a": "Yes. The process is 100% digital — secure your participation from any country. We work with specialized allied companies for currency monetization with no unnecessary intermediaries and at the best market rate. Alianza Fiduciaria manages the conversion in an agile, regulated manner. No travel required.",
+    "faq5_q": "How is my capital protected?",
+    "faq5_a": "Your capital enters an autonomous trust managed by Alianza Fiduciaria, supervised by the SFC. Funds are legally separated from the Project Developer's assets.",
+    "faq6_q": "Why does the Rental Pool protect my capital?",
+    "faq6_a": "Because your Operating Profit comes from the hotel's global occupancy — managed by Marriott and OXO Hotels —, not from whether your individual suite is occupied. With Arena Primavera 8 minutes away (75+ events per year) and the medical cluster in front of the building, guest flow is secured. The historical DANE average is 68.5%.",
+    "faq7_q": "Can I sell or transfer my Fiduciary Right?",
+    "faq7_a": "Yes. As a liquid asset, your Fiduciary Right can be sold, assigned or transferred with the same freedom as any real estate asset. The process is agile and liquidity is comparable to other real estate investment instruments.",
+    "kpi1": "Hotel Occupancy · DANE",
+    "kpi2": "Base Annual Yield",
+    "kpi3": "Hotel Suites",
+    "kpi4": "Events/Year Arena Primavera",
+    "hiw_label": "Rental Pool Model",
+    "hiw_title": "How does the Rental Pool Model work?",
+    "hiw_desc": "As an investor, you acquire a Fiduciary Right linked to a specific Suite. The hotel operates as a unified pool: your capital generates Operating Profit proportional to your participation, eliminating individual vacancy risk.",
+    "hiw1_t": "Issue Your Fiduciary Title",
+    "hiw1_d": "When formalizing the transaction, a fiduciary title backed by Alianza Fiduciaria is issued. Your investment is legally protected and separate from the Project Developer's assets.",
+    "hiw2_t": "Alianza Fiduciaria Safeguards your Capital",
+    "hiw2_d": "Alianza Fiduciaria, supervised by the SFC, holds 100% of funds. A legal guarantee, not a promise.",
+    "hiw3_t": "Receive Your Operating Profit",
+    "hiw3_d": "With Marriott and OXO Hotels operating, you receive your proportional share of the Operating Profit monthly, directly to your account.",
+    "wf_title": "Money transparency flow",
+    "wf_l1": "Origin",
+    "wf_n1": "Guest",
+    "wf_s1": "Pays their stay",
+    "wf_l2": "Operations",
+    "wf_s2": "Under Marriott brand",
+    "wf_l3": "Total GOP",
+    "wf_n3": "Hotel Profit",
+    "wf_s3": "Operating Profit",
+    "wf_l4": "Custody · SFC",
+    "wf_s4": "Proportional distribution",
+    "wf_l5": "Final Destination",
+    "wf_n5": "Investor",
+    "wf_s5": "Monthly · Direct",
+    "trust_label": "Institutional Backing",
+    "trust_title": "Five pillars of confidence",
+    "tp1_t": "Alianza Fiduciaria · SFC",
+    "tp1_d": "All funds held by Alianza Fiduciaria, supervised by the SFC.",
+    "tp2_t": "Marriott International",
+    "tp2_d": "The world's #1 hotel brand.",
+    "tp3_t": "OXO Hotels",
+    "tp3_d": "Specialist hotel operator in Colombia.",
+    "tp4_t": "Londoño Gómez",
+    "tp4_d": "50+ years transforming Colombia. Ciudad Peldar, the country's most successful megaproject.",
+    "med_label": "Medical & Aesthetic Tourism · Colombia",
+    "med_title": "First tower: operating rooms & offices at the heart of the medical cluster",
+    "med_desc": "Colombia is Latin America's #1 medical and aesthetic tourism destination.",
+    "med1_t": "Tower 1: Specialized Health",
+    "med1_d": "Certified operating rooms, medical areas and finished consulting rooms.",
+    "med2_t": "#1 Medical Tourism in Latin America",
+    "med2_d": "Colombia receives 36,000+ international patients per year at prices 40-70% lower than the US or Europe.",
+    "med3_t": "Medical Cluster · Diamond Mile",
+    "med3_d": "Vivaltta at the epicenter: steps from Viva Envigado, Metro and main avenues.",
+    "med4_t": "Guaranteed Hospitality Demand",
+    "med4_d": "Patients, doctors and companions need quality accommodation. Tower 2 captures exactly that demand.",
+    "med_stat_title": "Colombia: the medical destination of the Americas",
+    "ms1": "International patients/year",
+    "ms2": "Cost vs US/Europe",
+    "ms3": "Medical tourism LATAM #1",
+    "ms4": "Antioquia tourism growth H1 2024",
+    "torre_t": "Tower 1 · Health and Services",
+    "torre_d": "Operating rooms · Specialized medical areas · Consulting offices and services · Nearly sold out.",
+    "torre2_t": "Tower 2 · Marriott Hotel",
+    "torre2_d": "154 Marriott suites by OXO Hotels. Only international brand hotel in Diamond Mile. Captures medical, corporate and Arena Primavera demand (75+ events/year, 8 min).",
+    "calc_label": "Portfolio Calculator",
+    "calc_title": "Build your Suite Portfolio",
+    "calc_desc": "Select suites and visualize your participation in real time.",
+    "calc_suite_title": "Portfolio Composition",
+    "calc_suite_sub": "Select the suites you wish to acquire",
+    "suite_a_tag": "Type A",
+    "suite_b_tag": "Type B",
+    "suite_c_tag": "Type C",
+    "suite_d_tag": "Type D",
+    "avail_label": "Avail.",
+    "part_label": "Hotel Participation",
+    "l_occ": "Global Hotel Occupancy",
+    "dane_avg": "DANE avg: 68.5%",
+    "total_inv": "Total Investment",
+    "note_title": "Methodology:",
+    "note_body": "1% monthly at 63% occ · 2% at 100% occ. Rental Pool Model. DANE 68.5%.",
+    "calc_legal": "Projected values are estimates. No specific returns guaranteed.",
+    "rental_pool_note": "Your return is backed by the hotel's total operation, mitigating individual vacancy risk.",
+    "m_monthly": "Monthly Yield",
+    "m_annual": "Annual ROI",
+    "m_payback": "Payback (years)",
+    "inc_monthly": "Monthly Income",
+    "inc_annual": "Annual Income",
+    "inc_5y": "5-Year Projection",
+    "cmp_label": "Market Analysis",
+    "cmp_title": "Vivaltta vs other investment alternatives",
+    "cmp_desc": "Best combination of returns, backing and appreciation.",
+    "cmp_dane": "Vivaltta DANE 68.5%",
+    "th_product": "Product",
+    "th_return": "Annual Return",
+    "th_risk": "Risk",
+    "th_liq": "Liquidity",
+    "r_vlow": "Very Low",
+    "r_low": "Low",
+    "r_med": "Medium",
+    "r_high": "High",
+    "l_high": "High",
+    "l_med": "Medium",
+    "l_low": "Low",
+    "val_label": "Real Estate Analysis",
+    "val_title": "Envigado Sector Appreciation",
+    "vs1_t": "Cumulative appreciation (5 years)",
+    "vs1_d": "Ciudad Peldar area",
+    "vs2_t": "Medellin average",
+    "vs2_d": "Aburra Valley",
+    "vs3_t": "Colombia average",
+    "vs3_d": "National urban real estate",
+    "vs4_t": "International tourist growth",
+    "vs4_d": "Medellin 2019 vs 2024",
+    "glob_label": "Global Investment · No Borders",
+    "glob_title": "Invest from anywhere in the world",
+    "glob_desc": "No matter which country you live in or which currency your capital is in.",
+    "gs1_t": "No Colombian pesos? No problem.",
+    "gs1_d": "Alianza Fiduciaria converts any currency to Colombian pesos.",
+    "gs2_t": "Monetization at the best market rate.",
+    "gs2_d": "We work with specialized allied companies for currency monetization with no unnecessary intermediaries and at the best market rate.",
+    "gs3_t": "100% digital process. No travel required.",
+    "gs3_d": "Onboarding and document signing completely online.",
+    "gs4_t": "Integrated SAGRILAFT compliance.",
+    "gs4_d": "Full anti-money-laundering compliance integrated.",
+    "gh_title": "Your investment, in your currency",
+    "gh_desc": "Alianza Fiduciaria guarantees agile, regulated currency conversion.",
+    "gh_alianza": "Alianza Fiduciaria — 30+ years of track record, supervised by the SFC — guarantees every peso invested in Vivaltta Marriott is protected by law.",
+    "more_curr": "+ more currencies",
+    "gstat1": "Digital process",
+    "gstat2": "Trips required",
+    "gstat3": "Advisor response",
+    "li1": "100% digital process, no travel required",
+    "li2": "Legal custody by Alianza Fiduciaria · SFC",
+    "li3": "Available in multiple international currencies",
+    "li4": "Projected yield from 12% per year (Rental Pool)",
+    "lead_label": "Limited Spots",
+    "lead_title": "Secure your participation today",
+    "lead_desc": "A specialist advisor will contact you within 24 hours with the complete prospectus. Your capital cannot wait.",
+    "ph_name": "Full name",
+    "ph_phone": "Phone / WhatsApp",
+    "ph_email": "Email address",
+    "ph_country": "Country of residence",
+    "ph_capital": "Estimated investment",
+    "ph_lang": "Preferred contact language",
+    "ph_other_lang": "Please specify your language",
+    "cap1": "1 Suite · from COP $381M",
+    "cap2": "2–5 Suites",
+    "cap3": "6–10 Suites",
+    "cap4": "More than 10 Suites",
+    "btn_submit": "Request Exclusive Information",
+    "opt_other_lang": "Other language",
+    "disclaimer": "Data protected. SAGRILAFT/PTEE compliance integrated.",
+    "footer_legal": "© 2026 Londoño Gomez. Vivaltta Marriott Ciudad Peldar, Envigado, Colombia.",
+    "toastMsg": "Thank you! An advisor will contact you soon.",
+    "src_val": "Source: Camacol Antioquia, DANE and SIT Medellín.",
+    "src_calc": "Source: Projections under STR Global standards and Alianza Fiduciaria Rental Pool model.",
+    "arena_note": "Arena Primavera: 75+ events/year · 8 minutes from the hotel",
+    "fin_note_calc": "This analysis focuses on projected operating profits. It does not include the appreciation of the right and the underlying asset, which represents an extraordinary additional patrimonial benefit for the investor.",
+    "fin_note_cmp": "This analysis focuses on operating profits. It does not include the appreciation of the right and the underlying asset — historically +22% in this sector.",
+    "av_eyebrow": "Digital Advisor · Available now",
+    "av_title": "Your Digital Investment Advisor",
+    "av_body": "Speak directly with Juan Salvador Álvarez, our digital advisor available 24/7. Ask about suite types, yields, the fiduciary process or any project detail — by voice or chat, in your language.",
+    "av_badge1": "Available 24/7",
+    "av_badge2": "Voice & chat",
+    "av_badge3": "Multilingual",
+    "av_role": "Digital Advisor",
+    "av_live_label": "Live",
+    "av_chat_ph": "Type your question here...",
+    "av_chat_send": "Send"
+  },
+  "fr": {
+    "nav_cta": "Investir Maintenant",
+    "heroBadge": "Lancement Mai 2026 · Ciudad Peldar, Envigado",
+    "heroSub": "Vivaltta est le cœur commercial de Ciudad Peldar : deux tours en synergie parfaite. La Tour 1 abrite des blocs opératoires et des bureaux ; la Tour 2 est l'Hôtel Marriott — disponible à l'investissement via des Droits Fiduciaires liés à une Suite Hôtelière sous le Modèle Rental Pool.",
+    "btn_calc": "Voir les Rendements",
+    "btn_how": "Comment ça marche?",
+    "btn_model": "Découvrir le Modèle",
+    "btn_acquire": "Acquérir votre Suite",
+    "launch_label": "Lancement Officiel",
+    "launch_date": "Mai 2026 · Ciudad Peldar, Envigado, Colombie",
+    "tower1_tag": "Tour 1 · Santé · Bientôt épuisée",
+    "tower1_title": "Blocs opératoires et cabinets médicaux spécialisés",
+    "tower1_body": "Tour de santé et services spécialisés — bientôt entièrement épuisée, comme Vittrio et Cristtali dans le même plan directeur. Forme l'écosystème qui garantit une occupation permanente à l'hôtel.",
+    "tower2_tag": "Tour 2 · Hôtel Marriott · Actif d'Investissement",
+    "tower2_title": "154 suites hôtelières opérées sous la marque Marriott par OXO Hotels",
+    "tower2_body": "L'actif d'investissement : le seul hôtel de marque internationale dans la Milla de Diamante. Exploité par OXO Hotels sous la norme Marriott, il capte la demande du cluster médical, d'entreprises et — surtout — de l'Arena Primavera (75+ événements par an, à seulement 8 minutes). Votre patrimoine génère un Bénéfice Opérationnel indépendamment de l'occupation de votre suite.",
+    "dev_headline": "Plus de 50 ans à transformer le skyline de Colombie",
+    "dev_intro": "Ensemble, l'équipe la plus solide du marché immobilier hôtelier de Colombie.",
+    "lg_desc": "Promoteur leader avec plus de 50 ans de trajectoire transformant le paysage immobilier de Colombie. Visionnaires derrière Ciudad Peldar — le mégaprojet le plus réussi du pays — Londoño Gómez garantit solidité, valorisation et gestion stratégique orientée vers la rentabilité de l'investisseur.",
+    "tp5_t": "Arq. y Concreto",
+    "tp5_d": "Constructeur référent en innovation et excellence technique. Avec un palmarès irréprochable dans des projets de grande envergure et haute complexité, ils assurent les plus hauts standards de qualité constructive et de conformité, concrétisant des repères urbains qui perdurent dans le temps.",
+    "peldarDesc": "Ciudad Peldar couvre 101 445 m² de l'historique site Peldar — le meilleur terrain du Valle de Aburrá. Le mégaprojet #1 le plus vendu de Colombie. Connecté directement à trois grandes voies : Av. Las Vegas, Av. Regional et Av. Simón Bolívar.",
+    "peldar_title": "Une ville à moins de 15 minutes de tout",
+    "pf1": "De l'autre côté de la rue",
+    "pf2": "À côté du projet",
+    "pf3": "Valorisation secteur 5 ans",
+    "pf4": "Projet le plus vendu en Colombie",
+    "faq_eyebrow": "Questions Fréquentes",
+    "faq_title": "Tout ce que vous devez savoir",
+    "faq_desc": "Nous répondons aux questions les plus fréquentes de nos investisseurs dans le monde.",
+    "faq_cta": "Parler à un Conseiller",
+    "faq1_q": "Qu'est-ce qu'un Droit Fiduciaire lié à une Suite?",
+    "faq1_a": "Un Droit Fiduciaire est une participation proportionnelle dans le patrimoine autonome constituant l'Hôtel Marriott Vivaltta. À l'acquisition, un titre soutenu par Alianza Fiduciaria est émis, totalement séparé du patrimoine de Londoño Gómez. Ce titre est un actif liquide : il peut être vendu, cédé ou transféré avec la même liberté que tout actif immobilier.",
+    "faq2_q": "Combien coûte une Suite?",
+    "faq2_a": "Le prix au m² est COP $12.300.000. Suite Type A (31 m²) : $381.300.000. Type B (42 m²) : $516.600.000. Type C (50 m²) : $615.000.000. Type D (57 m²) : $701.100.000.",
+    "faq3_q": "Quand mon investissement commence-t-il à générer des rendements?",
+    "faq3_a": "En tant qu'investisseur, vous commencez à gagner dès le premier jour : pendant les 3 ans de construction, votre patrimoine se valorise avec l'actif sous-jacent. À l'ouverture de l'hôtel, le Bénéfice Opérationnel est distribué mensuellement au prorata de votre participation.",
+    "faq4_q": "Puis-je investir depuis l'étranger?",
+    "faq4_a": "Oui. Le processus est 100% numérique. Nous travaillons avec des sociétés alliées spécialisées en monétisation de devises sans intermédiaires inutiles et au meilleur taux du marché. Aucun déplacement requis.",
+    "faq5_q": "Comment mon capital est-il protégé?",
+    "faq5_a": "Votre capital entre dans un patrimoine autonome géré par Alianza Fiduciaria, supervisée par la SFC.",
+    "faq6_q": "Pourquoi le Rental Pool protège-t-il mon patrimoine?",
+    "faq6_a": "Parce que votre Bénéfice Opérationnel provient de l'occupation globale de l'hôtel — gérée par Marriott et OXO Hotels —, et non de votre suite individuelle. Avec l'Arena Primavera à 8 minutes (75+ événements par an), le flux de clients est assuré.",
+    "faq7_q": "Puis-je vendre ou transférer mon Droit Fiduciaire?",
+    "faq7_a": "Oui. En tant qu'actif liquide, votre Droit Fiduciaire peut être vendu, cédé ou transféré avec la même liberté que tout actif immobilier.",
+    "kpi1": "Occupation Hôtelière · DANE",
+    "kpi2": "Rendement Annuel de Base",
+    "kpi3": "Suites Hôtelières",
+    "kpi4": "Événements/An Arena Primavera",
+    "hiw_label": "Modèle Rental Pool",
+    "hiw_title": "Comment fonctionne le Modèle Rental Pool?",
+    "hiw_desc": "En tant qu'investisseur, vous acquérez un Droit Fiduciaire lié à une Suite spécifique. L'hôtel fonctionne comme un pool unifié : votre patrimoine génère un Bénéfice Opérationnel proportionnel à votre participation.",
+    "hiw1_t": "Émettez votre Titre Fiduciaire",
+    "hiw1_d": "À la formalisation, un titre fiduciaire soutenu par Alianza Fiduciaria est émis. Votre investissement est légalement protégé et séparé du patrimoine du Promoteur de Projets.",
+    "hiw2_t": "Alianza Fiduciaria Sécurise votre Capital",
+    "hiw2_d": "Alianza Fiduciaria, supervisée par la SFC, détient 100% des fonds. Une garantie légale.",
+    "hiw3_t": "Recevez votre Bénéfice Opérationnel",
+    "hiw3_d": "Avec Marriott et OXO Hotels en opération, vous recevez votre part proportionnelle du Bénéfice Opérationnel mensuellement.",
+    "wf_title": "Flux de transparence de l'argent",
+    "wf_l1": "Origine",
+    "wf_n1": "Client",
+    "wf_s1": "Paie son séjour",
+    "wf_l2": "Opérations",
+    "wf_s2": "Sous marque Marriott",
+    "wf_l3": "GOP Total",
+    "wf_n3": "Profit de l'Hôtel",
+    "wf_s3": "Bénéfice Opérationnel",
+    "wf_l4": "Garde · SFC",
+    "wf_s4": "Distribution proportionnelle",
+    "wf_l5": "Destination Finale",
+    "wf_n5": "Investisseur",
+    "wf_s5": "Mensuel · Direct",
+    "trust_label": "Soutiens Institutionnels",
+    "trust_title": "Cinq piliers de confiance",
+    "tp1_t": "Alianza Fiduciaria · SFC",
+    "tp1_d": "Tous les fonds détenus par Alianza Fiduciaria, supervisée par la SFC.",
+    "tp2_t": "Marriott International",
+    "tp2_d": "La chaîne hôtelière #1 mondiale.",
+    "tp3_t": "OXO Hotels",
+    "tp3_d": "Opérateur hôtelier spécialiste en Colombie.",
+    "tp4_t": "Londoño Gómez",
+    "tp4_d": "50+ ans transformant la Colombie. Ciudad Peldar, le mégaprojet le plus réussi du pays.",
+    "med_label": "Tourisme Médical et Esthétique · Colombie",
+    "med_title": "La première tour : blocs opératoires et cabinets au cœur du cluster médical",
+    "med_desc": "La Colombie est la destination #1 du tourisme médical en Amérique Latine.",
+    "med1_t": "Tour 1 : Santé Spécialisée",
+    "med1_d": "Blocs opératoires certifiés, zones médicales et cabinets selon les normes internationales.",
+    "med2_t": "#1 Tourisme Médical en Amérique Latine",
+    "med2_d": "La Colombie reçoit plus de 36 000 patients internationaux par an à des prix 40–70% inférieurs.",
+    "med3_t": "Cluster Médical · Milla de Diamante",
+    "med3_d": "Vivaltta est à l'épicentre : à quelques pas du Métro, de Viva Envigado et des principales avenues.",
+    "med4_t": "Demande d'Hébergement Garantie",
+    "med4_d": "Patients, médecins et accompagnateurs ont besoin d'un hébergement de qualité. La Tour 2 capte exactement cette demande.",
+    "med_stat_title": "Colombie : la destination médicale des Amériques",
+    "ms1": "Patients internationaux/an",
+    "ms2": "Coût vs États-Unis/Europe",
+    "ms3": "Tourisme médical LATAM #1",
+    "ms4": "Croissance tourisme Antioquia S1 2024",
+    "torre_t": "Tour 1 · Santé et Services",
+    "torre_d": "Blocs opératoires · Zones médicales spécialisées · Cabinets et services · Bientôt épuisée.",
+    "torre2_t": "Tour 2 · Hôtel Marriott",
+    "torre2_d": "154 suites Marriott par OXO Hotels. Seul hôtel international dans la Milla de Diamante. Capte la demande médicale, d'entreprises et de l'Arena Primavera (75+ év./an, 8 min).",
+    "calc_label": "Calculateur de Portefeuille",
+    "calc_title": "Composez votre Portefeuille de Suites",
+    "calc_desc": "Sélectionnez les suites et visualisez votre participation en temps réel.",
+    "calc_suite_title": "Composition du Portefeuille",
+    "calc_suite_sub": "Sélectionnez les suites que vous souhaitez acquérir",
+    "suite_a_tag": "Type A",
+    "suite_b_tag": "Type B",
+    "suite_c_tag": "Type C",
+    "suite_d_tag": "Type D",
+    "avail_label": "Disp.",
+    "part_label": "Participation dans l'Hôtel",
+    "l_occ": "Occupation Globale de l'Hôtel",
+    "dane_avg": "Moy. DANE: 68,5%",
+    "total_inv": "Investissement Total",
+    "note_title": "Méthodologie:",
+    "note_body": "1%/mois à 63% occ · 2%/mois à 100% occ. Modèle Rental Pool.",
+    "calc_legal": "Projections estimatives. Ne constituent pas une promesse de rentabilité.",
+    "rental_pool_note": "Votre rentabilité est soutenue par l'opération totale de l'hôtel, atténuant le risque de vacance individuelle.",
+    "m_monthly": "Rend. Mensuel",
+    "m_annual": "ROI Annuel",
+    "m_payback": "Retour (années)",
+    "inc_monthly": "Revenu Mensuel",
+    "inc_annual": "Revenu Annuel",
+    "inc_5y": "Projection 5 Ans",
+    "cmp_label": "Analyse de Marché",
+    "cmp_title": "Vivaltta vs autres alternatives d'investissement",
+    "cmp_desc": "La meilleure combinaison de rendement, soutien et valorisation.",
+    "cmp_dane": "Vivaltta DANE 68,5%",
+    "th_product": "Produit",
+    "th_return": "Rend. Annuel",
+    "th_risk": "Risque",
+    "th_liq": "Liquidité",
+    "r_vlow": "Très Faible",
+    "r_low": "Faible",
+    "r_med": "Moyen",
+    "r_high": "Élevé",
+    "l_high": "Haute",
+    "l_med": "Moyenne",
+    "l_low": "Faible",
+    "val_label": "Analyse Immobilière",
+    "val_title": "Valorisation du Secteur Envigado",
+    "vs1_t": "Valorisation cumulée (5 ans)",
+    "vs1_d": "Secteur Ciudad Peldar",
+    "vs2_t": "Moyenne Medellín",
+    "vs2_d": "Vallée de l'Aburra",
+    "vs3_t": "Moyenne Colombie",
+    "vs3_d": "Immobilier urbain national",
+    "vs4_t": "Croissance des touristes internationaux",
+    "vs4_d": "Medellín 2019 vs 2024",
+    "glob_label": "Investissement Mondial · Sans Frontières",
+    "glob_title": "Investissez depuis n'importe où dans le monde",
+    "glob_desc": "Peu importe dans quel pays vous vivez ou dans quelle monnaie vous avez votre capital.",
+    "gs1_t": "Pas de pesos colombiens ? Pas de problème.",
+    "gs1_d": "Alianza Fiduciaria convertit n'importe quelle devise en pesos colombiens.",
+    "gs2_t": "Monétisation au meilleur taux du marché.",
+    "gs2_d": "Nous travaillons avec des sociétés alliées spécialisées en monétisation de devises sans intermédiaires inutiles et au meilleur taux du marché.",
+    "gs3_t": "Processus 100% numérique. Sans déplacements.",
+    "gs3_d": "Intégration et signature de documents entièrement en ligne.",
+    "gs4_t": "Conformité SAGRILAFT intégrée.",
+    "gs4_d": "Conformité anti-blanchiment intégrée, garantissant une transparence totale.",
+    "gh_title": "Votre investissement, dans votre monnaie",
+    "gh_desc": "Alianza Fiduciaria garantit la conversion de n'importe quelle devise de manière réglementée.",
+    "gh_alianza": "Alianza Fiduciaria — plus de 30 ans d'expérience, supervisée par la SFC — garantit que chaque peso investi dans Vivaltta Marriott est protégé par la loi.",
+    "more_curr": "+ autres devises",
+    "gstat1": "Processus numérique",
+    "gstat2": "Voyages nécessaires",
+    "gstat3": "Réponse conseiller",
+    "li1": "Processus 100% numérique, sans déplacements",
+    "li2": "Garde légale par Alianza Fiduciaria · SFC",
+    "li3": "Disponible en plusieurs devises internationales",
+    "li4": "Rendement projeté à partir de 12% par an (Rental Pool)",
+    "lead_label": "Places Limitées",
+    "lead_title": "Sécurisez votre participation aujourd'hui",
+    "lead_desc": "Un conseiller spécialisé vous contactera dans les 24 heures. Votre patrimoine ne peut pas attendre.",
+    "ph_name": "Nom complet",
+    "ph_phone": "Téléphone / WhatsApp",
+    "ph_email": "E-mail",
+    "ph_country": "Pays de résidence",
+    "ph_capital": "Investissement estimé",
+    "ph_lang": "Langue de contact",
+    "ph_other_lang": "Précisez votre langue",
+    "cap1": "1 Suite · à partir de COP $381M",
+    "cap2": "2–5 Suites",
+    "cap3": "6–10 Suites",
+    "cap4": "Plus de 10 Suites",
+    "btn_submit": "Demander l'Information Exclusive",
+    "opt_other_lang": "Autre langue",
+    "disclaimer": "Données protégées. Conformité SAGRILAFT intégrée.",
+    "footer_legal": "© 2026 Londoño Gomez. Vivaltta Marriott Ciudad Peldar, Envigado, Colombie.",
+    "toastMsg": "Merci! Un conseiller vous contactera bientôt.",
+    "src_val": "Source: Camacol Antioquia, DANE et SIT Medellín.",
+    "src_calc": "Source: Projections selon les normes STR Global et le modèle Rental Pool d'Alianza Fiduciaria.",
+    "arena_note": "Arena Primavera : 75+ événements/an · 8 minutes de l'hôtel",
+    "fin_note_calc": "Cette analyse porte sur les bénéfices opérationnels projetés. Elle n'inclut pas la valorisation du droit et de l'actif, ce qui représente un avantage patrimonial additionnel extraordinaire pour l'investisseur.",
+    "fin_note_cmp": "Cette analyse porte sur les bénéfices opérationnels. Elle n'inclut pas la valorisation du droit et de l'actif — historiquement +22% dans ce secteur.",
+    "av_eyebrow": "Conseiller Digital · Disponible maintenant",
+    "av_title": "Votre Conseiller Digital en Investissement",
+    "av_body": "Parlez directement avec Juan Salvador Álvarez, notre conseiller digital disponible 24h/24. Posez vos questions sur les types de suites, les rendements ou le processus fiduciaire — par voix ou chat, dans votre langue.",
+    "av_badge1": "Disponible 24h/24",
+    "av_badge2": "Voix et chat",
+    "av_badge3": "Multilingue",
+    "av_role": "Conseiller Digital",
+    "av_live_label": "En direct",
+    "av_chat_ph": "Écrivez votre question ici...",
+    "av_chat_send": "Envoyer"
+  },
+  "pt": {
+    "nav_cta": "Investir Agora",
+    "heroBadge": "Lançamento Maio 2026 · Ciudad Peldar, Envigado",
+    "heroSub": "Vivaltta é o coração comercial de Ciudad Peldar: duas torres em sinergia perfeita. A Torre 1 abriga centros cirúrgicos e escritórios; a Torre 2 é o Hotel Marriott — disponível para investimento via Direitos Fiduciários vinculados a uma Suite Hoteleira no Modelo Rental Pool.",
+    "btn_calc": "Ver Rentabilidade",
+    "btn_how": "Como funciona?",
+    "btn_model": "Conhecer o Modelo",
+    "btn_acquire": "Adquira sua Suite",
+    "launch_label": "Lançamento Oficial",
+    "launch_date": "Maio 2026 · Ciudad Peldar, Envigado, Colômbia",
+    "tower1_tag": "Torre 1 · Saúde · Quase esgotada",
+    "tower1_title": "Centros cirúrgicos e consultórios médicos especializados",
+    "tower1_body": "Torre de saúde e serviços especializados — quase totalmente esgotada, como Vittrio e Cristtali no mesmo plano parcial. Forma o ecossistema que garante ocupação permanente ao hotel.",
+    "tower2_tag": "Torre 2 · Hotel Marriott · Ativo de Investimento",
+    "tower2_title": "154 suítes hoteleiras operadas sob a marca Marriott pela OXO Hotels",
+    "tower2_body": "O ativo de investimento: o único hotel de marca internacional na Milla de Diamante. Operado pela OXO Hotels sob o padrão Marriott, captura a demanda do cluster médico, corporativo e — crucialmente — dos visitantes da Arena Primavera (75+ eventos por ano, a apenas 8 minutos). Seu patrimônio gera Lucro Operacional independentemente da ocupação de sua suíte.",
+    "dev_headline": "Mais de 50 anos transformando o skyline da Colômbia",
+    "dev_intro": "Juntos, a equipe mais sólida do mercado imobiliário hoteleiro da Colômbia.",
+    "lg_desc": "Incorporadora líder com mais de 50 anos de trajetória transformando o panorama imobiliário da Colômbia. Visionários por trás de Ciudad Peldar — o megaprojeto mais bem-sucedido do país — Londoño Gómez garante solidez, valorização e gestão estratégica orientada à rentabilidade do investidor.",
+    "tp5_t": "Arq. y Concreto",
+    "tp5_d": "Construtora referência em inovação e excelência técnica. Com um histórico impecável em projetos de grande escala e alta complexidade, garantem os mais altos padrões de qualidade construtiva e conformidade, materializando marcos urbanos que perduram no tempo.",
+    "peldarDesc": "Ciudad Peldar ocupa 101.445 m² do histórico lote Peldar — o melhor terreno do Vale do Aburrá. O megaprojeto #1 mais vendido da Colômbia. Conecta diretamente com três vias principais: Av. Las Vegas, Av. Regional e Av. Simón Bolívar.",
+    "peldar_title": "Uma cidade a menos de 15 minutos de tudo",
+    "pf1": "Do outro lado da rua",
+    "pf2": "Ao lado do projeto",
+    "pf3": "Valorização do setor em 5 anos",
+    "pf4": "Projeto mais vendido da Colômbia",
+    "faq_eyebrow": "Perguntas Frequentes",
+    "faq_title": "Tudo o que você precisa saber",
+    "faq_desc": "Respondemos as dúvidas mais frequentes dos nossos investidores no mundo.",
+    "faq_cta": "Falar com um Consultor",
+    "faq1_q": "O que é um Direito Fiduciário vinculado a uma Suíte?",
+    "faq1_a": "Um Direito Fiduciário é uma participação proporcional no patrimônio autônomo que constitui o Hotel Marriott Vivaltta. Ao adquiri-lo, é emitido um título respaldado pela Alianza Fiduciaria, completamente separado do patrimônio de Londoño Gómez. Este título é um ativo líquido: pode ser vendido, cedido ou transferido com a mesma liberdade de qualquer ativo imobiliário.",
+    "faq2_q": "Quanto custa uma Suíte?",
+    "faq2_a": "O preço por m² é COP $12.300.000. Suíte Tipo A (31 m²): $381.300.000. Tipo B (42 m²): $516.600.000. Tipo C (50 m²): $615.000.000. Tipo D (57 m²): $701.100.000.",
+    "faq3_q": "Quando meu investimento começa a gerar retorno?",
+    "faq3_a": "Como investidor, você começa a ganhar desde o primeiro dia: durante os 3 anos de construção, seu patrimônio se valoriza com o ativo subjacente. Ao abrir o hotel, o Lucro Operacional é distribuído mensalmente de forma proporcional à sua participação.",
+    "faq4_q": "Posso investir do exterior?",
+    "faq4_a": "Sim. O processo é 100% digital. Contamos com empresas aliadas especializadas em monetização de divisas sem intermediários desnecessários e à melhor taxa do mercado. Nenhum deslocamento é necessário.",
+    "faq5_q": "Como meu capital está protegido?",
+    "faq5_a": "Seu capital entra em um patrimônio autônomo administrado pela Alianza Fiduciaria, supervisionada pela SFC.",
+    "faq6_q": "Por que o Rental Pool protege meu patrimônio?",
+    "faq6_a": "Porque seu Lucro Operacional vem da ocupação global do hotel — gerenciada por Marriott e OXO Hotels —, não da sua suíte individual. Com a Arena Primavera a 8 minutos (75+ eventos por ano) e o cluster médico em frente, o fluxo de hóspedes está garantido.",
+    "faq7_q": "Posso vender ou transferir meu Direito Fiduciário?",
+    "faq7_a": "Sim. Como ativo líquido, seu Direito Fiduciário pode ser vendido, cedido ou transferido com a mesma liberdade de qualquer ativo imobiliário.",
+    "kpi1": "Ocupação Hoteleira · DANE",
+    "kpi2": "Rentabilidade Anual Base",
+    "kpi3": "Suítes Hoteleiras",
+    "kpi4": "Eventos/Ano Arena Primavera",
+    "hiw_label": "Modelo Rental Pool",
+    "hiw_title": "Como funciona o Modelo Rental Pool?",
+    "hiw_desc": "Como investidor, você adquire um Direito Fiduciário vinculado a uma Suíte específica. O hotel opera como um pool unificado: seu patrimônio gera Lucro Operacional proporcional à sua participação.",
+    "hiw1_t": "Emita seu Título Fiduciário",
+    "hiw1_d": "Ao formalizar a operação, é emitido um título fiduciário respaldado pela Alianza Fiduciaria. Seu investimento é juridicamente protegido e separado do patrimônio da Incorporadora de Projetos.",
+    "hiw2_t": "Alianza Fiduciaria Custódia seu Capital",
+    "hiw2_d": "A Alianza Fiduciaria, supervisionada pela SFC, custodia 100% dos recursos. Uma garantia legal.",
+    "hiw3_t": "Receba seu Lucro Operacional",
+    "hiw3_d": "Com Marriott e OXO Hotels operando, você recebe sua participação proporcional do Lucro Operacional mensalmente, diretamente em sua conta.",
+    "wf_title": "Fluxo de transparência do dinheiro",
+    "wf_l1": "Origem",
+    "wf_n1": "Hóspede",
+    "wf_s1": "Paga sua estadia",
+    "wf_l2": "Operações",
+    "wf_s2": "Sob marca Marriott",
+    "wf_l3": "GOP Total",
+    "wf_n3": "Lucro do Hotel",
+    "wf_s3": "Lucro Operacional",
+    "wf_l4": "Custódia · SFC",
+    "wf_s4": "Distribuição proporcional",
+    "wf_l5": "Destino Final",
+    "wf_n5": "Investidor",
+    "wf_s5": "Mensal · Direto",
+    "trust_label": "Respaldos Institucionais",
+    "trust_title": "Cinco pilares de confiança",
+    "tp1_t": "Alianza Fiduciaria · SFC",
+    "tp1_d": "Todos os recursos custodiados pela Alianza Fiduciaria, supervisionada pela SFC.",
+    "tp2_t": "Marriott International",
+    "tp2_d": "A cadeia hoteleira #1 do mundo.",
+    "tp3_t": "OXO Hotels",
+    "tp3_d": "Operador hoteleiro especialista na Colômbia.",
+    "tp4_t": "Londoño Gómez",
+    "tp4_d": "50+ anos transformando a Colômbia. Ciudad Peldar, o megaprojeto mais bem-sucedido do país.",
+    "med_label": "Turismo Médico e Estético · Colômbia",
+    "med_title": "A primeira torre: centros cirúrgicos e consultórios no coração do cluster médico",
+    "med_desc": "A Colômbia é o destino #1 de turismo médico e estético da América Latina.",
+    "med1_t": "Torre 1: Saúde Especializada",
+    "med1_d": "Centros cirúrgicos certificados, áreas médicas e consultórios em padrões internacionais.",
+    "med2_t": "#1 em Turismo Médico na América Latina",
+    "med2_d": "A Colômbia recebe mais de 36.000 pacientes internacionais por ano com preços 40–70% mais baixos.",
+    "med3_t": "Cluster Médico · Milla de Diamante",
+    "med3_d": "Vivaltta está no epicentro: a poucos passos do Metrô, Viva Envigado e das principais avenidas.",
+    "med4_t": "Demanda de Hospedagem Garantida",
+    "med4_d": "Pacientes, médicos e acompanhantes precisam de acomodação de qualidade. A Torre 2 captura exatamente essa demanda.",
+    "med_stat_title": "Colômbia: o destino médico das Américas",
+    "ms1": "Pacientes internacionais/ano",
+    "ms2": "Custo vs EUA/Europa",
+    "ms3": "Turismo médico LATAM #1",
+    "ms4": "Crescimento turismo Antioquia S1 2024",
+    "torre_t": "Torre 1 · Saúde e Serviços",
+    "torre_d": "Centros cirúrgicos · Áreas médicas especializadas · Consultórios e serviços · Quase esgotada.",
+    "torre2_t": "Torre 2 · Hotel Marriott",
+    "torre2_d": "154 suítes Marriott por OXO Hotels. Único hotel internacional na Milla de Diamante. Captura demanda médica, corporativa e da Arena Primavera (75+ ev./ano, 8 min).",
+    "calc_label": "Calculadora de Portfólio",
+    "calc_title": "Componha seu Portfólio de Suítes",
+    "calc_desc": "Selecione as suítes e visualize sua participação em tempo real.",
+    "calc_suite_title": "Composição do Portfólio",
+    "calc_suite_sub": "Selecione as suítes que deseja adquirir",
+    "suite_a_tag": "Tipo A",
+    "suite_b_tag": "Tipo B",
+    "suite_c_tag": "Tipo C",
+    "suite_d_tag": "Tipo D",
+    "avail_label": "Disp.",
+    "part_label": "Participação no Hotel",
+    "l_occ": "Ocupação Global do Hotel",
+    "dane_avg": "Méd. DANE: 68,5%",
+    "total_inv": "Investimento Total",
+    "note_title": "Metodologia:",
+    "note_body": "1%/mês a 63% occ · 2%/mês a 100% occ. Modelo Rental Pool.",
+    "calc_legal": "Projeções estimativas. Não constituem promessa de rentabilidade.",
+    "rental_pool_note": "Sua rentabilidade é respaldada pela operação total do hotel, mitigando o risco de vacância individual.",
+    "m_monthly": "Rend. Mensal",
+    "m_annual": "ROI Anual",
+    "m_payback": "Retorno (anos)",
+    "inc_monthly": "Renda Mensal",
+    "inc_annual": "Renda Anual",
+    "inc_5y": "Projeção 5 Anos",
+    "cmp_label": "Análise de Mercado",
+    "cmp_title": "Vivaltta vs outras alternativas de investimento",
+    "cmp_desc": "A melhor combinação de rentabilidade, respaldo e valorização.",
+    "cmp_dane": "Vivaltta DANE 68,5%",
+    "th_product": "Produto",
+    "th_return": "Rend. Anual",
+    "th_risk": "Risco",
+    "th_liq": "Liquidez",
+    "r_vlow": "Muito Baixo",
+    "r_low": "Baixo",
+    "r_med": "Médio",
+    "r_high": "Alto",
+    "l_high": "Alta",
+    "l_med": "Média",
+    "l_low": "Baixa",
+    "val_label": "Análise Imobiliária",
+    "val_title": "Valorização do Setor Envigado",
+    "vs1_t": "Valorização acumulada (5 anos)",
+    "vs1_d": "Setor Ciudad Peldar",
+    "vs2_t": "Média de Medellín",
+    "vs2_d": "Vale do Aburra",
+    "vs3_t": "Média da Colômbia",
+    "vs3_d": "Imóveis urbanos nacionais",
+    "vs4_t": "Crescimento de turistas internacionais",
+    "vs4_d": "Medellín 2019 vs 2024",
+    "glob_label": "Investimento Global · Sem Fronteiras",
+    "glob_title": "Invista de qualquer lugar do mundo",
+    "glob_desc": "Não importa em qual país você vive nem em qual moeda tem seu capital.",
+    "gs1_t": "Não tem pesos colombianos? Sem problema.",
+    "gs1_d": "A Alianza Fiduciaria converte qualquer divisa em pesos colombianos.",
+    "gs2_t": "Monetização à melhor taxa do mercado.",
+    "gs2_d": "Contamos com empresas aliadas especializadas em monetização de divisas sem intermediários desnecessários e à melhor taxa do mercado.",
+    "gs3_t": "Processo 100% digital. Sem viagens necessárias.",
+    "gs3_d": "Vinculação e assinatura de documentos completamente online.",
+    "gs4_t": "Conformidade SAGRILAFT integrada.",
+    "gs4_d": "Conformidade anti-lavagem integrada, garantindo transparência total.",
+    "gh_title": "Seu investimento, na sua moeda",
+    "gh_desc": "A Alianza Fiduciaria garante a conversão de qualquer divisa de forma regulada.",
+    "gh_alianza": "Alianza Fiduciaria — mais de 30 anos de trajetória, supervisionada pela SFC — garante que cada peso investido na Vivaltta Marriott esteja protegido por lei.",
+    "more_curr": "+ mais moedas",
+    "gstat1": "Processo digital",
+    "gstat2": "Viagens necessárias",
+    "gstat3": "Resposta do consultor",
+    "li1": "Processo 100% digital, sem deslocamentos",
+    "li2": "Custódia legal pela Alianza Fiduciaria · SFC",
+    "li3": "Disponível em múltiplas moedas internacionais",
+    "li4": "Rentabilidade projetada a partir de 12% ao ano (Rental Pool)",
+    "lead_label": "Vagas Limitadas",
+    "lead_title": "Garanta sua participação hoje",
+    "lead_desc": "Um consultor especialista entrará em contato em menos de 24 horas com o prospecto completo. Seu patrimônio não pode esperar.",
+    "ph_name": "Nome completo",
+    "ph_phone": "Telefone / WhatsApp",
+    "ph_email": "E-mail",
+    "ph_country": "País de residência",
+    "ph_capital": "Investimento estimado",
+    "ph_lang": "Idioma para ser contatado",
+    "ph_other_lang": "Especifique seu idioma",
+    "cap1": "1 Suíte · a partir de COP $381M",
+    "cap2": "2–5 Suítes",
+    "cap3": "6–10 Suítes",
+    "cap4": "Mais de 10 Suítes",
+    "btn_submit": "Solicitar Informação Exclusiva",
+    "opt_other_lang": "Outro idioma",
+    "disclaimer": "Dados protegidos. Conformidade SAGRILAFT integrada.",
+    "footer_legal": "© 2026 Londoño Gomez. Vivaltta Marriott Ciudad Peldar, Envigado, Colômbia.",
+    "toastMsg": "Obrigado! Um consultor entrará em contato em breve.",
+    "src_val": "Fonte: Camacol Antioquia, DANE e SIT Medellín.",
+    "src_calc": "Fonte: Projeções sob padrões STR Global e modelo Rental Pool da Alianza Fiduciaria.",
+    "arena_note": "Arena Primavera: 75+ eventos/ano · 8 minutos do hotel",
+    "fin_note_calc": "Esta análise centra-se nos lucros operacionais projetados. Não inclui a valorização do direito e do ativo, o que representa um benefício patrimonial adicional extraordinário para o investidor.",
+    "fin_note_cmp": "Esta análise centra-se nos lucros operacionais. Não inclui a valorização do direito e do ativo — historicamente +22% neste setor.",
+    "av_eyebrow": "Assessor Digital · Disponível agora",
+    "av_title": "Seu Assessor Digital de Investimento",
+    "av_body": "Fale diretamente com Juan Salvador Álvarez, nosso assessor digital disponível 24/7. Pergunte sobre tipologias de suíte, rentabilidades, o processo fiduciário ou qualquer detalhe do projeto — por voz ou chat, no seu idioma.",
+    "av_badge1": "Disponível 24/7",
+    "av_badge2": "Voz e chat",
+    "av_badge3": "Multilíngue",
+    "av_role": "Assessor Digital",
+    "av_live_label": "Ao vivo",
+    "av_chat_ph": "Escreva sua consulta aqui...",
+    "av_chat_send": "Enviar"
+  },
+  "de": {
+    "nav_cta": "Jetzt Investieren",
+    "heroBadge": "Start Mai 2026 · Ciudad Peldar, Envigado",
+    "heroSub": "Vivaltta ist das kommerzielle Herz von Ciudad Peldar: zwei Türme in perfekter Synergie. Turm 1 beherbergt OPs und spezialisierte Büros; Turm 2 ist das Marriott Hotel — verfügbar für Investitionen über Treuhandrechte, die an eine Hotel-Suite im Rental-Pool-Modell gebunden sind.",
+    "btn_calc": "Rendite Berechnen",
+    "btn_how": "Wie funktioniert es?",
+    "btn_model": "Das Modell kennenlernen",
+    "btn_acquire": "Ihre Suite Erwerben",
+    "launch_label": "Offizieller Start",
+    "launch_date": "Mai 2026 · Ciudad Peldar, Envigado, Kolumbien",
+    "tower1_tag": "Turm 1 · Gesundheit · Fast ausverkauft",
+    "tower1_title": "OPs und spezialisierte medizinische Praxen",
+    "tower1_body": "Gesundheits- und Dienstleistungsturm — fast vollständig ausverkauft, wie Vittrio und Cristtali im selben Bebauungsplan. Bildet das Ökosystem, das eine dauerhafte Auslastung des Hotels sichert.",
+    "tower2_tag": "Turm 2 · Marriott Hotel · Investitions-Asset",
+    "tower2_title": "154 Hotel-Suiten unter der Marke Marriott von OXO Hotels",
+    "tower2_body": "Das Investitions-Asset: das einzige internationale Markenhotel in der Milla de Diamante. Betrieben von OXO Hotels nach Marriott-Standard, fängt es die Nachfrage des Medizin- und Unternehmensclusters und — entscheidend — der Arena Primavera-Besucher auf (75+ Veranstaltungen pro Jahr, nur 8 Minuten entfernt). Ihr Vermögen generiert Betriebsgewinn unabhängig von der Auslastung Ihrer Suite.",
+    "dev_headline": "Über 50 Jahre Transformation des kolumbianischen Skylines",
+    "dev_intro": "Zusammen das stärkste Team im kolumbianischen Hotelimmobilienmarkt.",
+    "lg_desc": "Führender Projektentwickler mit über 50 Jahren Erfahrung in der Transformation des kolumbianischen Immobilienmarkts. Visionäre hinter Ciudad Peldar — dem erfolgreichsten Megaprojekt des Landes — Londoño Gómez garantiert Solidität, Wertsteigerung und strategisches Management für Investorenrenditen.",
+    "tp5_t": "Arq. y Concreto",
+    "tp5_d": "Referenzbauunternehmen in Innovation und technischer Exzellenz. Mit einer makellosen Erfolgsbilanz bei großangelegten, hochkomplexen Projekten sichern sie höchste Standards für Bauqualität und Compliance und realisieren städtische Meilensteine, die die Zeit überdauern.",
+    "peldarDesc": "Ciudad Peldar umfasst 101.445 m² des historischen Peldar-Geländes — das beste Grundstück im Aburra-Tal. Das meistverkaufte Megaprojekt #1 Kolumbiens. Direkt verbunden mit drei Hauptverkehrsachsen: Av. Las Vegas, Av. Regional und Av. Simón Bolívar.",
+    "peldar_title": "Eine Stadt, alles in unter 15 Minuten erreichbar",
+    "pf1": "Auf der anderen Straßenseite",
+    "pf2": "Neben dem Projekt",
+    "pf3": "Sektorwertsteigerung 5 Jahre",
+    "pf4": "Meistverkauftes Projekt Kolumbiens",
+    "faq_eyebrow": "Häufige Fragen",
+    "faq_title": "Alles, was Sie wissen müssen",
+    "faq_desc": "Wir beantworten die häufigsten Fragen unserer Investoren weltweit.",
+    "faq_cta": "Mit einem Berater sprechen",
+    "faq1_q": "Was ist ein mit einer Suite verbundenes Treuhandrecht?",
+    "faq1_a": "Ein Treuhandrecht ist eine proportionale Beteiligung am autonomen Vermögen des Vivaltta Marriott Hotels. Bei der Akquisition wird ein von Alianza Fiduciaria gesicherter Titel ausgestellt, vollständig getrennt vom Vermögen von Londoño Gómez. Dieser Titel ist ein liquides Asset: Es kann mit der gleichen Freiheit wie jedes Immobilienvermögen verkauft, abgetreten oder übertragen werden.",
+    "faq2_q": "Was kostet eine Suite?",
+    "faq2_a": "Preis pro m²: COP $12.300.000. Suite Typ A (31 m²): $381.300.000. Typ B (42 m²): $516.600.000. Typ C (50 m²): $615.000.000. Typ D (57 m²): $701.100.000.",
+    "faq3_q": "Wann beginnt meine Investition Renditen zu erwirtschaften?",
+    "faq3_a": "Als Investor beginnen Sie ab Tag eins zu verdienen: Während der 3-jährigen Bauphase wertet sich Ihr Vermögen mit dem zugrunde liegenden Asset auf. Nach der Hoteleröffnung wird der Betriebsgewinn monatlich proportional zu Ihrer Beteiligung ausgeschüttet.",
+    "faq4_q": "Kann ich vom Ausland investieren?",
+    "faq4_a": "Ja. Der Prozess ist 100% digital. Wir arbeiten mit spezialisierten Partnerunternehmen für die Währungsmonetarisierung ohne unnötige Zwischenhändler und zum besten Marktkurs. Keine Reise erforderlich.",
+    "faq5_q": "Wie ist mein Kapital geschützt?",
+    "faq5_a": "Ihr Kapital fließt in ein autonomes Treuhandvermögen, das von Alianza Fiduciaria unter SFC-Aufsicht verwaltet wird.",
+    "faq6_q": "Warum schützt der Rental Pool mein Kapital?",
+    "faq6_a": "Weil Ihr Betriebsgewinn von der globalen Auslastung des Hotels stammt — verwaltet von Marriott und OXO Hotels —, nicht von Ihrer einzelnen Suite. Mit der Arena Primavera 8 Minuten entfernt (75+ Veranstaltungen/Jahr) ist der Gästefluss gesichert.",
+    "faq7_q": "Kann ich mein Treuhandrecht verkaufen oder übertragen?",
+    "faq7_a": "Ja. Als liquides Asset kann Ihr Treuhandrecht mit der gleichen Freiheit wie jedes Immobilienvermögen verkauft, abgetreten oder übertragen werden.",
+    "kpi1": "Hotelauslastung · DANE",
+    "kpi2": "Basis-Jahresrendite",
+    "kpi3": "Hotel-Suiten",
+    "kpi4": "Events/Jahr Arena Primavera",
+    "hiw_label": "Rental-Pool-Modell",
+    "hiw_title": "Wie funktioniert das Rental-Pool-Modell?",
+    "hiw_desc": "Als Investor erwerben Sie ein Treuhandrecht, das an eine bestimmte Suite gebunden ist. Das Hotel operiert als einheitlicher Pool: Ihr Vermögen generiert proportionalen Betriebsgewinn zu Ihrer Beteiligung.",
+    "hiw1_t": "Treuhandtitel ausstellen",
+    "hiw1_d": "Bei der Formalisierung wird ein von Alianza Fiduciaria gesicherter Treuhandtitel ausgestellt. Ihre Investition ist rechtlich geschützt und vom Vermögen des Projektentwicklers getrennt.",
+    "hiw2_t": "Alianza Fiduciaria verwahrt Ihr Kapital",
+    "hiw2_d": "Alianza Fiduciaria, von der SFC überwacht, verwahrt 100% der Mittel. Eine rechtliche Garantie.",
+    "hiw3_t": "Betriebsgewinn erhalten",
+    "hiw3_d": "Mit Marriott und OXO Hotels im Betrieb erhalten Sie monatlich Ihren proportionalen Anteil am Betriebsgewinn.",
+    "wf_title": "Geldfluss-Transparenz",
+    "wf_l1": "Ursprung",
+    "wf_n1": "Gast",
+    "wf_s1": "Zahlt seinen Aufenthalt",
+    "wf_l2": "Betrieb",
+    "wf_s2": "Unter Marriott-Marke",
+    "wf_l3": "Gesamt-GOP",
+    "wf_n3": "Hotelgewinn",
+    "wf_s3": "Betriebsgewinn",
+    "wf_l4": "Verwahrung · SFC",
+    "wf_s4": "Proportionale Ausschüttung",
+    "wf_l5": "Endziel",
+    "wf_n5": "Investor",
+    "wf_s5": "Monatlich · Direkt",
+    "trust_label": "Institutionelle Unterstützung",
+    "trust_title": "Fünf Vertrauenssäulen",
+    "tp1_t": "Alianza Fiduciaria · SFC",
+    "tp1_d": "Alle Mittel von Alianza Fiduciaria verwahrt, unter SFC-Aufsicht.",
+    "tp2_t": "Marriott International",
+    "tp2_d": "Die weltweit führende Hotelkette #1.",
+    "tp3_t": "OXO Hotels",
+    "tp3_d": "Spezialisierter Hotelbetreiber in Kolumbien.",
+    "tp4_t": "Londoño Gómez",
+    "tp4_d": "50+ Jahre Transformation Kolumbiens. Ciudad Peldar, das erfolgreichste Megaprojekt des Landes.",
+    "med_label": "Medizin- und Ästhetiktourismus · Kolumbien",
+    "med_title": "Der erste Turm: OPs und Praxen im Herzen des Medizinclusters",
+    "med_desc": "Kolumbien ist das #1-Ziel für Medizintourismus in Lateinamerika.",
+    "med1_t": "Turm 1: Spezialisierte Gesundheit",
+    "med1_d": "Zertifizierte OPs, spezialisierte Medizinbereiche und fertiggestellte Praxen.",
+    "med2_t": "#1 Medizintourismus Lateinamerika",
+    "med2_d": "Kolumbien empfängt jährlich über 36.000 internationale Patienten zu 40–70% günstigeren Preisen.",
+    "med3_t": "Medizincluster · Milla de Diamante",
+    "med3_d": "Vivaltta liegt im Epizentrum: Schritte vom Metro, Viva Envigado und den Hauptstraßen.",
+    "med4_t": "Garantierte Unterkunftsnachfrage",
+    "med4_d": "Patienten, Ärzte und Begleiter benötigen Qualitätsunterkünfte. Turm 2 bedient genau diese Nachfrage.",
+    "med_stat_title": "Kolumbien: das medizinische Ziel Amerikas",
+    "ms1": "Internationale Patienten/Jahr",
+    "ms2": "Kosten vs USA/Europa",
+    "ms3": "Medizintourismus LATAM #1",
+    "ms4": "Tourismuszuwachs Antioquia H1 2024",
+    "torre_t": "Turm 1 · Gesundheit und Dienstleistungen",
+    "torre_d": "OPs · Spezialisierte Medizinbereiche · Praxen und Dienstleistungen · Fast ausverkauft.",
+    "torre2_t": "Turm 2 · Marriott Hotel",
+    "torre2_d": "154 Marriott-Suiten von OXO Hotels. Einziges internationales Markenhotel in der Milla de Diamante. Fängt medizinische, Unternehmens- und Arena-Primavera-Nachfrage auf (75+ Veranst./Jahr, 8 Min.).",
+    "calc_label": "Portfolio-Rechner",
+    "calc_title": "Stellen Sie Ihr Suiten-Portfolio zusammen",
+    "calc_desc": "Wählen Sie Suiten und visualisieren Sie Ihre Beteiligung in Echtzeit.",
+    "calc_suite_title": "Portfolio-Zusammensetzung",
+    "calc_suite_sub": "Wählen Sie die Suiten, die Sie erwerben möchten",
+    "suite_a_tag": "Typ A",
+    "suite_b_tag": "Typ B",
+    "suite_c_tag": "Typ C",
+    "suite_d_tag": "Typ D",
+    "avail_label": "Verf.",
+    "part_label": "Hotelbeteiligung",
+    "l_occ": "Globale Hotelauslastung",
+    "dane_avg": "DANE-Durchschn.: 68,5%",
+    "total_inv": "Gesamtinvestition",
+    "note_title": "Methodik:",
+    "note_body": "1%/Mon bei 63% Ausl. · 2%/Mon bei 100% Ausl. Rental-Pool-Modell.",
+    "calc_legal": "Prognostizierte Werte sind Schätzungen. Keine Renditegarantie.",
+    "rental_pool_note": "Ihre Rendite wird durch den Gesamtbetrieb des Hotels abgesichert, was das individuelle Leerstandsrisiko mindert.",
+    "m_monthly": "Monatl. Rendite",
+    "m_annual": "Jahres-ROI",
+    "m_payback": "Amortisation (Jahre)",
+    "inc_monthly": "Monatl. Einnahmen",
+    "inc_annual": "Jahreseinnahmen",
+    "inc_5y": "5-Jahres-Projektion",
+    "cmp_label": "Marktanalyse",
+    "cmp_title": "Vivaltta vs andere Investitionsalternativen",
+    "cmp_desc": "Die beste Kombination aus Rendite, Sicherheit und Wertsteigerung.",
+    "cmp_dane": "Vivaltta DANE 68,5%",
+    "th_product": "Produkt",
+    "th_return": "Jahresrend.",
+    "th_risk": "Risiko",
+    "th_liq": "Liquidität",
+    "r_vlow": "Sehr Niedrig",
+    "r_low": "Niedrig",
+    "r_med": "Mittel",
+    "r_high": "Hoch",
+    "l_high": "Hoch",
+    "l_med": "Mittel",
+    "l_low": "Niedrig",
+    "val_label": "Immobilienanalyse",
+    "val_title": "Wertsteigerung im Sektor Envigado",
+    "vs1_t": "Kumulierte Wertsteigerung (5 Jahre)",
+    "vs1_d": "Sektor Ciudad Peldar",
+    "vs2_t": "Medellín-Durchschnitt",
+    "vs2_d": "Aburra-Tal",
+    "vs3_t": "Kolumbien-Durchschnitt",
+    "vs3_d": "Nationales Immobilienvermögen",
+    "vs4_t": "Wachstum internationaler Touristen",
+    "vs4_d": "Medellín 2019 vs 2024",
+    "glob_label": "Globale Investition · Grenzenlos",
+    "glob_title": "Investieren Sie von überall auf der Welt",
+    "glob_desc": "Egal in welchem Land Sie leben oder in welcher Währung Sie Ihr Kapital haben.",
+    "gs1_t": "Keine kolumbianischen Pesos? Kein Problem.",
+    "gs1_d": "Alianza Fiduciaria konvertiert jede Währung in kolumbianische Pesos.",
+    "gs2_t": "Monetarisierung zum besten Marktkurs.",
+    "gs2_d": "Wir arbeiten mit spezialisierten Partnerunternehmen für Währungsmonetarisierung ohne unnötige Zwischenhändler und zum besten Marktkurs.",
+    "gs3_t": "100% digitaler Prozess. Keine Reisen nötig.",
+    "gs3_d": "Registrierung und Dokumentenunterzeichnung vollständig online.",
+    "gs4_t": "Integrierte SAGRILAFT-Konformität.",
+    "gs4_d": "Anti-Geldwäsche-Konformität integriert, vollständige Transparenz gewährleistet.",
+    "gh_title": "Ihre Investition, in Ihrer Währung",
+    "gh_desc": "Alianza Fiduciaria garantiert die Umrechnung jeder Währung auf regulierte Weise.",
+    "gh_alianza": "Alianza Fiduciaria — über 30 Jahre Erfahrung, unter SFC-Aufsicht — garantiert, dass jeder in Vivaltta Marriott investierte Peso gesetzlich geschützt ist.",
+    "more_curr": "+ weitere Währungen",
+    "gstat1": "Digitaler Prozess",
+    "gstat2": "Erforderliche Reisen",
+    "gstat3": "Beraterantwort",
+    "li1": "100% digitaler Prozess, keine Reisen erforderlich",
+    "li2": "Rechtliche Verwahrung durch Alianza Fiduciaria · SFC",
+    "li3": "In mehreren internationalen Währungen verfügbar",
+    "li4": "Projizierte Rendite ab 12% pro Jahr (Rental Pool)",
+    "lead_label": "Begrenzte Plätze",
+    "lead_title": "Sichern Sie sich Ihre Beteiligung heute",
+    "lead_desc": "Ein Fachberater meldet sich innerhalb von 24 Stunden. Ihr Vermögen kann nicht warten.",
+    "ph_name": "Vollständiger Name",
+    "ph_phone": "Telefon / WhatsApp",
+    "ph_email": "E-Mail",
+    "ph_country": "Wohnsitzland",
+    "ph_capital": "Geschätztes Investment",
+    "ph_lang": "Kontaktsprache",
+    "ph_other_lang": "Bitte Sprache angeben",
+    "cap1": "1 Suite · ab COP $381M",
+    "cap2": "2–5 Suiten",
+    "cap3": "6–10 Suiten",
+    "cap4": "Mehr als 10 Suiten",
+    "btn_submit": "Exklusive Info Anfordern",
+    "opt_other_lang": "Andere Sprache",
+    "disclaimer": "Daten geschützt. SAGRILAFT-Konformität integriert.",
+    "footer_legal": "© 2026 Londoño Gomez. Vivaltta Marriott Ciudad Peldar, Envigado, Kolumbien.",
+    "toastMsg": "Danke! Ein Berater meldet sich bald.",
+    "src_val": "Quelle: Camacol Antioquia, DANE und SIT Medellín.",
+    "src_calc": "Quelle: Projektionen nach STR-Global-Standards und Alianza Fiduciaria Rental-Pool-Modell.",
+    "arena_note": "Arena Primavera: 75+ Veranstaltungen/Jahr · 8 Minuten vom Hotel",
+    "fin_note_calc": "Diese Analyse konzentriert sich auf prognostizierte Betriebsgewinne. Sie beinhaltet nicht die Wertsteigerung des Rechts und des Assets, was einen außerordentlichen zusätzlichen Vermögensvorteil für den Investor darstellt.",
+    "fin_note_cmp": "Diese Analyse konzentriert sich auf Betriebsgewinne. Sie beinhaltet nicht die Wertsteigerung des Rechts und des Assets — historisch +22% in diesem Sektor.",
+    "av_eyebrow": "Digitaler Berater · Jetzt verfügbar",
+    "av_title": "Ihr digitaler Investitionsberater",
+    "av_body": "Sprechen Sie direkt mit Juan Salvador Álvarez, unserem digitalen Berater, der rund um die Uhr verfügbar ist. Stellen Sie Fragen zu Suitetypen, Renditen oder dem Treuhandprozess — per Sprache oder Chat, in Ihrer Sprache.",
+    "av_badge1": "Rund um die Uhr",
+    "av_badge2": "Sprache & Chat",
+    "av_badge3": "Mehrsprachig",
+    "av_role": "Digitaler Berater",
+    "av_live_label": "Live",
+    "av_chat_ph": "Schreiben Sie hier Ihre Frage...",
+    "av_chat_send": "Senden"
+  }
+};
+
+/* ══════════════════════════════════════════════════════
+   SUITE CONFIG — Rental Pool Portfolio Calculator
+══════════════════════════════════════════════════════ */
+const SUITE_PRICES = {a:381300000, b:516600000, c:615000000, d:701100000};
+const SUITE_MAX    = {a:40, b:38, c:38, d:38};
+const TOTAL_PROJECT = 84894600000;
+const SUITE_QTY    = {a:0, b:0, c:0, d:0};
+
+/* FX rates — updated live */
+const RTS = {COP:1, USD:4150, EUR:4500};
+const FX_KEY = 'd0f23f296d33aa83d0c51165';
+const FX_URL = `https://v6.exchangerate-api.com/v6/${FX_KEY}/latest/COP`;
+const FX_TTL = 10 * 60 * 1000;
+
+/* ── Suite counter ───────────────────────────────────── */
+function changeSuite(type, delta) {
+  const max = SUITE_MAX[type];
+  SUITE_QTY[type] = Math.max(0, Math.min(max, SUITE_QTY[type] + delta));
+  document.getElementById('qty_' + type).textContent = SUITE_QTY[type];
+  uc();
+}
+
+/* ── Yield model (same proven formula) ──────────────── */
+function mY(o) {
+  if (o <= 0)  return 0;
+  if (o <= 63) return (o / 63) * 1;
+  return 1 + ((o - 63) / 37) * 1;
+}
+
+/* ── Format currency ─────────────────────────────────── */
+function fmt(v) {
+  const c  = document.getElementById('cs').value;
+  const l  = document.getElementById('ls').value;
+  const lc = l === 'en' ? 'en-US' : 'es-CO';
+  const cv = v / RTS[c];
+  const sy = c === 'COP' ? '$ ' : c === 'USD' ? 'US$ ' : '€ ';
+  return sy + cv.toLocaleString(lc, {maximumFractionDigits: 0});
+}
+
+/* ── Main calculator update ──────────────────────────── */
+function uc() {
+  const o   = +document.getElementById('inO').value;
+  const m   = mY(o);
+  const a   = m * 12;
+
+  /* Total investment */
+  const tot = Object.keys(SUITE_QTY).reduce((s, t) => s + SUITE_QTY[t] * SUITE_PRICES[t], 0);
+
+  /* Participation % */
+  const part = tot > 0 ? (tot / TOTAL_PROJECT) * 100 : 0;
+
+  /* Income */
+  const mi  = tot * m / 100;
+  const ai  = mi * 12;
+  const pb  = a > 0 ? 100 / a : 0;
+
+  /* Update occupancy display */
+  document.getElementById('vO').textContent = o.toFixed(1) + '%';
+
+  /* Participation bar */
+  document.getElementById('partPct').textContent = part.toFixed(2) + '%';
+  document.getElementById('partBar').style.width = Math.min(part * 2, 100) + '%';
+
+  /* Investment display */
+  document.getElementById('tInv').textContent = tot > 0 ? fmt(tot) : '—';
+
+  if (tot === 0) {
+    ['rM','rA','rP','rIM','rIY','rI5'].forEach(id => document.getElementById(id).textContent = '—');
+    if (yC && yC.data) { yC.data.datasets[0].data = [0,0,0,0,0]; yC.update(); }
+    return;
+  }
+
+  /* Metrics */
+  document.getElementById('rM').textContent  = m.toFixed(2) + '%';
+  document.getElementById('rA').textContent  = a.toFixed(2) + '%';
+  document.getElementById('rP').textContent  = pb.toFixed(1);
+  document.getElementById('rIM').textContent = fmt(mi);
+  document.getElementById('rIY').textContent = fmt(ai);
+  document.getElementById('rI5').textContent = fmt(ai * 5);
+
+  uyC(tot, a);
+}
+
+/* ── Yearly chart ────────────────────────────────────── */
+let yC, cC, vC;
+function uyC(tot, aY) {
+  const c = document.getElementById('cs').value;
+  const d = ['Año 1','Año 2','Año 3','Año 4','Año 5'].map((_,i) => Math.round(tot * aY / 100 * (i+1) / RTS[c]));
+  if (!yC) {
+    yC = new Chart(document.getElementById('yC').getContext('2d'), {
+      type:'bar',
+      data:{ labels:['Año 1','Año 2','Año 3','Año 4','Año 5'],
+              datasets:[{ data:d, backgroundColor:['rgba(230,68,55,.15)','rgba(230,68,55,.3)','rgba(230,68,55,.48)','rgba(230,68,55,.68)','rgba(230,68,55,.9)'], borderRadius:0, borderSkipped:false }] },
+      options:{ responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{ display:false } },
+        scales:{ y:{ grid:{ color:'rgba(31,31,33,.06)' }, ticks:{ font:{ family:'Montserrat',size:10 } } },
+                  x:{ grid:{ display:false }, ticks:{ font:{ family:'Montserrat',size:10 } } } } }
+    });
+  } else { yC.data.datasets[0].data = d; yC.update(); }
+}
+
+function bcC() {
+  cC = new Chart(document.getElementById('cC').getContext('2d'), {
+    type:'bar',
+    data:{ labels:['US Treasury','Dubai RE','TES','CDT','S&P500','REITs USA','V 63%','DANE 68.5%','V 85%','V 100%'],
+            datasets:[{ data:[4.5,7.0,8.2,9.5,10.0,9.0,12,13,18.5,24],
+              backgroundColor:['#D8D8D8','#D8D8D8','#D8D8D8','#D8D8D8','#D8D8D8','#D8D8D8','rgba(230,68,55,.35)','rgba(230,68,55,.55)','rgba(230,68,55,.78)','rgba(230,68,55,1)'],
+              borderRadius:0, borderSkipped:false }] },
+    options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{ display:false } },
+      scales:{ x:{ grid:{ color:'rgba(31,31,33,.06)' }, ticks:{ callback:v=>v+'%', font:{ family:'Montserrat',size:10 } } },
+                y:{ grid:{ display:false }, ticks:{ font:{ family:'Montserrat',size:10 } } } } }
+  });
+}
+
+function bvC() {
+  vC = new Chart(document.getElementById('vC').getContext('2d'), {
+    type:'line',
+    data:{
+      labels:['2020','2021','2022','2023','2024','2025*'],
+      datasets:[
+        { label:'Ciudad Peldar', data:[0,4,8.5,13,18,22], borderColor:'#E64437', backgroundColor:'rgba(230,68,55,.06)', fill:true, tension:0.4, borderWidth:2, pointBackgroundColor:'#E64437', pointRadius:4 },
+        { label:'Medellín',      data:[0,3,5.5,9,12,16],  borderColor:'#1F1F21', backgroundColor:'rgba(31,31,33,.04)',  fill:true, tension:0.4, borderWidth:1.5, pointBackgroundColor:'#1F1F21', pointRadius:3 },
+        { label:'Colombia',      data:[0,2,4,6.5,9,12],   borderColor:'#8A8A8A', backgroundColor:'transparent', tension:0.4, borderWidth:1.5, borderDash:[5,4], pointRadius:2, pointBackgroundColor:'#8A8A8A' }
+      ]
+    },
+    options:{ responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{ labels:{ font:{ family:'Montserrat',size:10 }, boxWidth:10 } }, tooltip:{ mode:'index', intersect:false } },
+      scales:{ y:{ grid:{ color:'rgba(31,31,33,.06)' }, ticks:{ callback:v=>v+'%', font:{ family:'Montserrat',size:10 } } },
+                x:{ grid:{ display:false }, ticks:{ font:{ family:'Montserrat',size:10 } } } } }
+  });
+}
+
+/* ── i18n engine ─────────────────────────────────────── */
+function getT(lang) {
+  return Object.assign({}, TRANSLATIONS['es'] || {}, TRANSLATIONS[lang] || {});
+}
+function translate() {
+  var lang = document.getElementById('ls').value;
+  var t    = getT(lang);
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var k = el.getAttribute('data-i18n');
+    if (t[k] !== undefined) el.textContent = t[k];
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(function(el) {
+    var k = el.getAttribute('data-i18n-ph');
+    if (t[k] !== undefined) el.placeholder = t[k];
+  });
+  if (typeof uc === 'function') uc();
+  /* Swap advisor video on language change */
+  switchAdvisorVideo(lang);
+}
+
+/* ── Advisor mute/unmute ────────────────────────── */
+function toggleAdvisorMute() {
+  var vp  = document.getElementById('advisorVideoPlayer');
+  var iM  = document.getElementById('iconMuted');
+  var iS  = document.getElementById('iconSound');
+  var btn = document.getElementById('avatarMuteBtn');
+  if (!vp) return;
+  if (vp.muted) {
+    vp.muted = false;
+    vp.volume = 1;
+    if (iM) iM.style.display = 'none';
+    if (iS) iS.style.display = '';
+    if (btn) btn.setAttribute('aria-label','Silenciar');
+  } else {
+    vp.muted = true;
+    if (iM) iM.style.display = '';
+    if (iS) iS.style.display = 'none';
+    if (btn) btn.setAttribute('aria-label','Activar sonido');
+  }
+}
+
+/* ── Advisor video swap ──────────────────────────── */
+function switchAdvisorVideo(lang) {
+  var vp  = document.getElementById('advisorVideoPlayer');
+  if (!vp) return;
+  var src = (lang === 'es')
+    ? 'img/avatars/46c07525-4eb8-49f3-80a2-e6e729a6e1a4.mp4'
+    : 'img/avatars/0333d456-cc55-4673-980b-0447333a8a3a.en.mp4';
+  if (vp.currentSrc && vp.currentSrc.endsWith(src)) return; /* already playing */
+  vp.src = src;
+  vp.load();
+  vp.play().catch(function(){});  /* catch auto-play policy errors silently */
+}
+
+function togOL(s) { document.getElementById('oli').classList.toggle('sh', s.value === 'other'); }
+
+/* ── FX ──────────────────────────────────────────────── */
+function fxTs() {
+  const n = new Date();
+  return n.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})
+       + ' · ' + n.toLocaleDateString([], {day:'2-digit',month:'short'});
+}
+function applyFx(usdRate, eurRate, ts, isLive) {
+  RTS.USD = Math.round(usdRate);
+  RTS.EUR = Math.round(eurRate);
+  const badge = document.getElementById('fxBadge');
+  if (badge) {
+    badge.classList.toggle('live-on', isLive);
+    var st = document.getElementById('fxStatus');
+    if (st) st.textContent = isLive ? 'LIVE DATA' : 'ESTIMADO';
+  }
+  var fmtCOP = function(v) { return Math.round(v).toLocaleString('es-CO'); };
+  var eu = document.getElementById('fxUSD');
+  var ee = document.getElementById('fxEUR');
+  var et = document.getElementById('fxTime');
+  if (eu) eu.textContent = fmtCOP(usdRate);
+  if (ee) ee.textContent = fmtCOP(eurRate);
+  if (et) {
+    var lang  = document.getElementById('ls').value;
+    var labels = {es:'Actualizado',en:'Updated',fr:'Mis à jour',pt:'Atualizado',de:'Aktualisiert'};
+    et.textContent = (labels[lang]||'Actualizado') + ': ' + ts;
+  }
+  uc();
+}
+async function fetchRates() {
+  try {
+    /* key: edb699d89c3de74e0d6cd0e9  |  base: COP */
+    const res  = await fetch(FX_URL, {
+      method: 'GET',
+      cache: 'no-store',
+      headers: { 'Accept': 'application/json' }
+    });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    if (data.result !== 'success') throw new Error(data['error-type'] || 'API error');
+    const usdRate = 1 / data.conversion_rates.USD;
+    const eurRate = 1 / data.conversion_rates.EUR;
+    const ts      = fxTs();
+    applyFx(usdRate, eurRate, ts, true);   /* isLive=true → badge verde */
+    sessionStorage.setItem('fx_usd', String(usdRate));
+    sessionStorage.setItem('fx_eur', String(eurRate));
+    sessionStorage.setItem('fx_ts',  ts);
+  } catch(err) {
+    console.error('[FX] fetchRates failed:', err.message || err);
+    /* badge permanece gris — no muestra LIVE */
+    var badge = document.getElementById('fxBadge');
+    if (badge) badge.classList.remove('live-on');
+    var st = document.getElementById('fxStatus');
+    if (st) st.textContent = 'ESTIMADO';
+    const cu = sessionStorage.getItem('fx_usd');
+    const ce = sessionStorage.getItem('fx_eur');
+    const ct = sessionStorage.getItem('fx_ts');
+    if (cu && ce) { applyFx(+cu, +ce, ct, false); return; }
+    applyFx(4150, 4500, 'Referencia BCR', false);
+  }
+}
+
+/* ── Scroll animations ───────────────────────────────── */
+/* Charts init on first scroll into view */
+let vCinit = false, cCinit = false;
+const chartObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    if (e.target.id === 'vC-wrap' && !vCinit) { vCinit = true; bvC(); }
+    if (e.target.id === 'cC-wrap' && !cCinit) { cCinit = true; bcC(); }
+  });
+}, {threshold: 0.1});
+document.addEventListener('DOMContentLoaded', () => {
+  const vw = document.getElementById('vC-wrap');
+  const cw = document.getElementById('cC-wrap');
+  if (vw) chartObs.observe(vw);
+  if (cw) chartObs.observe(cw);
+});
+
+const obs = new IntersectionObserver(es => {
+  es.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      if (vC) vC.resize();
+      if (cC) cC.resize();
+    }
+  });
+}, {threshold:0.08});
+document.querySelectorAll('.fade,.fade-l,.fade-r').forEach(el => obs.observe(el));
+
+/* ── Nav scroll ──────────────────────────────────────── */
+window.addEventListener('scroll', () => { document.getElementById('mn').classList.toggle('sc', window.scrollY > 60); });
+
+/* ── Form submit ─────────────────────────────────────── */
+function sub(e) {
+  e.preventDefault();
+  const t   = getT(document.getElementById('ls').value);
+  const tst = document.getElementById('tst');
+  document.getElementById('tMsg').textContent = t.toastMsg || '¡Gracias!';
+  tst.classList.add('sh');
+  setTimeout(() => tst.classList.remove('sh'), 4500);
+  e.target.reset();
+  document.getElementById('oli').classList.remove('sh');
+}
+
+/* ── FAQ accordion ───────────────────────────────────── */
+function toggleFaq(btn) {
+  const item   = btn.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+/* ── Lightbox ────────────────────────────────────────── */
+function openLB(img) { var lb=document.getElementById('lb'); document.getElementById('lbImg').src=img.src; lb.style.display='flex'; }
+function closeLB()   { document.getElementById('lb').style.display='none'; }
+document.addEventListener('keydown', function(e) { if(e.key==='Escape') closeLB(); });
+
+/* ── Chat button handler ─────────────────────────────── */
+(function(){
+  var btn   = document.getElementById('avatarChatBtn');
+  var input = document.getElementById('avatarChatInput');
+  if (!btn || !input) return;
+  function sendMsg() {
+    var msg = input.value.trim();
+    if (!msg) return;
+    /* Integration point: send msg to backend / LiveAvatar API */
+    console.log('[Asesor Chat]', msg);
+    input.value = '';
+    input.focus();
+  }
+  btn.addEventListener('click', sendMsg);
+  input.addEventListener('keydown', function(e){
+    if (e.key === 'Enter') sendMsg();
+  });
+})();
+
+/* ── INIT ────────────────────────────────────────────── */
+document.getElementById('ls').addEventListener('change', translate);
+document.getElementById('cs').addEventListener('change', uc);
+document.getElementById('inO').addEventListener('input',  uc);
+
+/* Apply fallback FX immediately, then fetch live */
+applyFx(4150, 4500, 'Referencia BCR', false);
+
+window.addEventListener('load', () => {
+  translate();
+  uc();
+  fetchRates();
+  setInterval(fetchRates, FX_TTL);
+});
+</script>
+</body>
+</html>
