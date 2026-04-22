@@ -74,12 +74,25 @@ hr.rule{border:none;border-top:1px solid var(--line);opacity:.35;margin:0;}
 /* ══════════════════════════════════════════════════════
    NAV
 ══════════════════════════════════════════════════════ */
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 6%;display:flex;align-items:center;justify-content:space-between;height:72px;transition:background .4s,border-color .4s;border-bottom:1px solid transparent;}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 6%;display:flex;align-items:center;justify-content:space-between;height:74px;transition:background .4s,border-color .4s;border-bottom:1px solid transparent;}
 nav.sc{background:rgba(240,240,240,.97);backdrop-filter:blur(12px);border-bottom-color:rgba(138,138,138,.25);}
-.nav-logo img{height:34px;transition:filter .3s;}
+/* ── Logo coalition ─────────────────────────────────────────── */
+.nav-logo{display:flex;align-items:center;gap:20px;}
+/* Logos nav — mismo sistema para LG y AyC */
+.nav-logo img{height:51px;transition:filter .3s;}
+/* Hero oscuro: ambos logos → blancos */
 nav:not(.sc) .nav-logo img{filter:brightness(0) invert(1);}
+/* Nav claro al hacer scroll: sin filtro → logo original a color */
 .nav-logo-text{font-family:var(--serif);font-size:1.1rem;font-weight:600;letter-spacing:.06em;display:none;color:#fff;transition:color .3s;}
 nav.sc .nav-logo-text{color:var(--ink);}
+/* ── Separador entre logos ───────────────────────────────────── */
+.nav-logo-sep{width:1px;height:32px;background:rgba(255,255,255,.3);flex-shrink:0;transition:background .4s;}
+nav.sc .nav-logo-sep{background:rgba(138,138,138,.35);}
+/* Mobile */
+@media(max-width:480px){
+  .nav-logo-sep,.nav-logo img:last-child{display:none;}
+  .nav-logo img{height:44px;}
+}
 .nav-right{display:flex;gap:10px;align-items:center;}
 .nav-sel{padding:7px 12px;border-radius:50px;border:1px solid rgba(255,255,255,.25);background:transparent;color:#fff;font-family:var(--sans);font-size:.68rem;font-weight:600;cursor:pointer;outline:none;transition:.2s;letter-spacing:.04em;}
 nav.sc .nav-sel{border-color:rgba(138,138,138,.4);color:var(--ink);}
@@ -90,7 +103,7 @@ nav.sc .nav-sel{border-color:rgba(138,138,138,.4);color:var(--ink);}
 /* ══════════════════════════════════════════════════════
    HERO
 ══════════════════════════════════════════════════════ */
-.hero{height:100vh;min-height:700px;position:relative;display:flex;align-items:flex-end;padding-bottom:90px;}
+.hero{height:100vh;min-height:700px;position:relative;display:flex;align-items:flex-end;padding-bottom:72px;}
 .hero-bg{position:absolute;inset:0;background:url('img/hero-marriott.jpg') center/cover no-repeat;z-index:0;}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(31,31,33,.85) 0%,rgba(31,31,33,.2) 60%,transparent 100%);z-index:1;}
 .hero-content{position:relative;z-index:2;padding:0 6%;}
@@ -486,6 +499,206 @@ nav.sc .fx-badge.live-on{color:rgba(30,80,50,.85);}
 .participation-fill{height:100%;background:var(--red);border-radius:2px;transition:width .4s ease;}
 .rental-pool-note{font-family:var(--serif);font-style:italic;font-size:.8rem;color:var(--muted);line-height:1.65;padding:14px 16px;border-left:2px solid rgba(230,68,55,.35);background:rgba(230,68,55,.03);margin-top:12px;}
 @media(max-width:580px){.suite-card{width:100%;max-width:100%;}}
+
+/* ══════════════════════════════════════════════════════
+   ASESOR VIRTUAL · LiveAvatar
+══════════════════════════════════════════════════════ */
+.avatar-section{background:var(--white);padding:100px 0;}
+.avatar-inner{
+  display:flex;
+  gap:60px;
+  align-items:center;
+  max-width:1280px;
+  margin:0 auto;
+  padding:0 6%;
+}
+/* ── Left column: text ─────────────────────────────── */
+.avatar-text{flex:1;min-width:0;}
+.avatar-text .eyebrow{display:block;margin-bottom:20px;}
+.avatar-text h2{
+  font-family:var(--serif);
+  font-size:clamp(2.2rem,3.8vw,3.4rem);
+  font-weight:300;
+  line-height:1.08;
+  color:var(--ink);
+  margin-bottom:24px;
+}
+.avatar-text h2 em{font-style:italic;}
+.avatar-text p{
+  font-family:var(--sans);
+  font-size:.88rem;
+  color:var(--muted);
+  line-height:1.9;
+  font-weight:400;
+  max-width:440px;
+  margin-bottom:36px;
+}
+.avatar-badges{display:flex;gap:10px;flex-wrap:wrap;}
+.avatar-badge{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:7px 18px;
+  border:1px solid rgba(138,138,138,.28);
+  border-radius:50px;
+  font-family:var(--sans);font-size:.58rem;
+  font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);
+}
+/* ── Right column: video + chat ─────────────────────── */
+.avatar-frame{
+  flex:0 0 340px;
+  width:340px;
+  display:flex;
+  flex-direction:column;
+  border-radius:24px;
+  overflow:hidden;
+  box-shadow:0 28px 60px rgba(31,31,33,.18),
+             0 8px 24px rgba(31,31,33,.10);
+}
+/* ── Video wrapper ──────────────────────────────────── */
+.avatar-video-wrap{
+  position:relative;
+  flex:1;
+  overflow:hidden;
+  background:#1a1a1a;
+  min-height:460px;
+}
+.avatar-video-wrap video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+/* ── Overlay: nombre + live dot ─────────────────────── */
+.avatar-overlay{
+  position:absolute;
+  bottom:0;left:0;right:0;
+  padding:48px 18px 18px;
+  background:linear-gradient(to top,rgba(10,10,10,.72) 0%,transparent 100%);
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+  z-index:3;
+}
+.avatar-live-row{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  margin-bottom:4px;
+}
+.avatar-live-dot{
+  width:7px;height:7px;
+  border-radius:50%;
+  background:#2D9E6B;
+  animation:livePulse 2s ease-in-out infinite;
+  flex-shrink:0;
+}
+.avatar-overlay-name{
+  font-family:var(--serif);
+  font-size:1.15rem;
+  font-weight:400;
+  color:#fff;
+  line-height:1.1;
+}
+.avatar-overlay-role{
+  font-family:var(--sans);
+  font-size:.55rem;
+  font-weight:600;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.55);
+}
+.avatar-overlay-live{
+  font-family:var(--sans);
+  font-size:.52rem;
+  font-weight:600;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:#2D9E6B;
+}
+/* ── Chat bar ───────────────────────────────────────── */
+.avatar-chat{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:12px 14px;
+  background:#fff;
+  border-top:1px solid rgba(138,138,138,.15);
+  flex-shrink:0;
+}
+.avatar-chat-input{
+  flex:1;
+  border:1px solid rgba(138,138,138,.28);
+  border-radius:50px;
+  padding:9px 16px;
+  font-family:var(--sans);
+  font-size:.72rem;
+  color:var(--ink);
+  outline:none;
+  background:#f8f8f8;
+  transition:border-color .2s;
+}
+.avatar-chat-input:focus{
+  border-color:var(--red);
+  background:#fff;
+}
+.avatar-chat-input::placeholder{color:rgba(138,138,138,.7);}
+.avatar-chat-btn{
+  flex-shrink:0;
+  padding:9px 16px;
+  background:var(--red);
+  color:#fff;
+  border:none;
+  border-radius:50px;
+  font-family:var(--sans);
+  font-size:.62rem;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:background .2s, transform .15s;
+  white-space:nowrap;
+}
+.avatar-chat-btn:hover{background:var(--red2);transform:scale(1.03);}
+/* ── Responsive ────────────────────────────────────── */
+@media(max-width:900px){
+  .avatar-inner{flex-direction:column;gap:48px;}
+  .avatar-frame{flex:none;width:100%;max-width:340px;margin:0 auto;}
+  .avatar-video-wrap{min-height:420px;}
+  .avatar-text p{max-width:100%;}
+}
+@media(max-width:480px){
+  .avatar-section{padding:70px 0;}
+  .avatar-frame{max-width:290px;}
+  .avatar-video-wrap{min-height:360px;}
+}
+
+/* ── Mute/unmute button ─────────────────────────────────────── */
+.avatar-mute-btn{
+  position:absolute;
+  top:12px;
+  right:12px;
+  z-index:5;
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  border:1.5px solid rgba(255,255,255,.35);
+  background:rgba(0,0,0,.42);
+  backdrop-filter:blur(6px);
+  color:#fff;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:background .2s,transform .15s;
+  flex-shrink:0;
+  padding:0;
+}
+.avatar-mute-btn:hover{background:rgba(0,0,0,.65);transform:scale(1.08);}
+.avatar-mute-btn svg{
+  width:17px;height:17px;
+  fill:none;stroke:#fff;stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round;
+}
 </style>
 </head>
 <body>
@@ -495,6 +708,10 @@ nav.sc .fx-badge.live-on{color:rgba(30,80,50,.85);}
   <div class="nav-logo">
     <img src="https://londonogomez.com/sites/default/files/Lonodo%C3%B1o-G%C3%B3mez-Promotora-de-proyectos-logo.png" alt="Londoño Gómez" onerror="this.style.display='none';document.querySelector('.nav-logo-text').style.display='block'">
     <span class="nav-logo-text">LONDOÑO GÓMEZ</span>
+    <!-- Partner separator -->
+    <span class="nav-logo-sep"></span>
+    <!-- Arquitectura y Concreto logo -->
+    <img src="https://arquitecturayconcreto.com/static/logo-azul-ayc-6123e40983299d0b5d9edecd5f2c3801.webp" alt="Arquitectura y Concreto" onerror="this.style.display='none'">
   </div>
   <div class="nav-right">
     <select id="ls" class="nav-sel"><option value="es">ES</option><option value="en">EN</option><option value="fr">FR</option><option value="pt">PT</option><option value="de">DE</option></select>
@@ -525,6 +742,83 @@ nav.sc .fx-badge.live-on{color:rgba(30,80,50,.85);}
   <div class="hero-scroll"><div class="scroll-line"></div><span>Scroll</span></div>
 </section>
 
+<!-- ════ ASESOR VIRTUAL ══════════════════════════════ -->
+<section class="avatar-section" id="asesor-virtual">
+  <div class="avatar-inner">
+
+    <!-- Columna izquierda: texto -->
+    <div class="avatar-text fade-l">
+      <span class="eyebrow" data-i18n="av_eyebrow">Asesor Virtual · Disponible ahora</span>
+      <h2 data-i18n="av_title">Tu Asesor Personal de <em>Inversión</em></h2>
+      <p data-i18n="av_body">Habla directamente con Juan Salvador Álvarez, nuestro asesor digital disponible 24/7. Pregunta por tipologías de suite, rentabilidades, el proceso fiduciario o cualquier detalle del proyecto — por voz o chat, en tu idioma.</p>
+      <div class="avatar-badges">
+        <span class="avatar-badge">
+          <span class="dot-red"></span>
+          <span data-i18n="av_badge1">Disponible 24/7</span>
+        </span>
+        <span class="avatar-badge">
+          <span class="dot-red"></span>
+          <span data-i18n="av_badge2">Voz y chat</span>
+        </span>
+        <span class="avatar-badge">
+          <span class="dot-red"></span>
+          <span data-i18n="av_badge3">Multiidioma</span>
+        </span>
+      </div>
+    </div>
+
+    <!-- Columna derecha: video pregrabado + chat -->
+    <div class="avatar-frame fade-r" style="transition-delay:.15s;">
+
+      <!-- Video con overlay de nombre/live -->
+      <div class="avatar-video-wrap">
+        <video id="advisorVideoPlayer" autoplay loop muted playsinline>
+          <source src="img/avatars/46c07525-4eb8-49f3-80a2-e6e729a6e1a4.mp4" type="video/mp4">
+        </video>
+
+        <!-- Botón mute/unmute -->
+        <button class="avatar-mute-btn" id="avatarMuteBtn"
+                onclick="toggleAdvisorMute()" aria-label="Activar sonido">
+          <svg id="iconMuted" viewBox="0 0 24 24">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+            <line x1="23" y1="9" x2="17" y2="15"/>
+            <line x1="17" y1="9" x2="23" y2="15"/>
+          </svg>
+          <svg id="iconSound" viewBox="0 0 24 24" style="display:none;">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+          </svg>
+        </button>
+
+        <div class="avatar-overlay">
+          <div class="avatar-live-row">
+            <span class="avatar-live-dot"></span>
+            <span class="avatar-overlay-live" data-i18n="av_live_label">En vivo</span>
+          </div>
+          <span class="avatar-overlay-name">Juan Salvador Álvarez</span>
+          <span class="avatar-overlay-role" data-i18n="av_role">Asesor Digital</span>
+        </div>
+      </div>
+
+      <!-- Barra de chat inferior -->
+      <div class="avatar-chat">
+        <input
+          type="text"
+          class="avatar-chat-input"
+          id="avatarChatInput"
+          data-i18n-ph="av_chat_ph"
+          placeholder="Escribe tu consulta aquí..."
+          autocomplete="off">
+        <button class="avatar-chat-btn" id="avatarChatBtn" data-i18n="av_chat_send">Enviar</button>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<hr class="rule">
 <!-- ─── LAUNCH CALLOUT ─────────────────────────────────── -->
 <div class="launch-callout">
   <span class="launch-callout-label" data-i18n="launch_label">Lanzamiento Oficial</span>
@@ -1340,7 +1634,17 @@ const TRANSLATIONS = {
     "src_calc": "Fuente: Proyecciones bajo estándares STR Global y modelo Rental Pool de Alianza Fiduciaria.",
     "arena_note": "Arena Primavera: 75+ eventos/año · 8 minutos del hotel",
     "fin_note_calc": "Este análisis se centra en utilidades operativas proyectadas. No incluye la valorización del derecho y el activo, lo cual representa un beneficio patrimonial adicional extraordinario para el inversionista.",
-    "fin_note_cmp": "Este análisis se centra en utilidades operativas. No incluye la valorización del derecho y el activo, lo cual representa un beneficio patrimonial adicional extraordinario para el inversionista — históricamente del +22% en el sector."
+    "fin_note_cmp": "Este análisis se centra en utilidades operativas. No incluye la valorización del derecho y el activo, lo cual representa un beneficio patrimonial adicional extraordinario para el inversionista — históricamente del +22% en el sector.",
+    "av_eyebrow": "Asesor Digital · Disponible ahora",
+    "av_title": "Tu Asesor Digital de Inversión",
+    "av_body": "Habla directamente con Juan Salvador Álvarez, nuestro asesor digital disponible 24/7. Pregunta por tipologías de suite, rentabilidades, el proceso fiduciario o cualquier detalle del proyecto — por voz o chat, en tu idioma.",
+    "av_badge1": "Disponible 24/7",
+    "av_badge2": "Voz y chat",
+    "av_badge3": "Multiidioma",
+    "av_role": "Asesor Digital",
+    "av_live_label": "En vivo",
+    "av_chat_ph": "Escribe tu consulta aquí...",
+    "av_chat_send": "Enviar"
   },
   "en": {
     "nav_cta": "Invest Now",
@@ -1538,7 +1842,17 @@ const TRANSLATIONS = {
     "src_calc": "Source: Projections under STR Global standards and Alianza Fiduciaria Rental Pool model.",
     "arena_note": "Arena Primavera: 75+ events/year · 8 minutes from the hotel",
     "fin_note_calc": "This analysis focuses on projected operating profits. It does not include the appreciation of the right and the underlying asset, which represents an extraordinary additional patrimonial benefit for the investor.",
-    "fin_note_cmp": "This analysis focuses on operating profits. It does not include the appreciation of the right and the underlying asset — historically +22% in this sector."
+    "fin_note_cmp": "This analysis focuses on operating profits. It does not include the appreciation of the right and the underlying asset — historically +22% in this sector.",
+    "av_eyebrow": "Digital Advisor · Available now",
+    "av_title": "Your Digital Investment Advisor",
+    "av_body": "Speak directly with Juan Salvador Álvarez, our digital advisor available 24/7. Ask about suite types, yields, the fiduciary process or any project detail — by voice or chat, in your language.",
+    "av_badge1": "Available 24/7",
+    "av_badge2": "Voice & chat",
+    "av_badge3": "Multilingual",
+    "av_role": "Digital Advisor",
+    "av_live_label": "Live",
+    "av_chat_ph": "Type your question here...",
+    "av_chat_send": "Send"
   },
   "fr": {
     "nav_cta": "Investir Maintenant",
@@ -1736,7 +2050,17 @@ const TRANSLATIONS = {
     "src_calc": "Source: Projections selon les normes STR Global et le modèle Rental Pool d'Alianza Fiduciaria.",
     "arena_note": "Arena Primavera : 75+ événements/an · 8 minutes de l'hôtel",
     "fin_note_calc": "Cette analyse porte sur les bénéfices opérationnels projetés. Elle n'inclut pas la valorisation du droit et de l'actif, ce qui représente un avantage patrimonial additionnel extraordinaire pour l'investisseur.",
-    "fin_note_cmp": "Cette analyse porte sur les bénéfices opérationnels. Elle n'inclut pas la valorisation du droit et de l'actif — historiquement +22% dans ce secteur."
+    "fin_note_cmp": "Cette analyse porte sur les bénéfices opérationnels. Elle n'inclut pas la valorisation du droit et de l'actif — historiquement +22% dans ce secteur.",
+    "av_eyebrow": "Conseiller Digital · Disponible maintenant",
+    "av_title": "Votre Conseiller Digital en Investissement",
+    "av_body": "Parlez directement avec Juan Salvador Álvarez, notre conseiller digital disponible 24h/24. Posez vos questions sur les types de suites, les rendements ou le processus fiduciaire — par voix ou chat, dans votre langue.",
+    "av_badge1": "Disponible 24h/24",
+    "av_badge2": "Voix et chat",
+    "av_badge3": "Multilingue",
+    "av_role": "Conseiller Digital",
+    "av_live_label": "En direct",
+    "av_chat_ph": "Écrivez votre question ici...",
+    "av_chat_send": "Envoyer"
   },
   "pt": {
     "nav_cta": "Investir Agora",
@@ -1934,7 +2258,17 @@ const TRANSLATIONS = {
     "src_calc": "Fonte: Projeções sob padrões STR Global e modelo Rental Pool da Alianza Fiduciaria.",
     "arena_note": "Arena Primavera: 75+ eventos/ano · 8 minutos do hotel",
     "fin_note_calc": "Esta análise centra-se nos lucros operacionais projetados. Não inclui a valorização do direito e do ativo, o que representa um benefício patrimonial adicional extraordinário para o investidor.",
-    "fin_note_cmp": "Esta análise centra-se nos lucros operacionais. Não inclui a valorização do direito e do ativo — historicamente +22% neste setor."
+    "fin_note_cmp": "Esta análise centra-se nos lucros operacionais. Não inclui a valorização do direito e do ativo — historicamente +22% neste setor.",
+    "av_eyebrow": "Assessor Digital · Disponível agora",
+    "av_title": "Seu Assessor Digital de Investimento",
+    "av_body": "Fale diretamente com Juan Salvador Álvarez, nosso assessor digital disponível 24/7. Pergunte sobre tipologias de suíte, rentabilidades, o processo fiduciário ou qualquer detalhe do projeto — por voz ou chat, no seu idioma.",
+    "av_badge1": "Disponível 24/7",
+    "av_badge2": "Voz e chat",
+    "av_badge3": "Multilíngue",
+    "av_role": "Assessor Digital",
+    "av_live_label": "Ao vivo",
+    "av_chat_ph": "Escreva sua consulta aqui...",
+    "av_chat_send": "Enviar"
   },
   "de": {
     "nav_cta": "Jetzt Investieren",
@@ -2132,7 +2466,17 @@ const TRANSLATIONS = {
     "src_calc": "Quelle: Projektionen nach STR-Global-Standards und Alianza Fiduciaria Rental-Pool-Modell.",
     "arena_note": "Arena Primavera: 75+ Veranstaltungen/Jahr · 8 Minuten vom Hotel",
     "fin_note_calc": "Diese Analyse konzentriert sich auf prognostizierte Betriebsgewinne. Sie beinhaltet nicht die Wertsteigerung des Rechts und des Assets, was einen außerordentlichen zusätzlichen Vermögensvorteil für den Investor darstellt.",
-    "fin_note_cmp": "Diese Analyse konzentriert sich auf Betriebsgewinne. Sie beinhaltet nicht die Wertsteigerung des Rechts und des Assets — historisch +22% in diesem Sektor."
+    "fin_note_cmp": "Diese Analyse konzentriert sich auf Betriebsgewinne. Sie beinhaltet nicht die Wertsteigerung des Rechts und des Assets — historisch +22% in diesem Sektor.",
+    "av_eyebrow": "Digitaler Berater · Jetzt verfügbar",
+    "av_title": "Ihr digitaler Investitionsberater",
+    "av_body": "Sprechen Sie direkt mit Juan Salvador Álvarez, unserem digitalen Berater, der rund um die Uhr verfügbar ist. Stellen Sie Fragen zu Suitetypen, Renditen oder dem Treuhandprozess — per Sprache oder Chat, in Ihrer Sprache.",
+    "av_badge1": "Rund um die Uhr",
+    "av_badge2": "Sprache & Chat",
+    "av_badge3": "Mehrsprachig",
+    "av_role": "Digitaler Berater",
+    "av_live_label": "Live",
+    "av_chat_ph": "Schreiben Sie hier Ihre Frage...",
+    "av_chat_send": "Senden"
   }
 };
 
@@ -2285,6 +2629,42 @@ function translate() {
     if (t[k] !== undefined) el.placeholder = t[k];
   });
   if (typeof uc === 'function') uc();
+  /* Swap advisor video on language change */
+  switchAdvisorVideo(lang);
+}
+
+/* ── Advisor mute/unmute ────────────────────────── */
+function toggleAdvisorMute() {
+  var vp  = document.getElementById('advisorVideoPlayer');
+  var iM  = document.getElementById('iconMuted');
+  var iS  = document.getElementById('iconSound');
+  var btn = document.getElementById('avatarMuteBtn');
+  if (!vp) return;
+  if (vp.muted) {
+    vp.muted = false;
+    vp.volume = 1;
+    if (iM) iM.style.display = 'none';
+    if (iS) iS.style.display = '';
+    if (btn) btn.setAttribute('aria-label','Silenciar');
+  } else {
+    vp.muted = true;
+    if (iM) iM.style.display = '';
+    if (iS) iS.style.display = 'none';
+    if (btn) btn.setAttribute('aria-label','Activar sonido');
+  }
+}
+
+/* ── Advisor video swap ──────────────────────────── */
+function switchAdvisorVideo(lang) {
+  var vp  = document.getElementById('advisorVideoPlayer');
+  if (!vp) return;
+  var src = (lang === 'es')
+    ? 'img/avatars/46c07525-4eb8-49f3-80a2-e6e729a6e1a4.mp4'
+    : 'img/avatars/0333d456-cc55-4673-980b-0447333a8a3a.en.mp4';
+  if (vp.currentSrc && vp.currentSrc.endsWith(src)) return; /* already playing */
+  vp.src = src;
+  vp.load();
+  vp.play().catch(function(){});  /* catch auto-play policy errors silently */
 }
 
 function togOL(s) { document.getElementById('oli').classList.toggle('sh', s.value === 'other'); }
@@ -2406,6 +2786,25 @@ function openLB(img) { var lb=document.getElementById('lb'); document.getElement
 function closeLB()   { document.getElementById('lb').style.display='none'; }
 document.addEventListener('keydown', function(e) { if(e.key==='Escape') closeLB(); });
 
+/* ── Chat button handler ─────────────────────────────── */
+(function(){
+  var btn   = document.getElementById('avatarChatBtn');
+  var input = document.getElementById('avatarChatInput');
+  if (!btn || !input) return;
+  function sendMsg() {
+    var msg = input.value.trim();
+    if (!msg) return;
+    /* Integration point: send msg to backend / LiveAvatar API */
+    console.log('[Asesor Chat]', msg);
+    input.value = '';
+    input.focus();
+  }
+  btn.addEventListener('click', sendMsg);
+  input.addEventListener('keydown', function(e){
+    if (e.key === 'Enter') sendMsg();
+  });
+})();
+
 /* ── INIT ────────────────────────────────────────────── */
 document.getElementById('ls').addEventListener('change', translate);
 document.getElementById('cs').addEventListener('change', uc);
@@ -2421,6 +2820,5 @@ window.addEventListener('load', () => {
   setInterval(fetchRates, FX_TTL);
 });
 </script>
-<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
